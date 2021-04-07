@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "twd": "tailwindcss build ./src/tailwind.css -o ./src/assets/main.css"
+    "twd": "tailwindcss build ./src/tailwind.css -o ./src/css/main.css"
   },
   "eslintConfig": {
     "extends": [

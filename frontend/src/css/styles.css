@@ -16,67 +16,12 @@ body {
     width: 100%;
     background-size: cover;
     background-position: center;
-    height: 40vh;
-}
-
-.card {
-    height: 250px;
-    width: 300px;
+    height: 50vh;
 }
 
 .cardsContainer {
     width: 80vw;
 }
-
-/* 
-CAROUSEL
-*/
-/* 
-.carrusel {
-    display: flex;
-    white-space: nowrap;
-    overflow-x: auto;
-}
-
-.carrusel-item {
-    width: 100vw;
-    height: 50vh;
-}
-
-.carousel {
-  background: #EEE;
-}
-
-.carousel-cell {
-  width: 66%;
-  height: auto;
-  margin-right: 10px;
-  background: #8C8;
-  border-radius: 10px;
-  counter-increment: carousel-cell;
-}
-
-
-.flickity-viewport {
-    margin-bottom: 10vh;
-} */
-
-/* cell number */
-/* .carousel-cell:before {
-  display: block;
-  text-align: center;
-  content: counter(carousel-cell);
-  line-height: 200px;
-  font-size: 80px;
-  color: white;
-} */
-
-
-/* .carrusel {
-    display: flex;
-    white-space: nowrap;
-    overflow-x: auto;
-} */
 
 .carrusel-item {
     width: 100vw;
@@ -86,7 +31,6 @@ CAROUSEL
   background: #EEE;
   min-height: 500px;
 }
-
  
 .carousel-cell {
 width: 66%;
@@ -96,4 +40,20 @@ min-height: 500px;
 .image-city-slider {
     background-size: cover;
     background-position: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+}
+
+.lobster {
+    font-family: 'Lobster', cursive;
+}
+
+.icon-media {
+    width: 25px;
+    height: 25px;
 }

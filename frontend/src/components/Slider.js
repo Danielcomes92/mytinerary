@@ -1,15 +1,15 @@
 import Slide from './Slide'
 import Flickity from "react-flickity-component";
 
-const flickityOptions = {
-    initialIndex: 1,
-    pageDots: true,
-    wrapAround: true,
-    autoPlay: true,
-    adaptiveHeight: true
-}
 
 function Slider() {
+    const flickityOptions = {
+        initialIndex: 1,
+        pageDots: true,
+        wrapAround: true,
+        autoPlay: true,
+        adaptiveHeight: true
+    }
     const citybases = [
         [
             {id: '1', country: 'Brazil', place: 'Buzios Beach', image: 'buzios.jpg'},

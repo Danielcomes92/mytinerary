@@ -27,12 +27,13 @@ class Cities extends React.Component {
         return(
             <>
                 <div className="heroCitiesContainer heroMainImage w-full bg-gray-800" style={{
-                    backgroundImage: "url('./img/hero-cities-background.png')"
+                backgroundImage:"linear-gradient(to top, rgba(0, 0, 0, 0), rgba(15, 15, 15, 0.6)), url('./img/hero-cities-background.png')"
+
                 }}>
                     <Header/>
                 </div>
 
-                <div className="findCitiesContainer h-64 bg-blue-900">
+                <div className="findCitiesContainer h-12 bg-black">
 
                 </div>
                 <Cards play={this.play} pause={this.pause} />

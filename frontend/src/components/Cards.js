@@ -1,6 +1,6 @@
 const Cards = ({play, pause}) => {
     return(
-        <section className="cardsContainer mx-auto">
+        <section className="cardsContainer mx-auto mt-20">
             <span className="text-5xl"><b>¿</b>What to see...<b>?</b></span>
             <div className="mt-4 grid md:grid-cols-2  lg:grid-cols-3 gap-4">
                 <div className="card flex-1 rounded-md shadow-md bg-gray-100 mx-auto">

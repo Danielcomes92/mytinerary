@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import App from './App';
-import './css/tailwind.min.css'
-import './css/flickity.css'
-import './css/styles.css'
+import "../src/css/tailwind.min.css";
+import "../src/css/flickity.css";
+import "../src/css/styles.css";
 
 ReactDOM.render(
-    <App />,
-  document.getElementById('root')
+  <App />,
+document.getElementById('root')
 );

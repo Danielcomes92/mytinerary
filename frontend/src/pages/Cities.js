@@ -1,8 +1,28 @@
 import React from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Cards from '../components/Cards';
 
 class Cities extends React.Component {
+
+    state = {
+        playVideo: true
+    }
+
+    play = (e) => {
+        this.setState({
+            playVideo: !this.state.playVideo
+        })
+        e.target.play()
+    }
+
+    pause = (e) => {
+        this.setState({
+            playVideo: !this.state.playVideo
+        })
+        e.target.pause()
+    }
+
     render() {
         return(
             <>
@@ -15,10 +35,7 @@ class Cities extends React.Component {
                 <div className="findCitiesContainer h-64 bg-blue-900">
 
                 </div>
-                
-                {/* <div className="videoContainer">
-                    <video className="videoCities mx-auto" src="../img/mytinerary.mp4" autoPlay loop muted></video>
-                </div> */}
+                <Cards play={this.play} pause={this.pause} />
 
                 <Footer />
             </>

@@ -31,7 +31,7 @@ body {
 /* 
 CAROUSEL
 */
-
+/* 
 .carrusel {
     display: flex;
     white-space: nowrap;
@@ -49,7 +49,7 @@ CAROUSEL
 
 .carousel-cell {
   width: 66%;
-  height: 400px;
+  height: auto;
   margin-right: 10px;
   background: #8C8;
   border-radius: 10px;
@@ -58,9 +58,8 @@ CAROUSEL
 
 
 .flickity-viewport {
-    height: 400px;
     margin-bottom: 10vh;
-}
+} */
 
 /* cell number */
 /* .carousel-cell:before {
@@ -71,3 +70,30 @@ CAROUSEL
   font-size: 80px;
   color: white;
 } */
+
+
+/* .carrusel {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+} */
+
+.carrusel-item {
+    width: 100vw;
+}
+
+.carousel {
+  background: #EEE;
+  min-height: 500px;
+}
+
+ 
+.carousel-cell {
+width: 66%;
+min-height: 500px;
+}
+
+.image-city-slider {
+    background-size: cover;
+    background-position: center;
+}

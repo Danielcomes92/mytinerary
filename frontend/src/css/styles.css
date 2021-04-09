@@ -1,0 +1,73 @@
+body {
+    background-color: whitesmoke;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.heroContainer {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    height: 75vh;
+}
+
+.heroCitiesContainer {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    height: 40vh;
+}
+
+.card {
+    height: 250px;
+    width: 300px;
+}
+
+.cardsContainer {
+    width: 80vw;
+}
+
+/* 
+CAROUSEL
+*/
+
+.carrusel {
+    display: flex;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.carrusel-item {
+    width: 100vw;
+    height: 50vh;
+}
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 66%;
+  height: 400px;
+  margin-right: 10px;
+  background: #8C8;
+  border-radius: 10px;
+  counter-increment: carousel-cell;
+}
+
+
+.flickity-viewport {
+    height: 400px;
+    margin-bottom: 10vh;
+}
+
+/* cell number */
+/* .carousel-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(carousel-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+} */

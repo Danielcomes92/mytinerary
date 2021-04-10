@@ -18,11 +18,11 @@ class Home extends React.Component {
                 </div>
                 <div className="w-full text-center mb-20">
                     <NavLink to="/cities">
-                        <button className="mt-8 mx-2 text-white px-16 py-2 bg-red-600 duration-500 transition hover:bg-white hover:text-red-700 border hover:border-red-400 rounded font-semibold cursor-pointer">CITIES</button>
+                        <button className="mt-8 mx-2 text-white rounded-full py-4 px-8 bg-red-600 duration-500 transition hover:bg-white hover:text-red-600 border hover:border-red-400 font-semibold cursor-pointer">LIFE'S SECRET</button>
                     </NavLink>
                 </div>
 
-                <h1 className="mt-46 font-semibold text-4xl px-2 md:text-5xl lobster tracking-wide">Most required </h1>
+                <h1 className="mt-46 font-semibold text-4xl px-2 md:text-5xl lobster tracking-wide">Our clients favourite places</h1>
                 <Slider />
   
                 <Footer/>

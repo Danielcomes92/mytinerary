@@ -49,6 +49,13 @@ min-height: 500px;
     background-position: center;
 }
 
+@media (max-width: 768px) {
+    .logo {
+        width: 0px;
+        height: 0px;
+    }
+}
+
 .lobster {
     font-family: 'Lobster', cursive;
 }

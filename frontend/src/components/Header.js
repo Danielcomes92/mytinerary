@@ -2,8 +2,6 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
-
-
     const [menuMobileClasses, setMenuMobileClasses] = useState('navResponsive hidden md:hidden bg-gray-800 z-30');
 
     const openMenuNav = () => {
@@ -13,16 +11,15 @@ const Header = () => {
         setMenuMobileClasses('navResponsive hidden md:hidden bg-gray-800 z-30')
     }
 
-
     return(
-        <div className="w-full px-6 overflow:hidden">
-            <div className="w-full pt-4 flex justify-between font-bold text-white items-center">
+        <div className="w-full bg-gray-900 fixed md:static  py-2 md:py-0 md:bg-transparent px-6 overflow:hidden">
+            <div className="w-full pt-2 md:pt-4 flex justify-between font-bold text-white items-center">
 
                 <NavLink className="mx-10" exact to="/">
                     <div className="items-center logo cursor-pointer flex justify-center" style={{
                         backgroundImage: "url('./img/pngegg.png')"
                     }}>
-                      <span className="text-4xl pt-16 lobster">MyTinerary</span>
+                      <span className="text-3xl pl-12 md:text-4xl md:pt-16 lobster">MyTinerary</span>
                     </div>
                 </NavLink>
 
@@ -38,7 +35,7 @@ const Header = () => {
 
                 <div className={menuMobileClasses}>
                     <div onClick={closeMenuNav} className="flex justify-end pt-4 px-8">
-                        <span className="text-2xl text-gray-100">X</span>
+                        <span className="text-3xl mr-6 text-gray-100">X</span>
                     </div>
                     <div className="flex flex-col h-full md:flex-row items-center px-20">
                         <div id="user-icon-image" className="cursor-pointer mb-4" style={{

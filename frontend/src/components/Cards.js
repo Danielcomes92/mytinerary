@@ -9,7 +9,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>Fontana Di Trevi - <b>Italy</b></span>
+                        <span>Fontana Di Trevi - <b>Rome</b></span>
                     </div>
                 </div>
 
@@ -19,7 +19,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>Eiffel Tower - <b>France</b></span>
+                        <span>Eiffel Tower - <b>Paris</b></span>
                     </div>
                 </div>
 
@@ -29,7 +29,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>Neuschwastein Castle - <b>Germany</b></span>
+                        <span>Neuschwastein Castle - <b>Munich</b></span>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>London Eye - <b>United Kingdom</b></span>
+                        <span>London Eye - <b>London</b></span>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>Mykonos - <b>Greece</b></span>
+                        <span>Mykonos City - <b>Mykonos</b></span>
                     </div>
                 </div>
 
@@ -59,7 +59,7 @@ const Cards = ({play, pause}) => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        <span>Copenhagen - <b>Denmark</b></span>
+                        <span>Copenhagen Downtown - <b>Copenhagen</b></span>
                     </div>
                 </div>
             </div>

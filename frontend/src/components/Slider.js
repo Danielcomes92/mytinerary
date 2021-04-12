@@ -10,37 +10,68 @@ function Slider() {
         autoPlay: true,
         adaptiveHeight: true
     }
-    const citybases = [
+
+    let citybaseDesktop = [
         [
-            {id: '1', country: 'Brazil', place: 'Buzios Beach', image: 'buzios.jpg'},
-            {id: '2', country: 'France', place: 'Eiffel Tower', image: 'eiffel.jpg'},
-            {id: '3', country: 'Italy', place: 'Fontana Di Trevi', image: 'fontana.jpg'},
-            {id: '4', country: 'Germany', place: 'Coln', image: 'coln.jpg'}
+            {id: '1', city: 'Buzios', place: 'Buzios Beach', image: 'buzios.jpg'},
+            {id: '2', city: 'Paris', place: 'Eiffel Tower', image: 'eiffel.jpg'},
+            {id: '3', city: 'Rome', place: 'Fontana Di Trevi', image: 'fontana.jpg'},
+            {id: '4', city: 'Coln', place: 'Old Town', image: 'coln.jpg'}
         ],
         [
-            {id: '5', country: 'Greece', place: 'Mykonos', image: 'greece.jpg'},
-            {id: '6', country: 'United Kingdom', place: 'London Eye', image: 'london.jpg'},
-            {id: '7', country: 'Maldives', place: 'Lily Beach', image: 'maldives.jpg'},
-            {id: '8', country: 'Morocco', place: 'Chefchaouen', image: 'morocco.jpg'}
+            {id: '5', city: 'Mykonos', place: 'Mykonos', image: 'greece.jpg'},
+            {id: '6', city: 'London', place: 'London Eye', image: 'london.jpg'},
+            {id: '7', city: 'Dhangethi', place: 'Lily Beach', image: 'maldives.jpg'},
+            {id: '8', city: 'Chefchaouen', place: 'The Blue City', image: 'morocco.jpg'}
         ],
         [
-            {id: '9', country: 'Germany', place: 'Neushwastein Castle', image: 'neush.jpg'},
-            {id: '10', country: 'Canada', place: 'Niagara Falls', image: 'niagara.jpg'},
-            {id: '11', country: 'Jordan', place: 'Petra', image: 'petra.jpg'},
-            {id: '12', country: 'Croatia', place: 'Hvar', image: 'hvar.jpg'}
+            {id: '9', city: 'Munich', place: 'Neushwastein Castle', image: 'neush.jpg'},
+            {id: '10', city: 'Ontario', place: 'Niagara Falls', image: 'niagara.jpg'},
+            {id: '11', city: 'Petra', place: 'The City Of Petra', image: 'petra.jpg'},
+            {id: '12', city: 'Hvar', place: 'Hvar Islands', image: 'hvar.jpg'}
         ]
     ]
+
+    let citybaseMobile = [
+        [
+            {id: '1', city: 'Buzios', place: 'Buzios Beach', image: 'buzios.jpg'},
+            {id: '2', city: 'Paris', place: 'Eiffel Tower', image: 'eiffel.jpg'}
+        ],
+        [
+            {id: '3', city: 'Rome', place: 'Fontana Di Trevi', image: 'fontana.jpg'},
+            {id: '4', city: 'Coln', place: 'Old Town', image: 'coln.jpg'}
+        ],
+        [
+            {id: '5', city: 'Mykonos', place: 'Mykonos', image: 'greece.jpg'},
+            {id: '6', city: 'London', place: 'London Eye', image: 'london.jpg'}
+        ],
+        [
+            {id: '7', city: 'Dhangethi', place: 'Lily Beach', image: 'maldives.jpg'},
+            {id: '8', city: 'Chefchaouen', place: 'The Blue City', image: 'morocco.jpg'}
+        ],
+        [
+            {id: '9', city: 'Munich', place: 'Neushwastein Castle', image: 'neush.jpg'},
+            {id: '10', city: 'Ontario', place: 'Niagara Falls', image: 'niagara.jpg'}
+        ],
+        [
+            {id: '11', city: 'Petra', place: 'The City Of Petra', image: 'petra.jpg'},
+            {id: '12', city: 'Hvar', place: 'Hvar Islands', image: 'hvar.jpg'}
+        ]
+    ]
+
+    let database = window.innerWidth <= 768 ? citybaseMobile : citybaseDesktop
+
     return (
         <Flickity
-            className={'carousel'} // default ''
-            elementType={'div'} // default 'div'
-            options={flickityOptions} // takes flickity options {}
-            disableImagesLoaded={false} // default false
-            reloadOnUpdate // default false
-            static // default false
+            className={'carousel'} 
+            elementType={'div'} 
+            options={flickityOptions} 
+            disableImagesLoaded={false}
+            reloadOnUpdate
+            static
             >
                 {
-                citybases.map((cities, index) => {
+                database.map((cities, index) => {
                     return <Slide key={index} cities={cities} />
                 })
                 }

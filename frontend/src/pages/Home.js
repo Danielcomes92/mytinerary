@@ -8,21 +8,55 @@ class Home extends React.Component {
     render() {
         return(
             <> 
-                <div className="v80 heroContainer bg-gray-800" style={{
+                <div className="v85 flex flex-col heroContainer bg-gray-800" style={{
                     backgroundImage: "url('./img/bgsuiza.jpg')"
                 }}>
                     <Header/>
 
-                    <div className="w-1/2">
-                        <h1 className="text-1xl font-semibold px-2 text-center md:text-3xl mx-auto py-4 text-white">Find your perfect trip, designed by insiders who know and love their cities!</h1>
-                        <NavLink to="/cities">
-                            <button className="mt-8 mx-2 text-white rounded-full py-4 px-8 bg-red-600 duration-500 transition hover:bg-white hover:text-red-600 hover:border-red-400 font-semibold cursor-pointer">LIFE'S SECRET</button>
-                        </NavLink>
+                    <div className="flex flex-col md:w-1/2 items-center v80 mb-20 justify-end md:ml-16 px-4">
+                        <h1 className="text-2xl text-center bg-black bg-opacity-25 font-semibold md:text-4xl md:text-left text-white text-orange-100 lato">Find your perfect trip, designed by insiders who know and love their cities!</h1>
+                        <div className="flex justify-start mt-8">
+                            <NavLink to="/cities" className="">
+                                <span className="shadow-md rounded hover:shadow-xl text-white rounded py-4 px-8 bg-blue-500 duration-500 transition hover:bg-white hover:text-blue-900 font-semibold cursor-pointer lato">LIFE'S SECRET</span>
+                            </NavLink>
+                        </div>
                     </div>
                 </div>
 
-                <div className="v20 bg-blue-600 text-white italic flex flex-col items-center"></div>
-                <div className="v20 bg-black bg-opacity-75 text-white italic flex flex-col items-center"></div>
+                <div className="v15 bg-blue-800 text-white flex items-center">
+                    <div className="mx-auto md:w-7/12 h50 flex flex-row justify-between">
+
+                        <div className="flex flex-col md:flex-row text-center md:items-center">
+                            <span>
+                                <img src="./img/plane-icon.svg" className="mx-auto w40p"></img>
+                            </span>
+                            <span className="mx-2 lato text-orange-200 text-sm md:text-lg">+50 destinations</span>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row text-center md:items-center">
+                            <span>
+                                <img src="./img/world-icon.svg" className="mx-auto w40p"></img>
+                            </span>
+                            <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Worldwide Company</span>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row text-center md:items-center">
+                            <span>
+                                <img src="./img/palms-icon.svg" className="mx-auto w40p"></img>
+                            </span>
+                            <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Popular places</span>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row text-center md:items-center">
+                            <span>
+                                <img src="./img/visa-icon.svg" className="mx-auto w40p"></img>
+                            </span>
+                            <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Visa Information</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div className="v15 bg-black bg-opacity-75 text-white italic flex flex-col items-center"></div>
 
                 
 

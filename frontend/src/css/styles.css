@@ -11,12 +11,28 @@ body {
     background-position: center;
 }
 
+.v85 {
+    height: 85vh;
+}
+
+.w40p {
+    width: 40px;
+}
+
 .v80 {
     height: 80vh;
 }
 
-.v20 {
-    height: 20vh;
+.v15 {
+    height: 15vh;
+}
+
+.v40 {
+    height: 40vh;
+}
+
+.h50 {
+    height: 50%;
 }
 
 .heroCitiesContainer {

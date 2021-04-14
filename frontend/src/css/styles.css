@@ -27,19 +27,38 @@ body {
     height: 15vh;
 }
 
+.v10 {
+    height: 10vh;
+}
+
 .v40 {
     height: 40vh;
+}
+
+.v50 {
+    height: 50vh;
 }
 
 .h50 {
     height: 50%;
 }
 
+.bgCover {
+    background-size: cover;
+}
+
+.bgCenter {
+    background-position: center;
+}
+
+.h75 {
+    height: 75%;
+}
+
 .heroCitiesContainer {
     width: 100%;
     background-size: cover;
-    background-position: center;
-    height: 50vh;
+    height: 70vh;
 }
 
 .cardsContainer {

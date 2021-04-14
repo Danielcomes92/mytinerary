@@ -1,4 +1,23 @@
 const Cards = ({play, pause}) => {
+
+    
+    // state = {
+    //     playVideo: true
+    // }
+
+    // play = (e) => {
+    //     this.setState({
+    //         playVideo: !this.state.playVideo
+    //     })
+    //     e.target.play()
+    // }
+
+    // pause = (e) => {
+    //     this.setState({
+    //         playVideo: !this.state.playVideo
+    //     })
+    //     e.target.pause()
+    // }
     return(
         <section className="cardsContainer mx-auto mt-20">
             <span className="text-5xl lobster"><b></b>Most visited<b></b></span>

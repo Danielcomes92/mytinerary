@@ -17,7 +17,7 @@ class Home extends React.Component {
                         <h1 className="text-2xl text-center bg-black bg-opacity-25 font-semibold md:text-4xl md:text-left text-white text-orange-100 lato">Find your perfect trip, designed by insiders who know and love their cities!</h1>
                         <div className="flex justify-start mt-8">
                             <NavLink to="/cities" className="">
-                                <span className="shadow-md rounded hover:shadow-xl text-white rounded py-4 px-8 bg-blue-500 duration-500 transition hover:bg-white hover:text-blue-900 font-semibold cursor-pointer lato">LIFE'S SECRET</span>
+                                <span className="shadow-md rounded hover:shadow-xl text-white rounded py-4 px-8 bg-orange-500 duration-500 transition hover:bg-white hover:text-orange-600 font-semibold cursor-pointer lato">LIFE'S SECRET</span>
                             </NavLink>
                         </div>
                     </div>
@@ -28,28 +28,28 @@ class Home extends React.Component {
 
                         <div className="flex flex-col md:flex-row text-center md:items-center">
                             <span>
-                                <img src="./img/plane-icon.svg" className="mx-auto w40p"></img>
+                                <img src="./img/plane-icon.svg" className="mx-auto w40p" alt="plane icon"></img>
                             </span>
                             <span className="mx-2 lato text-orange-200 text-sm md:text-lg">+50 destinations</span>
                         </div>
 
                         <div className="flex flex-col md:flex-row text-center md:items-center">
                             <span>
-                                <img src="./img/world-icon.svg" className="mx-auto w40p"></img>
+                                <img src="./img/world-icon.svg" className="mx-auto w40p" alt="world icon"></img>
                             </span>
                             <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Worldwide Company</span>
                         </div>
 
                         <div className="flex flex-col md:flex-row text-center md:items-center">
                             <span>
-                                <img src="./img/palms-icon.svg" className="mx-auto w40p"></img>
+                                <img src="./img/palms-icon.svg" className="mx-auto w40p" alt="palms icon"></img>
                             </span>
                             <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Popular places</span>
                         </div>
 
                         <div className="flex flex-col md:flex-row text-center md:items-center">
                             <span>
-                                <img src="./img/visa-icon.svg" className="mx-auto w40p"></img>
+                                <img src="./img/visa-icon.svg" className="mx-auto w40p" alt="immigration icon"></img>
                             </span>
                             <span className="mx-2 lato text-orange-200 text-sm md:text-lg">Visa Information</span>
                         </div>

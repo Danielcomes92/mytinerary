@@ -5,10 +5,10 @@ import CitiesCity from '../components/CitiesCity'
 // import Cards from '../components/Cards';
 
 class Cities extends React.Component {
-
     state = {
         cities: [],
-        citiesUpdated: []
+        citiesUpdated: [],
+        noCitiesAlert: false,
     }
       
     componentDidMount() {
@@ -31,22 +31,37 @@ class Cities extends React.Component {
         ]
 
         this.setState({
-            cities: cities
+            cities: cities,
+            citiesUpdated: cities
         })
 
     }
     
     updateCountries(e) {
-        if(e.target.value.length > 0) {
-            let newCities = this.state.cities.filter(city => (city.city).toUpperCase().includes((e.target.value).trim().toUpperCase()) && Array.from(city.city)[0].toUpperCase() === e.target.value[0].toUpperCase());
+        let findCity = ((e.target.value).trim()).toUpperCase()
+        let citiesFiltered;
+        
+        if(findCity) {
+            citiesFiltered = this.state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0])
+        }
+        
+        if(citiesFiltered) {
+            if(citiesFiltered.length > 0) {
+                this.setState({
+                    citiesUpdated: citiesFiltered,
+                    noCitiesAlert: false
+                })
+            } else {
+                this.setState({
+                    noCitiesAlert: true
+                })
+            }               
+        } else {
             this.setState({
-                citiesUpdated: newCities
+                citiesUpdated: this.state.cities
             })
-        } 
+        }
     }
-
-
-
 
     render() {
         return(
@@ -56,26 +71,32 @@ class Cities extends React.Component {
 
             }}>
                 <Header/>
-
             </div>
             
                 <div className="v10 bg-blue-900 flex items-center">
                     <div className="w-full flex">
-                        <input onKeyUp={this.updateCountries.bind(this)} className="focus:outline-none shadow-md md:w-1/3 mx-auto rounded-full py-3 px-6" type="text" placeholder="Find your next destination"></input>
+                        <input onChange={this.updateCountries.bind(this)} className="focus:outline-none shadow-md md:w-1/3 mx-auto rounded-full py-3 px-6" type="text" placeholder="Find your next destination"></input>
                     </div>
                 </div>
                 {/* <Cards play={this.play} pause={this.pause} /> */}
 
                 <div className="w-11/12 mx-auto mt-20">
                     <div className="grid grid-cols-1 md:grid-cols-2">
-                    {
+
+                    {   
+                        this.state.noCitiesAlert
+                        ?
+                        <div className="flex justify-center h-12 bg-red-700 w-full text-white font-bold">
+                            <h1 className="">No conozco ninguna ciudad con ese nombre</h1>
+                        </div>
+                        :
                         this.state.citiesUpdated.map(city => {
                             return <CitiesCity key={city.id} city={city} />
                         })
                     }
+
                     </div>
                 </div>
-      
 
                 <Footer />
             </>

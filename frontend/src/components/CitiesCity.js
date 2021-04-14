@@ -12,13 +12,15 @@ const CitiesCity = ({city}) => {
                     </div>
                     <div>
                         <div className="flex flex-row items-center mb-2">
-                            <div><svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="#ff9300" fill="none" strokeLinecap="round" strokeLinejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                            <circle cx="12" cy="11" r="3" />
-                            <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
-                            </svg></div>    
                             <div>
-                               <span className="mx-2 text-xl italic text-orange-600">{city.country} -</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin" width="32" height="32" viewBox="0 0 24 24" strokeWidth="2" stroke="#ff9300" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <circle cx="12" cy="11" r="3" />
+                                <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                                </svg>
+                            </div>    
+                            <div>
+                               <span className="mx-2 text-xl italic text-orange-600 lobster">{city.country} -</span>
                             </div>
                             <div className="items-center">
                                 <div className="text-orange-700 lato">#Discover{city.continent}</div>

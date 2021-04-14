@@ -63,7 +63,7 @@ function Slider() {
 
     return (
         <Flickity
-            className={'carousel'} 
+            className={'carousel mb-16 md:mb-32'} 
             elementType={'div'} 
             options={flickityOptions} 
             disableImagesLoaded={false}

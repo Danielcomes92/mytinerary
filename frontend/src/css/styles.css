@@ -11,8 +11,44 @@ body {
     background-position: center;
 }
 
+.mh100 {
+    min-height: 100vh;
+}
+
+.mh50 {
+    min-height: 50vh;
+}
+
+.h60 {
+    height: 60vh;
+}
+
+.mw100 {
+    min-width: 100vw;
+}
+
 .v85 {
     height: 85vh;
+}
+
+.h80 {
+    height: 60vh;
+}
+
+.extraBig {
+    font-size: 100px;
+}
+
+.h30 {
+    height: 30%;
+}
+
+.h60 {
+    height: 60%;
+}
+
+.h70 {
+    height: 70%;
 }
 
 .w40p {
@@ -21,6 +57,10 @@ body {
 
 .v80 {
     height: 80vh;
+}
+
+.h75 {
+    height: 75vh;
 }
 
 .v15 {
@@ -61,6 +101,8 @@ body {
     height: 70vh;
 }
 
+
+
 .cardsContainer {
     width: 80vw;
 }
@@ -81,6 +123,14 @@ min-height: 700px;
 
 .bg-opacity-90 {
     opacity: 0.9;
+}
+
+.containerCitiesCity {
+    opacity: 0.1;
+}
+
+.containerCitiesCity::before {
+    opacity: 0.8;
 }
 
 .image-city-slider {
@@ -125,7 +175,7 @@ min-height: 700px;
     top: 0px;
     height: 50vh;
     width: 100vw;
-    opacity: 0.9;
+    /* opacity: 0.9; */
 }
 
 #user-icon-image{

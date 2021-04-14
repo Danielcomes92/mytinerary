@@ -37,7 +37,7 @@ const Header = () => {
                     </div>
                     <div>
                         <div className="w-10 h-10 logo" style={{
-                            backgroundImage: "url('./img/userunknown.png')"
+                            backgroundImage: "url('./img/userunknown.png')" ? "url('./img/userunknown.png')" : "url('../img/userunknown.png')"
                         }}>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ const Header = () => {
                         <div className="flex justify-between items-center  lato font-normal">
                             <NavLink exact to="/"><span className="mx-2 cursor-pointer">Home</span></NavLink>
                             <NavLink to="/cities"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
-                            <span className="mx-2 px-4 py-1 bg-red-500 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</span>
+                            <span className="mx-2 px-4 py-1 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</span>
                             <span className="ml-2 cursor-pointer">Log In</span>                    
                         </div>
                     </div>
@@ -78,7 +78,7 @@ const Header = () => {
                             </div>                           
                             <NavLink exact to="/" className="mb-1"><span className="text-gray-100 text-xl">Home</span></NavLink>
                             <NavLink to="/cities" className="mb-1"><span className="text-gray-100 text-xl">Cities</span></NavLink>
-                            <span className="mb-1 w-full text-center py-2 text-xl bg-red-500 text-white bg-red-600 rounded font-semibold ">SIGN UP</span>
+                            <span className="mb-1 w-full text-center py-2 text-xl bg-blue-800 text-white rounded font-semibold ">SIGN UP</span>
                             <span className="mb-1 text-gray-100 text-xl">LOG IN</span>
                         </div>
                     </div>

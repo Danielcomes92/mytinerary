@@ -23,7 +23,7 @@ class Home extends React.Component {
                     </div>
                 </div>
 
-                <div className="v15 bg-blue-800 text-white flex items-center">
+                <div className="v15 bg-blue-800 text-white flex items-center shadow-md">
                     <div className="mx-auto md:w-7/12 h50 flex flex-row justify-between">
 
                         <div className="flex flex-col md:flex-row text-center md:items-center">
@@ -56,11 +56,14 @@ class Home extends React.Component {
 
                     </div>
                 </div>
-                <div className="v15 bg-black bg-opacity-75 text-white italic flex flex-col items-center"></div>
+                <div className="h-auto bg-orange-200 bg-opacity-75 text-black shadow-md md:mb-20">
+
+                    <h1 className="font-semibold py-8 mb-12 text-4xl text-center md:text-left md:ml-20 md:text-5xl lobster tracking-wide">Popular MyTineraries</h1>
+                </div>
 
                 
 
-                <h1 className="mt-46 font-semibold text-4xl px-2 md:text-5xl lobster tracking-wide">Popular MyTineraries</h1>
+                
                 <Slider />
   
                 <Footer/>

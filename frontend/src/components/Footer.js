@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return(
-        <footer className="flex justify-between mt-32 px-12 py-4 h-auto bg-gray-900 text-gray-300 relative bottom-0 w-full">
+        <footer className="flex justify-between md:mt-16 px-12 py-4 h-auto bg-gray-900 text-gray-300 relative bottom-0 w-full">
             <div className="w-3/4 flex flex-col my-auto">
-                <Link exact to="/"><span className="font-light text-base md:text-2xl">Home</span></Link>
-                <Link to="/cities"><span className="font-light text-base md:text-2xl">Cities</span></Link>
-                <p className="font-light text-base md:text-2xl">All rights reserved | 2021 </p>
+                <Link exact to="/"><span className="font-light text-base md:text-lg lato">Home</span></Link>
+                <Link to="/cities"><span className="font-light text-base md:text-lg lato">Cities</span></Link>
+                <p className="font-light text-base md:text-lg lato">All rights reserved | 2021 </p>
             </div>
             <div className="w-1/4 text-right flex flex-col items-end">
 

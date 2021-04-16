@@ -1,6 +1,4 @@
 const Cards = ({play, pause}) => {
-
-    
     // state = {
     //     playVideo: true
     // }

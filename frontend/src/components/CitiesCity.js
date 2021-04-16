@@ -1,18 +1,17 @@
 import { Link } from 'react-router-dom';
 
-
 const CitiesCity = ({city}) => {
     return (
         <>
-            <Link to={`/city/${city.id}`}>
-                <div className="w-11/12 v50 mx-auto flex flex-col bg-gray-100 rounded-xl mt-5 mb-5 rounded-md shadow-md hover:shadow-lg mb-10 cursor-pointer">
-                    <div className="w-full h75 bgCover BgCenter" style={{
-                        backgroundImage: `url('./img/${city.image}.jpg')`
-                    }}></div>
-                
-                    <div className="w-full text-left rounded-md">
-                        <div className="text-left">
-                            <p className="text-lg px-4 pb-2 bg-orange-100 font-semibold lobster text-5xl md:text-6xl">{city.city}</p>
+            <div className="w-11/12 h65 mx-auto flex flex-col bg-gray-100 rounded-xl mt-5 mb-5 rounded-md shadow-md hover:shadow-lg mb-10">
+                <div className="w-full h75 bgCover BgCenter" style={{
+                    backgroundImage: `url('./img/${city.image}.jpg')`
+                }}></div>
+            
+                <Link to={`/city/${city._id}`}>
+                    <div className="w-full rounded-md cursor-pointer">
+                        <div className="text-left md:h-32 bg-orange-100 flex items-center">
+                            <p className="text-lg px-4 font-semibold lobster text-5xl md:text-6xl">{city.city}</p>
                         </div>
                         <div>
                             <div className="flex flex-row items-center pl-0 pb-0 bg-gray-800 rounded-b-md shadow-md">
@@ -29,8 +28,8 @@ const CitiesCity = ({city}) => {
                             </div>
                         </div>
                     </div>
-                </div>
-            </Link>  
+                </Link>  
+            </div>
         </>
      )
 }

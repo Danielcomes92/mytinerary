@@ -11,10 +11,8 @@ const Header = () => {
         setMenuMobileClasses('navResponsive hidden md:hidden bg-gray-800 z-30')
     }
 
-    
-
     return(
-        <div className="w-full fixed md:static md:bg-transparent overflow:hidden">
+        <div className="w-full fixed md:static md:bg-transparent overflow:hidden z-30">
 
             <div className="h-12 w-full bg-black bg-opacity-90 flex items-center">
                 <div className="w-10/12 mx-auto flex justify-center md:justify-between">
@@ -43,7 +41,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-black bg-opacity-75 h-24 flex items-center">
+            <div className="bg-black bg-opacity-75 md:h-24 flex items-center">
 
                 <div className="w-11/12 md:w-10/12 mx-auto flex justify-between text-white items-center">
                     <NavLink className="" exact to="/">
@@ -90,8 +88,6 @@ const Header = () => {
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     )

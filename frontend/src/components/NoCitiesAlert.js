@@ -5,12 +5,11 @@ const NoCitiesAlert = ({handleVideo}) => {
                 <video className="rounded shadow-md hover:shadow-lg" onMouseOver={handleVideo} onMouseLeave={handleVideo} src="../img/MyTinerary.mp4" muted loop></video>
             </div>
             
-                <div className="w-full px-4 pb-2">
-                    <div className="text-center">
-                        <p className="text-lg font-semibold lobster text-6xl">Oh, that place is unknown for us! :( </p>
-                    </div>
-                    
+            <div className="w-full px-4 pb-2">
+                <div className="text-center">
+                    <p className="text-lg font-semibold lobster text-6xl">Oh, that place is unknown for us! :( </p>
                 </div>
+            </div>
         </div>
     );
 }

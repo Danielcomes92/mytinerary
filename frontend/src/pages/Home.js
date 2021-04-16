@@ -2,12 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import ScrollToTop from '../components/ScrollToTop';
 import Slider from '../components/Slider';
 
 class Home extends React.Component {    
     render() {
         return(
             <> 
+                <ScrollToTop />
                 <div className="v85 flex flex-col heroContainer bg-gray-800" style={{
                     backgroundImage: "url('./img/bgsuiza.jpg')"
                 }}>

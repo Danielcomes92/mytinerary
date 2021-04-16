@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import CitiesCity from '../components/CitiesCity'
 import NoCitiesAlert from '../components/NoCitiesAlert';
 import axios from 'axios';
+import ScrollToTop from '../components/ScrollToTop';
 
 class Cities extends React.Component {
     state = {
@@ -63,6 +64,7 @@ class Cities extends React.Component {
     render() {
         return(
             <>
+            <ScrollToTop />
             <div className="heroCitiesContainer heroMainImage w-full bg-gray-800" style={{
             backgroundImage:"url('./img/hero-cities-background.jpg')"
             }}>

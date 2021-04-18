@@ -3,6 +3,7 @@ import Footer from './Footer'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import ScrollToTop from './ScrollToTop'
 
 
 const City = (props) => {
@@ -12,10 +13,11 @@ const City = (props) => {
     useEffect(() => {
         axios.get(`http://localhost:4000/api/City/${id}`)
         .then(resp => setCity(resp.data.response))
-    }, [])
+    }, [id])
     
     return (
         <>
+            <ScrollToTop />
             <div className="h65 flex flex-col bgCover bgCenter" style={{
                     backgroundImage: `url('../img/${city.image}.jpg')`
                 }}>
@@ -26,7 +28,7 @@ const City = (props) => {
                 <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {city.city}</p>
             </div> 
 
-            <div className="w-9/12 mx-auto flex flex-col bg-gray-100 rounded-xl mt-12 md:mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">          
+            <div className="w-11/12 md:w-10/12 mx-auto flex flex-col bg-gray-100 rounded-xl mt-12 md:mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">          
                 <div className="w-full  rounded-md">
                     <div className="v40 bg-gray-700 overflow-y-auto px-4">
                         <p className="text-orange-100 text-lg text-center font-semibold lobster text-5xl md:text-6xl">Site under construction, coming soon!</p>

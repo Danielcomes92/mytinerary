@@ -4,13 +4,13 @@ const CitiesCity = ({city}) => {
     return (
         <>
             <div className="w-11/12 h65 mx-auto flex flex-col bg-gray-100 rounded-xl mt-5 mb-5 rounded-md shadow-md hover:shadow-lg mb-10">
-                <div className="w-full h75 bgCover BgCenter" style={{
+                <div className="w-full h65 bgCover BgCenter" style={{
                     backgroundImage: `url('./img/${city.image}.jpg')`
                 }}></div>
             
                 <Link to={`/city/${city._id}`}>
                     <div className="w-full rounded-md cursor-pointer">
-                        <div className="text-left md:h-32 bg-orange-100 flex items-center">
+                        <div className="text-left bg-orange-100 flex items-center">
                             <p className="text-lg px-4 font-semibold lobster text-5xl md:text-6xl">{city.city}</p>
                         </div>
                         <div>
@@ -23,7 +23,7 @@ const CitiesCity = ({city}) => {
                                 <span className="mx-2 text-2xl italic text-gray-200 lobster">{city.country} - </span>
                                 </div>
                                 <div className="items-center">
-                                    <div className="text-blue-300 lato mt-1">#Discover{city.continent}</div>
+                                    <div className="text-blue-300 lato text-sm md:text-normal mt-1">#Discover{city.continent}</div>
                                 </div>
                             </div>
                         </div>

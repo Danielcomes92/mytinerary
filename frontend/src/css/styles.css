@@ -158,10 +158,13 @@ min-height: 700px;
 }
 
 .logo {
-    width: 35px;
-    height: 35px;
     background-size: cover;
     background-position: center;
+}
+
+.w60h60 {
+    width: 60px;
+    height: 60px;
 }
 
 @media (max-width: 768px) {
@@ -172,6 +175,9 @@ min-height: 700px;
     .carousel-cell {
         width: 90%;
         height: 350px;
+    }
+    .mh70 {
+        min-height: 15vh;
     }
 }
 
@@ -206,8 +212,8 @@ min-height: 700px;
 
 
 .sk-cube-grid {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin: 100px auto;
   }
   
@@ -248,21 +254,31 @@ min-height: 700px;
         animation-delay: 0.2s; }
 
 @-webkit-keyframes sk-cubeGridScaleDelay {
-0%, 70%, 100% {
-    -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-} 35% {
-    -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1); 
-}
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+                transform: scale3D(1, 1, 1);
+    } 35% {
+        -webkit-transform: scale3D(0, 0, 1);
+                transform: scale3D(0, 0, 1); 
+    }
 }
 
 @keyframes sk-cubeGridScaleDelay {
-0%, 70%, 100% {
-    -webkit-transform: scale3D(1, 1, 1);
-            transform: scale3D(1, 1, 1);
-} 35% {
-    -webkit-transform: scale3D(0, 0, 1);
-            transform: scale3D(0, 0, 1);
-} 
+    0%, 70%, 100% {
+        -webkit-transform: scale3D(1, 1, 1);
+                transform: scale3D(1, 1, 1);
+    } 35% {
+        -webkit-transform: scale3D(0, 0, 1);
+                transform: scale3D(0, 0, 1);
+    } 
+}
+
+.duration-1 {
+    animation-duration: 1s;
+    animation-delay: 1s;
+}
+
+.active {
+    border-bottom: 1px solid gray;
+    
 }

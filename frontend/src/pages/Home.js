@@ -16,9 +16,9 @@ class Home extends React.Component {
                     <Header/>
 
                     <div className="flex flex-col md:w-1/2 items-center v80 mb-20 justify-end md:ml-16 px-4">
-                        <h1 className="text-2xl text-center bg-black bg-opacity-25 font-semibold md:text-4xl md:text-left text-white text-orange-100 lato">Find your perfect trip, designed by insiders who know and love their cities!</h1>
+                        <h1 className="text-2xl text-center bg-black bg-opacity-50 font-semibold md:text-4xl md:text-left text-white text-orange-100 lato">Find your perfect trip, designed by insiders who know and love their cities!</h1>
                         <div className="flex justify-start mt-8">
-                            <NavLink to="/cities" className="">
+                            <NavLink to="/cities" className="animated fadeInLeft">
                                 <span className="shadow-md rounded hover:shadow-xl text-white rounded py-4 px-8 bg-orange-500 duration-500 transition hover:bg-white hover:text-orange-600 font-semibold cursor-pointer lato">LIFE'S SECRET</span>
                             </NavLink>
                         </div>
@@ -59,10 +59,10 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className="h-auto bg-orange-200 bg-opacity-75 text-black shadow-md md:mb-20">
-                    <h1 className="font-semibold py-8 mb-12 text-4xl text-center md:text-left md:ml-20 md:text-5xl lobster tracking-wide">Popular MyTineraries</h1>
+                    <h1 className="font-semibold py-8 mb-12 text-4xl text-center md:text-left md:ml-20 md:text-5xl lobster tracking-wide animated  fadeInLeft ">Popular MyTineraries</h1>
                 </div>
                 
-                <Slider />
+                <Slider /> 
   
                 <Footer/>
             </>

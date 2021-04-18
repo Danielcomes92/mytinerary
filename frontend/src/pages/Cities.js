@@ -24,12 +24,11 @@ class Cities extends React.Component {
         }))
     }
     
-    updateCountries(e) {
-        let findCity = ((e.target.value).trim()).toUpperCase()
-        let citiesFiltered;
-        
+    updateCountries = (e) => {
+        let findCity = e.target.value.trim().toUpperCase()
+           
         if(findCity) {
-            citiesFiltered = this.state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0])
+            var citiesFiltered = this.state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0])
         }
         
         if(citiesFiltered) {
@@ -50,17 +49,6 @@ class Cities extends React.Component {
         }
     }
 
-    handleVideo = (e) => {
-        this.setState({
-            playVideo: !this.state.playVideo
-        })
-        if(this.state.playVideo) {
-            e.target.play()
-        } else {
-            e.target.pause()
-        }
-    }
-
     render() {
         return(
             <>
@@ -73,7 +61,7 @@ class Cities extends React.Component {
             
             <div className="h-24 bg-blue-900 flex flex-col items-center">
                 <div className="w-full flex items-center mt-6">
-                    <input onChange={this.updateCountries.bind(this)} className="focus:outline-none shadow-md md:w-1/3 mx-auto rounded-full py-3 px-16 md:px-6" type="text" placeholder="Find your next destination">
+                    <input onChange={this.updateCountries} className="focus:outline-none shadow-md md:w-1/3 mx-auto rounded-full py-3 px-16 md:px-6" type="text" placeholder="Find your next destination">
                     </input>
                 </div>
             </div>
@@ -93,12 +81,12 @@ class Cities extends React.Component {
                 </div>
             }
 
-            <div className="w-11/12 mx-auto mt-20">
+            <div className="w-11/12 mx-auto mt-20 mh70">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                     {   
                         this.state.noCitiesAlert
                         ?
-                            <NoCitiesAlert handleVideo={this.handleVideo}/>
+                        <NoCitiesAlert/>
                         :
                         this.state.citiesUpdated.map(city => {
                             return <CitiesCity key={city._id} city={city} />

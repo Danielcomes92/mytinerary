@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import CitiesCity from '../components/CitiesCity'
+import CardCity from '../components/CardCity'
 import NoCitiesAlert from '../components/NoCitiesAlert';
 import axios from 'axios';
 import ScrollToTop from '../components/ScrollToTop';
@@ -11,61 +11,34 @@ class Cities extends React.Component {
         cities: [],
         citiesUpdated: [],
         noCitiesAlert: false,
-        playVideo: true,
         loading: true
     }
       
     componentDidMount() {
         axios.get('http://localhost:4000/api/cities')
         .then(resp => this.setState({
-            cities: resp.data.response, //guardo en cities la respuesta para mantener una referencia original sin modificaciones
-            citiesUpdated: resp.data.response, //guardo en citiesupdated al principio la referencia original para que tenga las ciudades cargadas desde el primer momento y poder recorrerarlas
+            cities: resp.data.response, 
+            citiesUpdated: resp.data.response,
             loading: false
         }))
     }
-    
-    // Cuando el input cambia, ejecuta la funcion updatecountries
     updateCountries = (e) => {
-        //esta funcion toma por parametro el evento que la llamo
-
-        //creo una variable donde voy a guardar lo que el usuario tenga ingresado en el input en ese momento
-        //aplico un trim para limpiar espacios adelante y detras del string, y a su vez lo convierto a mayusculas
         let findCity = e.target.value.trim().toUpperCase()
            
-        //en caso de que findcity tenga algo adentro va  a cumplirse esta condicion
         if(findCity) {
             var citiesFiltered = this.state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0])
-            // filtro el array ORIGINAL de cities
-            // comprobando la propiedad city de cada city, es decir el nombre
-            // llevo el valor de la propiedad a mayusculas, por que es la manera en que normalizo este valor con el del input
-            // verifico con la funcion includes si el nombre de la ciudad que estoy recorriendo incluye dicho valor
-
-            // si se cumple en algun momento esa condicion, agarro el nombre de esa ciudad y lo convierto a array para poder utilizar el elemento en la posicion 0
-            // y lo comparo con la posicion 0 del input,
-
-            // si ambas condiciones se cumplen entonces lo guardo en la variable citiesFiltered
-
-            // en caso de que ninguno cumpla con la condicion entonces el filtro me va a devolver un array vacio
-        }
-        
-        // con la respuesta favorable o no guardada en cities filtered entro aca;
-        if(citiesFiltered) {
-            //si citiesfiltered tiene un length mayor a 0 significa que al menos una ciudad paso la validacion
+        } if(citiesFiltered) {
             if(citiesFiltered.length > 0) {
                 this.setState({
-                    //actualizo con el setState el array de citiesUpdated y paso a false la alerta
                     citiesUpdated: citiesFiltered,
                     noCitiesAlert: false
                 })
             } else {
-                //si citiesfiltered existe osea el usuario ingreso algo pero ninguna ciudad paso la validacion entonces seteo una alerta indicandolo
                 this.setState({
                     noCitiesAlert: true
                 })
             }               
         } else {
-            //si el usuario borra todo el input, eso significa que no esta buscando nada
-            //con lo cual el array citiesupdated va a tomar el valor de la referencia original
             this.setState({
                 citiesUpdated: this.state.cities
             })
@@ -76,7 +49,7 @@ class Cities extends React.Component {
         return(
             <>
             <ScrollToTop />
-            <div className="heroCitiesContainer heroMainImage w-full bg-gray-800" style={{
+            <div className="heroCities w-full bg-gray-800" style={{
             backgroundImage:"url('./img/hero-cities-background.jpg')"
             }}>
                 <Header/>
@@ -112,7 +85,7 @@ class Cities extends React.Component {
                         <NoCitiesAlert />
                         : //de lo contrario me va a recorrer el array de citiesUpdated
                         this.state.citiesUpdated.map(city => {
-                            return <CitiesCity key={city._id} city={city} />
+                            return <CardCity key={city._id} city={city} />
                         })
                     }
                 </div>

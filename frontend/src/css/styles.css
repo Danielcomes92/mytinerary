@@ -95,7 +95,7 @@ body {
 }
 
 .h65 {
-    height: 65vh;
+    height: 50vh;
 }
 
 .h50 {
@@ -120,7 +120,12 @@ body {
     height: 70vh;
 }
 
-
+.heroCities {
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
 
 .cardsContainer {
     width: 80vw;

@@ -5,15 +5,15 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ScrollToTop from './ScrollToTop'
 
-
 const City = (props) => {
     let id = props.match.params.id;
-    const[city, setCity] = useState([])
+    const[city, setCity] = useState('')
 
     useEffect(() => {
         axios.get(`http://localhost:4000/api/City/${id}`)
         .then(resp => setCity(resp.data.response))
-    }, [id])
+        .catch(err => console.log(err))
+    }, [])
     
     return (
         <>

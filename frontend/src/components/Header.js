@@ -47,7 +47,7 @@ const Header = () => {
                     <Link className="h-16 flex items-center" exact to="/">
                         <div className="flex flex-row items-center">
                             <div className="logo w60h60 animated infinite pulse" style={{
-                                backgroundImage: "url('./img/pngegg.png')"
+                                backgroundImage: "url('../img/pngegg.png')"
                             }}>
 
                             </div>

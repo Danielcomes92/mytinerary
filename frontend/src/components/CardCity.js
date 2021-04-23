@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const CitiesCity = ({city}) => {
+const CardCity = ({city}) => {
     return (
         <>
             <div className="w-11/12 h65 mx-auto flex flex-col bg-gray-100 rounded-xl mt-5 mb-5 rounded-md shadow-md hover:shadow-lg mb-10">
@@ -34,4 +34,4 @@ const CitiesCity = ({city}) => {
      )
 }
  
-export default CitiesCity;
+export default CardCity;

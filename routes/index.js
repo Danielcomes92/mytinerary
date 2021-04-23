@@ -1,10 +1,16 @@
 const express = require('express');
+const router = express.Router();
+
 const validator = require('../config/validator');
-const router = express.Router()
-const citiesController = require('../controllers/citiesControllers')
-const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController
+
+const citiesController = require('../controllers/citiesControllers');
+const itinerariesController = require('../controllers/itinerariesControllers');
+
+const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary} = itinerariesController;
+const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
 
 
+//cities
 router.route('/cities')
     .get(getCities)
     .post(validator, addCity)
@@ -13,5 +19,18 @@ router.route('/city/:id')
     .get(getCity)
     .put(modifyCity)
     .delete(removeCity)
+    
+//itineraries
+router.route('/itineraries')
+    .get(getItineraries)//
+    .post(addItinerary)//
 
-module.exports = router
+router.route('/itineraries/:id')
+    .get(getCityItineraries)
+
+router.route('/itinerary/:id')
+    .get(getItinerary)//
+    .put(modifyItinerary)
+    .delete(removeItinerary)
+
+module.exports = router;

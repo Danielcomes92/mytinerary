@@ -21,7 +21,7 @@ const citiesController = {
                 success: true
             })
         } catch (error) {
-            res.json({success: false, message: 'The city couldnt be found', error})
+            res.json({success: false, message: "The city couldn't be found", error})
         }
     },
 
@@ -29,9 +29,9 @@ const citiesController = {
         const city = new City(req.body)
         try {
             await city.save()   
-            res.json({message: 'City added succesfully'})
+            res.json({message: 'City added successfully'})
         } catch (error) {
-            res.json({success: false, message: 'The city couldnt be added', error})
+            res.json({success: false, message: "The city couldn't be added", error})
         }
     },
 
@@ -40,16 +40,16 @@ const citiesController = {
             const city = await City.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
             res.json(city)
         } catch (error) {
-            res.json({success: false, message: 'The city couldnt be modified', error})
+            res.json({success: false, message: "The city couldn't be modified", error})
         }
     },
 
     removeCity: async(req, res) => {
         try {
             await City.findOneAndRemove({_id: req.params.id})
-            res.json({message: 'City removed succesfully'})
+            res.json({message: 'City removed successfully'})
         } catch (error) {
-            res.json({success: false, message: 'The city couldnt be removed', error})
+            res.json({success: false, message: "The city couldn't be removed", error})
         }
     }
 }

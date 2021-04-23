@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import City from './components/City'
+import City from './pages/City'
 import Cities from './pages/Cities';
 import Home from './pages/Home'
 

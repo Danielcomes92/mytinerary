@@ -35,7 +35,7 @@ const Header = () => {
                     </div>
                     <div>
                         <div className="w-10 h-10 logo" style={{
-                            backgroundImage: "url('./img/userunknown.png')" ? "url('./img/userunknown.png')" : "url('../img/userunknown.png')"
+                            backgroundImage: "url('./img/userunknown.png')" && "url('../img/userunknown.png')"
                         }}>
                         </div>
                     </div>

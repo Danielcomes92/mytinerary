@@ -26,10 +26,10 @@ class City extends React.Component  {
     }
     
    render() {
-        // console.log(this.props.cityItineraries)
        return(
             <>
             <ScrollToTop />
+          
             <div className="h65 flex flex-col bgCover bgCenter" style={{
                     backgroundImage: `url('../img/${this.state.city.image}.jpg')`
                 }}>
@@ -42,25 +42,15 @@ class City extends React.Component  {
             {
                 this.props.cityItineraries.length === 0
                 ?
-                <div className="w-11/12 md:w-10/12 mx-auto flex flex-col bg-gray-100 rounded-xl mt-12 md:mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">          
-                    <div className="w-full  rounded-md">
-                        <div className="v40 bg-gray-700 overflow-y-auto px-4">
-                            <p className="text-orange-100 text-lg text-center font-semibold lobster text-5xl md:text-6xl">Site under construction, coming soon!</p>
+                <div className="w-11/12 md:w-8/12 mx-auto flex flex-col bg-gray-100 rounded-xl mt-12 md:mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
+                    <div className="text-center pt-10 pb-10 bg-orange-100">
+                        <span className="text-2xl lato font-bold">No itineraries available </span>    
+                    </div>     
+                    <div className="w-full rounded-md">
+                        <div className="bg-orange-100 bgCenter bgCover px-4">
+                           
                         </div>
-                        <div className="flex flex-row justify-between pl-0 pb-0 bg-gray-800 rounded-b-md shadow-md bg-gray-900">
-                            <div className="flex flex-row items-center pl-0 pb-0 bg-gray-800 rounded-b-md shadow-md bg-gray-900">
-                                <div className="bgCover bgCenter w-16 h-10 rounded-bl-md" style={{
-                                        backgroundImage: `url('${this.state.city.flag}')`
-                                    }}>
-                                </div>
-                                <div className="flex items-center flex-row">
-                                    <span className="mx-2 text-2xl italic text-gray-200 lobster">{this.state.city.country}</span>
-                                </div>
-                                <div className="items-center">
-                                    <div className="text-blue-300 lato mt-1">#GoingTo{this.state.city.continent}</div>
-                                </div>
-                            </div>
-                        </div>
+                        <div className="flex flex-row justify-between pl-0 pb-0 h-10 rounded-b-md shadow-md bg-gray-500"></div>
                     </div>
                 </div>
                 :
@@ -90,7 +80,5 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     getCityItineraries: itinerariesActions.getCityItineraries
 }
-
-
  
 export default connect(mapStateToProps, mapDispatchToProps)(City);

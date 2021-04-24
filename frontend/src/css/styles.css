@@ -28,6 +28,7 @@ body {
     min-width: 100vw;
 }
 
+
 .v85 {
     height: 85vh;
 }
@@ -99,7 +100,7 @@ body {
 }
 
 .h65 {
-    height: 50vh;
+    height: 60vh;
 }
 
 .h50 {
@@ -146,7 +147,7 @@ body {
  
 .carousel-cell {
 width: 90%;
-min-height: 700px;
+min-height: 90vh;
 }
 
 .bg-opacity-90 {

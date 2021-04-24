@@ -21,7 +21,14 @@ const cityReducer = (state = initialState, action) => {
             if(findCity) {
                 var citiesFiltered = state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0]);
             }
-            if(citiesFiltered) {
+            if(!citiesFiltered) {
+                return {
+                    ...state,
+                    citiesUpdated: state.cities
+                }
+                             
+            } else {
+
                 if(citiesFiltered.length > 0) {
                     return {
                         ...state,
@@ -33,12 +40,7 @@ const cityReducer = (state = initialState, action) => {
                         ...state,
                         noCitiesAlert: true
                     }
-                }               
-            } else {
-                return {
-                    ...state,
-                    citiesUpdated: state.cities
-                }
+                }  
             }
             break
 

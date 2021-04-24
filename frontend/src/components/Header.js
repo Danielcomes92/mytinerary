@@ -14,8 +14,8 @@ const Header = () => {
     return(
         <div className="w-full fixed md:static md:bg-transparent overflow:hidden z-30">
 
-            <div className="h-12 w-full bg-black bg-opacity-90 flex items-center">
-                <div className="w-10/12 mx-auto flex justify-center md:justify-between">
+            <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
+                <div className="w-10/12 mx-auto flex justify-center md:justify-between pt-1">
                     <div className="text-gray-100 flex justify-between items-center">
                         <div className="flex justify-between lato mr-10">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-phone mr-2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -41,7 +41,8 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <div className="bg-black bg-opacity-75 md:h-24 flex items-center">
+
+            <div className="bg-black md:bg-opacity-75 md:h-24 flex items-center">
 
                 <div className="w-11/12 md:w-10/12 mx-auto flex justify-between text-white items-center">
                     <Link className="h-16 flex items-center" exact to="/">

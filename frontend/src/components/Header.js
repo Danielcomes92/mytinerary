@@ -2,18 +2,27 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const Header = () => {
-    const [menuMobileClasses, setMenuMobileClasses] = useState('navResponsive hidden md:hidden bg-gray-800 z-30');
+    const [menuClass, setMenuClass] = useState({
+        open: false,
+        classes:'hidden md:block'
+    });
 
-    const openMenuNav = () => {
-        setMenuMobileClasses('navResponsive md:hidden bg-gray-800 z-30')
-    }
-    const closeMenuNav = () => {
-        setMenuMobileClasses('navResponsive hidden md:hidden bg-gray-800 z-30')
+    const handleMenuNav = () => {
+        if(menuClass.open) {
+            setMenuClass({
+                open: !menuClass.open,
+                classes:'md:block'
+            })
+        } else {
+            setMenuClass({
+                open: !menuClass.open,
+                classes:'hidden md:block'
+            })
+        }
     }
 
     return(
         <div className="w-full fixed md:static md:bg-transparent overflow:hidden z-30">
-
             <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
                 <div className="w-10/12 mx-auto flex justify-center md:justify-between pt-1">
                     <div className="text-gray-100 flex justify-between items-center">
@@ -33,12 +42,7 @@ const Header = () => {
                             <span className="text-sm md:text-normal">Contact@MyTinerary.io</span>
                         </div>
                     </div>
-                    <div>
-                        <div className="w-10 h-10 logo" style={{
-                            backgroundImage: "url('./img/userunknown.png')" && "url('../img/userunknown.png')"
-                        }}>
-                        </div>
-                    </div>
+                    <span className="material-icons text-5xl text-white">person</span>
                 </div>
             </div>
 
@@ -50,44 +54,26 @@ const Header = () => {
                             <div className="logo w60h60 animated infinite pulse" style={{
                                 backgroundImage: "url('../img/pngegg.png')"
                             }}>
-
                             </div>
                             <span className="text-2xl ml-2 lato font-normal"><span className="text-blue-300">MY</span>TINERARY</span>
                         </div>
-                    
                     </Link>
 
-                    <div className="flex hidden md:block">
-                        <div className="flex justify-between items-center  lato font-normal">
-                            <NavLink exact to="/"><span className="mx-2 cursor-pointer">Home</span></NavLink>
-                            <NavLink to="/cities"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
-                            <span className="mx-2 px-4 py-2 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</span>
-                            <span className="ml-2 cursor-pointer">Log In</span>                    
+                    <div className={menuClass.classes}>
+                        <div className="flex flex-col md:flex-row md:justify-between items-center lato font-normal z-30 navResponsive">
+                            <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
+                            <NavLink className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg" exact to="/"><span className="mx-2 cursor-pointer">Home</span></NavLink>
+                            <NavLink className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg" to="/cities"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
+                            <span className="text-lg mt-5 mb-2 md:mt-0 md:mb-0 mx-2 px-4 py-2 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</span>
+                            <span className="text-lg mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer">Log In</span>                    
                         </div>
                     </div>
 
-                    <div className={menuMobileClasses}>
-                        <div onClick={closeMenuNav} className="flex justify-end pt-4">
-                            <span className="text-3xl mr-6 text-gray-100">X</span>
-                        </div>
-                        <div className="flex flex-col h-full md:flex-row items-center px-20">
-                            <div id="user-icon-image" className="cursor-pointer mb-4" style={{
-                                backgroundImage: "url('./img/userunknown.png')" 
-                            }}>
-                            </div>                           
-                            <NavLink exact to="/" className="mb-1"><span className="text-gray-100 text-xl">Home</span></NavLink>
-                            <NavLink to="/cities" className="mb-1"><span className="text-gray-100 text-xl">Cities</span></NavLink>
-                            <span className="mb-1 w-full text-center py-2 text-xl bg-blue-800 text-white rounded font-semibold ">SIGN UP</span>
-                            <span className="mb-1 text-gray-100 text-xl">LOG IN</span>
-                        </div>
-                    </div>
-                    
-                    <div onClick={openMenuNav} className="md:hidden">
+                    <div onClick={handleMenuNav} className="md:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-10" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                         </svg>
                     </div>
-
                 </div>
             </div>
         </div>

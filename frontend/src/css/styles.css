@@ -189,6 +189,14 @@ min-height: 90vh;
     .mh70 {
         min-height: 15vh;
     }
+    .navResponsive {
+        position: absolute;
+        right: 0px;
+        top: 64px;
+        width: 100vw;
+        background-color: rgb(41, 41, 100);
+        border-bottom: 10px solid rgba(0, 0, 0, 0.774);
+    }
 }
 
 .lobster {
@@ -202,15 +210,6 @@ min-height: 90vh;
 .icon-media {
     width: 25px;
     height: 25px;
-}
-
-.navResponsive {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    height: 50vh;
-    width: 100vw;
-    /* opacity: 0.9; */
 }
 
 #user-icon-image{

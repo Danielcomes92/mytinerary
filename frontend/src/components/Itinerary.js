@@ -49,8 +49,8 @@ export const Itinerary = ({city}) => {
 
                         <div className="text-center text-lg text-blue-300">
                             {
-                                hashtags.map(hashtag => {
-                                    return <span className="mx-1">{hashtag}</span>
+                                hashtags.map( (hashtag, index) => {
+                                    return <span key={index} className="mx-1">{hashtag}</span>
                                 })
                             }
                         </div>

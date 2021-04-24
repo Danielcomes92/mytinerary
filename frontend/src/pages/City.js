@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
 import { Itinerary } from '../components/Itinerary';
+import axios from 'axios';
 
 class City extends React.Component  {
     state = {
@@ -20,25 +21,38 @@ class City extends React.Component  {
         })
     }
 
+    getCity = () => {
+        axios.get(`http://localhost:4000/api/city/${this.props.match.params.id}`)
+        .then(res => this.setState({city: res.data.response}))
+    }
+
     componentDidMount() {
         this.filterCity()
         this.props.getCityItineraries(this.props.match.params.id)
+        !this.state.city && this.getCity()
     }
     
    render() {
+       
        return(
             <>
             <ScrollToTop />
           
-            <div className="h65 flex flex-col bgCover bgCenter" style={{
+            {  
+            this.state.city &&
+            <>
+                <div className="h65 flex flex-col bgCover bgCenter" style={{
                     backgroundImage: `url('../img/${this.state.city.image}.jpg')`
                 }}>
-                <Header />
-            </div>
+                    <Header />
+                </div>
 
-            <div className="text-center">
-                <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city.city}</p>
-            </div> 
+                <div className="text-center">
+                    <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city.city}</p>
+                </div>
+            </>
+            }
+
             {
                 this.props.cityItineraries.length === 0
                 ?

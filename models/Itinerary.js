@@ -21,7 +21,9 @@ const itinerarySchema = new mongoose.Schema({
     },
     duration: {
         type: Number,
-        required: true
+        required: true,
+        min: 1,
+        max: 8
     },
     likes: {
         type: Number,
@@ -31,7 +33,7 @@ const itinerarySchema = new mongoose.Schema({
         type: [String],
         required: true,
         min: 2,
-        max: 4
+        max: 3
     },
     comments: [{
         userId: String,

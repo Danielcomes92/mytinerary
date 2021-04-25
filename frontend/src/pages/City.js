@@ -7,7 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
-import { Itinerary } from '../components/Itinerary';
+import Itinerary from '../components/Itinerary';
 import axios from 'axios';
 
 class City extends React.Component  {
@@ -33,13 +33,12 @@ class City extends React.Component  {
     }
     
    render() {
-       
        return(
             <>
             <ScrollToTop />
           
             {  
-            this.state.city &&
+            this.state.city && this.props.cityItineraries.length !== 0 &&
             <>
                 <div className="h65 flex flex-col bgCover bgCenter" style={{
                     backgroundImage: `url('../img/${this.state.city.image}.jpg')`
@@ -54,23 +53,28 @@ class City extends React.Component  {
             }
 
             {
-                this.props.cityItineraries.length === 0
-                ?
-                <div className="w-11/12 md:w-8/12 mx-auto flex flex-col bg-gray-100 rounded-xl mt-12 md:mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
-                    <div className="text-center pt-10 pb-10 bg-orange-100">
-                        <span className="text-2xl lato font-bold">No itineraries available </span>    
+            this.props.cityItineraries.length === 0
+            ?
+            <>  
+                <Header />
+                <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
+                    <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
+                        backgroundImage: "url('/img/noitineraries.png')"
+                    }}>
+                        <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available here yet</span>    
                     </div>     
                     <div className="w-full rounded-md">
                         <div className="bg-orange-100 bgCenter bgCover px-4">
-                           
+                        
                         </div>
-                        <div className="flex flex-row justify-between pl-0 pb-0 h-10 rounded-b-md shadow-md bg-gray-500"></div>
+                        <div className="flex flex-row justify-between pl-0 pb-0 h-10 rounded-b-md shadow-md bg-gray-900"></div>
                     </div>
                 </div>
-                :
-                this.props.cityItineraries.map(city => {
-                    return <Itinerary key={city._id} city={city}/>
-                })
+            </>
+            :
+            this.props.cityItineraries.map(city => {
+                return <Itinerary key={city._id} city={city}/>
+            })
             }
 
             <div className="text-center mb-12">

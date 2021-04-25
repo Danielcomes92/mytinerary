@@ -22,7 +22,7 @@ const Header = () => {
     }
 
     return(
-        <div className="w-full fixed md:static md:bg-transparent overflow:hidden z-30">
+        <div className="w-full fixed top-0 md:static md:bg-transparent overflow:hidden z-30">
             <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
                 <div className="w-10/12 mx-auto flex justify-center md:justify-between pt-1">
                     <div className="text-gray-100 flex justify-between items-center">

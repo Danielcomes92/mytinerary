@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export const Itinerary = ({city}) => {
+const Itinerary = ({city}) => {
     const {authorName, authorPic, duration, hashtags, likes, price, title} = city;
     const [collapse, setCollapse] = useState(true)
     
@@ -113,3 +113,5 @@ export const Itinerary = ({city}) => {
         </>
     )
 }
+
+export default Itinerary;

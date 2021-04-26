@@ -1,4 +1,5 @@
 const initialState = {
+    city: '',
     cities: [],
     citiesUpdated: [],
     noCitiesAlert: false,
@@ -14,7 +15,6 @@ const cityReducer = (state = initialState, action) => {
                 citiesUpdated: action.payload,
                 loading: false
             }
-            break
         
         case 'FILTER_CITIES':
             let findCity = action.payload.trim().toUpperCase()
@@ -40,7 +40,6 @@ const cityReducer = (state = initialState, action) => {
                     citiesUpdated: state.cities
                 }  
             }
-            break
 
         default:
             return state

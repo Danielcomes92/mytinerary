@@ -14,7 +14,16 @@ const itinerariesActions = {
                 err
             }))
         }
-    }
+    },
+
+    removeItineraries: () => {
+        return(dispatch, getState) => {
+            dispatch({
+                type: 'REMOVE_ITINERARIES'
+            })
+        }
+    },
+    
 
 }
 

@@ -32,7 +32,7 @@ class Cities extends React.Component {
             </div>
 
             {
-                this.props.loading && <Loader />
+            this.props.loading && <Loader />
             }
 
             <div className="w-11/12 mx-auto mt-20 mh70">

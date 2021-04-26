@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 const Itinerary = ({city}) => {
     const {authorName, authorPic, duration, hashtags, likes, price, title} = city;

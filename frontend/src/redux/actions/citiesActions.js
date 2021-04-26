@@ -6,9 +6,23 @@ const citiesActions = {
     getCities: () => {
         return (dispatch, getState) => {
             axios.get('http://localhost:4000/api/cities')
-            .then(resp => dispatch({
+            .then(res => dispatch({
                 type: 'GET_CITIES',
-                payload: resp.data.response
+                payload: res.data.response
+            }))
+            .catch((err) => ({
+                success: false,
+                err
+            }))
+        }
+    },
+
+    getCityOnReload: (id) => {
+        return(dispatch, getState) => {
+            axios.get(`http://localhost:4000/api/city/${id}`)
+            .then(res => dispatch({
+                type: 'GET_CITY_ON_RELOAD',
+                payload: res.data.response
             }))
             .catch((err) => ({
                 success: false,

@@ -4,10 +4,11 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Itinerary from '../components/Itinerary';
+import { Loader } from '../components/Loader';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
-import Itinerary from '../components/Itinerary';
-// import axios from 'axios';
+
 
 class City extends React.Component  {
     state = {
@@ -20,41 +21,36 @@ class City extends React.Component  {
         })
     }
 
-    // getCity = () => {
-    //     axios.get(`http://localhost:4000/api/city/${this.props.match.params.id}`)
-    //     .then(res => this.setState({city: res.data.response}))
-    // }
-
     componentDidMount() {
         window.scrollTo(0, 0)
         this.filterCity()
         this.props.getCityItineraries(this.props.match.params.id)
-        // !this.state.city && this.getCity()
+    }
+
+    componentWillUnmount() {
+        this.props.removeItineraries()
     }
 
    render() {
        return(
             <>
             {  
-            this.state.city && this.props.cityItineraries.length !== 0 &&
             <>
                 <div className="h65 flex flex-col bgCover bgCenter" style={{
-                    backgroundImage: `url('../img/${this.state.city.image}.jpg')`
+                    backgroundImage: `url('/img/${this.state.city ? this.state.city.image : 'reloadCity'}.jpg')`
                 }}>
                     <Header />
                 </div>
 
                 <div className="text-center">
-                    <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city.city}</p>
+                    <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city ? this.state.city.city : 'this place'}</p>
                 </div>
             </>
             }
 
             {
-            this.props.cityItineraries.length === 0
-            ?
+            this.props.noCity &&
             <>
-                <Header />
                 <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
                     <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
                         backgroundImage: "url('/img/noitineraries.png')"
@@ -69,12 +65,14 @@ class City extends React.Component  {
                     </div>
                 </div>
             </>
-            :
-            this.props.cityItineraries.map(city => {
-                return <Itinerary key={city._id} city={city}/>
-            })
             }
-
+            {   
+                this.props.cityItineraries &&
+                this.props.cityItineraries.map(city => {
+                    return <Itinerary key={city._id} city={city}/>
+                })
+            }
+            
             <div className="text-center mb-12">
                 <Link to="/cities" className="">
                     <span className="shadow-md hover:shadow-xl text-white py-4 px-12 bg-blue-900 duration-500 transition hover:bg-white hover:text-blue-900 cursor-pointer lato rounded">Back to Cities</span>
@@ -89,12 +87,14 @@ class City extends React.Component  {
 const mapStateToProps = state => {
     return {
         cities: state.cityReducer.cities,
-        cityItineraries: state.itineraryReducer.cityItineraries
+        cityItineraries: state.itineraryReducer.cityItineraries,
+        noCity: state.itineraryReducer.noCity,
     }
 }
 
 const mapDispatchToProps = {
-    getCityItineraries: itinerariesActions.getCityItineraries
+    getCityItineraries: itinerariesActions.getCityItineraries,
+    removeItineraries: itinerariesActions.removeItineraries
 }
  
 export default connect(mapStateToProps, mapDispatchToProps)(City);

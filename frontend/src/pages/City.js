@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import ScrollToTop from '../components/ScrollToTop';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
 import Itinerary from '../components/Itinerary';
-import axios from 'axios';
+// import axios from 'axios';
 
 class City extends React.Component  {
     state = {
@@ -21,22 +20,21 @@ class City extends React.Component  {
         })
     }
 
-    getCity = () => {
-        axios.get(`http://localhost:4000/api/city/${this.props.match.params.id}`)
-        .then(res => this.setState({city: res.data.response}))
-    }
+    // getCity = () => {
+    //     axios.get(`http://localhost:4000/api/city/${this.props.match.params.id}`)
+    //     .then(res => this.setState({city: res.data.response}))
+    // }
 
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.filterCity()
         this.props.getCityItineraries(this.props.match.params.id)
-        !this.state.city && this.getCity()
+        // !this.state.city && this.getCity()
     }
-    
+
    render() {
        return(
             <>
-            <ScrollToTop />
-          
             {  
             this.state.city && this.props.cityItineraries.length !== 0 &&
             <>
@@ -55,7 +53,7 @@ class City extends React.Component  {
             {
             this.props.cityItineraries.length === 0
             ?
-            <>  
+            <>
                 <Header />
                 <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
                     <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{

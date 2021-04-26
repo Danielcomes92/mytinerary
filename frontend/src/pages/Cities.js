@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { Loader } from '../components/Loader';
-import ScrollToTop from '../components/ScrollToTop';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardCity from '../components/CardCity';
@@ -12,13 +11,13 @@ import citiesActions from '../redux/actions/citiesActions';
 
 class Cities extends React.Component {
     componentDidMount() {
+        window.scrollTo(0, 0)
         this.props.getCities()
     }
 
     render() {
         return(
             <>
-            <ScrollToTop />
             <div className="heroCities w-full bg-gray-800" style={{
             backgroundImage:"url('./img/hero-cities-background.jpg')"
             }}>

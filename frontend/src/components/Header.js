@@ -62,10 +62,10 @@ const Header = () => {
                     <div className={menuClass.classes}>
                         <div className="flex flex-col md:flex-row md:justify-between items-center lato font-normal z-30 navResponsive">
                             <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
-                            <NavLink className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg" exact to="/"><span className="mx-2 cursor-pointer">Home</span></NavLink>
-                            <NavLink className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg" to="/cities"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
-                            <span className="text-lg mt-5 mb-2 md:mt-0 md:mb-0 mx-2 px-4 py-2 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</span>
-                            <span className="text-lg mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer">Log In</span>                    
+                            <NavLink exact to="/" className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg"><span className="mx-2 cursor-pointer">Home</span></NavLink>
+                            <NavLink to="/cities" className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
+                            <Link to="/signup" className="text-lg mt-5 mb-2 md:mt-0 md:mb-0 mx-2 px-4 py-2 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</Link>
+                            <Link to="/login" className="text-lg mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer">Log In</Link>                    
                         </div>
                     </div>
 

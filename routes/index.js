@@ -33,4 +33,15 @@ router.route('/itinerary/:id')
     .put(modifyItinerary)
     .delete(removeItinerary)
 
+//users
+router.route('/users')
+    // .get(getUsers)
+    // .post(addUser)
+
+router.route('/user/:id')
+    // .post(logUser)
+    // .get(getUser)
+    // .put(modifyUser)
+    // .delete(removeUser)
+
 module.exports = router;

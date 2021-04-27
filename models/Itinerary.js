@@ -29,16 +29,17 @@ const itinerarySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    hashtags: {
-        type: [String],
+    usersLiked: [String],
+    hashtags: [{
+        type: String,
         required: true,
         min: 2,
         max: 3
-    },
+    }],
     comments: [{
-        userId: String,
-        userImage: String,
-        user: String,
+        user: {
+            type: mongoose.Types.ObjectId, ref: 'user'
+        },
         message: {
             type: String,
             required: true

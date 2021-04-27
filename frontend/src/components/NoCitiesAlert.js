@@ -8,12 +8,12 @@ const NoCitiesAlert = () => {
             </div>    
             
             <div className="heroCities mx-auto hidden md:block" style={{
-                backgroundImage: "url('../img/nocities.jpg')"
+                backgroundImage: "url('/img/nocities.jpg')"
             }}>
             </div>
 
             <div className="heroCities mx-auto md:hidden" style={{
-                backgroundImage: "url('../img/nocitiesmobile.jpg')"
+                backgroundImage: "url('/img/nocitiesmobile.jpg')"
             }}>   
             </div>
                 

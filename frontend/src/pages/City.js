@@ -25,6 +25,14 @@ class City extends React.Component  {
         window.scrollTo(0, 0)
         this.filterCity()
         this.props.getCityItineraries(this.props.match.params.id)
+        this.redirect()
+    }
+
+    redirect = () => {
+        if(this.props.cities.length === 0) {
+            this.props.history.push('/cities')
+        }
+        return null
     }
 
     componentWillUnmount() {
@@ -37,13 +45,13 @@ class City extends React.Component  {
             {  
             <>
                 <div className="h65 flex flex-col bgCover bgCenter" style={{
-                    backgroundImage: `url('/img/${this.state.city ? this.state.city.image : 'reloadCity'}.jpg')`
+                    backgroundImage: `url('/img/${this.state.city.image}.jpg')`
                 }}>
                     <Header />
                 </div>
 
                 <div className="text-center">
-                    <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city ? this.state.city.city : 'this place'}</p>
+                    <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city.city}</p>
                 </div>
             </>
             }
@@ -55,7 +63,7 @@ class City extends React.Component  {
                     <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
                         backgroundImage: "url('/img/noitineraries.png')"
                     }}>
-                        <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available here yet</span>    
+                        <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available in {this.state.city.city} yet</span>    
                     </div>     
                     <div className="w-full rounded-md">
                         <div className="bg-orange-100 bgCenter bgCover px-4">

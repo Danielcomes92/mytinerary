@@ -17,9 +17,9 @@ const cityReducer = (state = initialState, action) => {
             }
         
         case 'FILTER_CITIES':
-            let findCity = action.payload.trim().toUpperCase()
-            if(findCity) {
-                var citiesFiltered = state.cities.filter(city => (city.city).toUpperCase().includes(findCity) && Array.from(city.city)[0].toUpperCase() === findCity[0]);
+            let valueInput = action.payload.trim().toUpperCase()
+            if(valueInput) {
+                var citiesFiltered = state.cities.filter(city => (city.city).toUpperCase().includes(valueInput) && Array.from(city.city)[0].toUpperCase() === valueInput[0]);
             }
             if(citiesFiltered) {
                 if(citiesFiltered.length > 0) {

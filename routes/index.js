@@ -5,9 +5,11 @@ const validator = require('../config/validator');
 
 const citiesController = require('../controllers/citiesControllers');
 const itinerariesController = require('../controllers/itinerariesControllers');
+const usersControllers = require('../controllers/usersControllers');
 
 const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary} = itinerariesController;
 const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
+const {addUser, logUser} = usersControllers;
 
 
 //cities
@@ -22,26 +24,22 @@ router.route('/city/:id')
     
 //itineraries
 router.route('/itineraries')
-    .get(getItineraries)//
-    .post(addItinerary)//
+    .get(getItineraries)
+    .post(addItinerary)
 
 router.route('/itineraries/:id')
     .get(getCityItineraries)
 
 router.route('/itinerary/:id')
-    .get(getItinerary)//
+    .get(getItinerary)
     .put(modifyItinerary)
     .delete(removeItinerary)
 
 //users
-router.route('/users')
-    // .get(getUsers)
-    // .post(addUser)
+router.route('/signup')
+    .post(addUser)
 
-router.route('/user/:id')
-    // .post(logUser)
-    // .get(getUser)
-    // .put(modifyUser)
-    // .delete(removeUser)
+router.route('/login')
+    .post(logUser)
 
 module.exports = router;

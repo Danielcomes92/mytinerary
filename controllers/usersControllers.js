@@ -1,45 +1,49 @@
-// const User = require('../models/User');
+const User = require('../models/User');
 
-// const usersControllers = {
+const usersControllers = {
 
-//     // getUsers: async(req, res) => {
-//     //     try {
-//     //         const AllUsers = await User.find()
-//     //         res.json({
-//     //             response: AllUsers,
-//     //             success: true                
-//     //         })
-//     //     } catch (error) {
-//     //         res.json({
-//     //             error,
-//     //             success: false
-//     //         })
-//     //     }
-//     // },
+    addUser: async(req, res) => {
+        const { email } = req.body;
+        const emailInDatabase = await User.findOne({email});
+        let response;
+        let error;
+        if(!emailInDatabase) {
+            try {
+                const user = new User(req.body);
+                await user.save();
+                response = user;         
+            } catch {
+                error = "An error happened with the database";
+            }
+        } else {
+            error = "Email is already used";
+        }
 
-//     addUser: async(req, res) => {
-//         const { mail } = req.body
-//         const user = new User(req.body)
-//         try {
-//             await user.save()
-//             res.json({
-//                 message: 'User added succesfully',
-//                 success: true
-//             })
-//         } catch (error) {
-//             res.json({
-//                 error,
-//                 message: 'User couldnt be added',
-//                 success: false
-//             })
-//         }
-//     },
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
 
-//     logUser: async(req, res) => {
+    logUser: async (req, res) => {
+        const { email, password } = req.body;
+        const emailInDatabase = await User.findOne({email});
+        let response;
+        let error;
+        if(emailInDatabase && emailInDatabase.password === password) {
+            response = emailInDatabase;
+        } else {
+            error = "Email or password incorrect"
+        }
 
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+        
+    }
+}
 
-
-//     }
-
-
-// }
+module.exports = usersControllers;

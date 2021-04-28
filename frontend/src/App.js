@@ -3,7 +3,7 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import City from './pages/City'
 import Cities from './pages/Cities';
 import Home from './pages/Home'
-import { SignUp } from './components/SignUp';
+import SignUp from './components/SignUp';
 import { LogIn } from './components/LogIn';
 
 function App() {

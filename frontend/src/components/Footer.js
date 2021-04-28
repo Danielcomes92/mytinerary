@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
     return(
-        <footer className="flex justify-between md:mt-16 px-4 md:px-12 md:py-4 h-auto bg-gray-900 text-gray-300 relative bottom-0 w-full">
+        <footer className="flex justify-between md:mt-10 px-4 md:px-12 md:py-4 h-auto bg-gray-900 text-gray-300 relative bottom-0 w-full">
             <div className="w-3/4 flex flex-col my-auto">
                 <Link exact to="/"><span className="font-light text-base md:text-lg lato">Home</span></Link>
                 <Link to="/cities"><span className="font-light text-base md:text-lg lato">Cities</span></Link>

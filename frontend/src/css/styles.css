@@ -5,6 +5,10 @@ body {
     overflow-x: hidden;
 }
 
+#root { 
+    min-height: 100vh;
+}
+
 .heroContainer {
     width: 100%;
     background-size: cover;
@@ -28,6 +32,9 @@ body {
     min-width: 100vw;
 }
 
+.mh65 {
+    min-height: 65vh;
+}
 
 .v85 {
     height: 85vh;

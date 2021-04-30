@@ -7,6 +7,7 @@ import Footer from '../components/Footer';
 import Itinerary from '../components/Itinerary';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
+import { Loader } from '../components/Loader';
 
 class City extends React.Component  {
     state = {
@@ -54,37 +55,43 @@ class City extends React.Component  {
                 </>
                 }
 
-                {
-                this.props.noCity &&
-                <>
-                    <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
-                        <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
-                            backgroundImage: "url('/img/noitineraries.png')"
-                        }}>
-                            <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available in {this.state.city.city} yet</span>    
-                        </div>     
-                        <div className="w-full rounded-md">
-                            <div className="bg-orange-100 bgCenter bgCover px-4">
-                            
-                            </div>
-                            <div className="flex flex-row justify-between pl-0 pb-0 h-10 rounded-b-md shadow-md bg-gray-900"></div>
-                        </div>
-                    </div>
-                </>
-                }
                 {   
-                    this.props.cityItineraries &&
-                    this.props.cityItineraries.map(city => {
+                    this.props.loading
+                    ? <Loader />
+                    : this.props.cityItineraries.length > 0
+                    ? this.props.cityItineraries.map(city => {
                         return <Itinerary key={city._id} city={city}/>
                     })
+                    : <>
+                        <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
+                            <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
+                                backgroundImage: "url('/img/noitineraries.png')"
+                            }}>
+                                <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available in {this.state.city.city} yet</span>    
+                            </div>     
+                            <div className="w-full rounded-md">
+                                <div className="bg-orange-100 bgCenter bgCover px-4">
+                                
+                                </div>
+                                <div className="flex flex-row justify-between pl-0 pb-0 h-10 rounded-b-md shadow-md bg-gray-900"></div>
+                            </div>
+                        </div>
+                    </>
                 }
+
+                {
+                    !this.props.loading &&
+                    <>
+                    <div className="text-center mb-12">
+                        <Link to="/cities" className="">
+                            <span className="shadow-md hover:shadow-xl text-white py-4 px-12 bg-blue-900 duration-500 transition hover:bg-white hover:text-blue-900 cursor-pointer lato rounded">Back to Cities</span>
+                        </Link>
+                    </div>
                 
-                <div className="text-center mb-12">
-                    <Link to="/cities" className="">
-                        <span className="shadow-md hover:shadow-xl text-white py-4 px-12 bg-blue-900 duration-500 transition hover:bg-white hover:text-blue-900 cursor-pointer lato rounded">Back to Cities</span>
-                    </Link>
-                </div>
-                <Footer />
+                    <Footer />
+                    </>
+                }
+
             </>
        )
    }
@@ -94,7 +101,7 @@ const mapStateToProps = state => {
     return {
         cities: state.cityReducer.cities,
         cityItineraries: state.itineraryReducer.cityItineraries,
-        noCity: state.itineraryReducer.noCity,
+        loading: state.itineraryReducer.loading
     }
 }
 

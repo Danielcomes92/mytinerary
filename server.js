@@ -1,8 +1,11 @@
+const express = require('express');
+const passport = require('passport');
+const cors = require('cors');
 require('dotenv').config();
 require('./config/database');
-const express = require('express');
-const cors = require('cors');
 const router = require('./routes/index');
+require('./config/passport')
+
 
 const app = express();
 const port = 4000;

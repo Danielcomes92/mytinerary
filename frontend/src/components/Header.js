@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
+import authActions from "../redux/actions/authActions";
 
-const Header = () => {
+const Header = (props) => {
+    const { firstName, urlPic } = props.userLogged || ''
+    
+
     const [menuClass, setMenuClass] = useState({
         open: false,
         classes:'hidden md:block'
@@ -21,6 +26,7 @@ const Header = () => {
         }
     }
 
+    console.log(props)
     return(
         <div className="w-full fixed top-0 md:static md:bg-transparent overflow:hidden z-30">
             <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
@@ -42,14 +48,17 @@ const Header = () => {
                             <span className="text-sm md:text-normal">Contact@MyTinerary.io</span>
                         </div>
                     </div>
-                    <span className="material-icons text-5xl text-white">person</span>
+                    <div className="flex items-center">
+                        <span className="text-white mx-2">{firstName ? `Welcome ${firstName}!` : ""}</span>
+                        <span className="material-icons text-5xl text-white">person</span>
+                    </div>
                 </div>
             </div>
 
             <div className="bg-black md:bg-opacity-75 md:h-24 flex items-center">
 
                 <div className="w-11/12 md:w-10/12 mx-auto flex justify-between text-white items-center">
-                    <Link className="h-16 flex items-center" exact to="/">
+                    <Link className="h-16 flex items-center" to="/">
                         <div className="flex flex-row items-center">
                             <div className="logo w60h60 animated infinite pulse" style={{
                                 backgroundImage: "url('../img/pngegg.png')"
@@ -61,11 +70,20 @@ const Header = () => {
 
                     <div className={menuClass.classes}>
                         <div className="flex flex-col md:flex-row md:justify-between items-center lato font-normal z-30 navResponsive">
+                            <span className="md:hidden font-semibold mt-4">{firstName ? `Welcome ${firstName}!` : ""}</span>
                             <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
-                            <NavLink exact to="/" className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg"><span className="mx-2 cursor-pointer">Home</span></NavLink>
-                            <NavLink to="/cities" className="mt-5 mb-2 md:mt-0 md:mb-0 text-lg"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
-                            <Link to="/signup" className="text-lg mt-5 mb-2 md:mt-0 md:mb-0 mx-2 px-4 py-2 bg-blue-800 duration-500 transition hover:bg-white hover:text-blue-700 hover:border hover:border-red-400 rounded cursor-pointer">Sign Up</Link>
-                            <Link to="/login" className="text-lg mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer">Log In</Link>                    
+                            <NavLink exact to="/" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Home</span></NavLink>
+                            <NavLink exact to="/cities" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
+                            {
+                                !props.userLogged
+                                ?
+                                <>
+                                    <Link to="/signup" className="text-md mt-5 mb-2 md:mt-0 md:mb-0 mx-2 px-4 py-2  bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none focus:shadow-outline shadow-inner">Sign Up</Link>
+                                    <Link to="/login" className="text-md mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer">Log In</Link>                    
+                                </>
+                                :
+                                <button onClick={() => props.logOut()} className="mt-5 mb-4 md:mt-0 md:mb-0 md:ml-2 cursor-pointer text-md">Log Out</button>                    
+                            }
                         </div>
                     </div>
 
@@ -80,4 +98,14 @@ const Header = () => {
     )
 }
 
-export default Header;
+const mapStateToProps = state => {
+    return {
+        userLogged: state.authReducer.userLogged
+    }
+}
+
+const mapDispatchToProps = {
+    logOut: authActions.logOut
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

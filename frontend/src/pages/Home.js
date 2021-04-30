@@ -61,8 +61,8 @@ class Home extends React.Component {
 
                     </div>
                 </div>
-                <div className="h-auto bg-orange-200 bg-opacity-75 text-black shadow-md md:mb-20">
-                    <h1 className="font-semibold py-8 mb-12 text-4xl text-center md:text-left md:ml-20 md:text-5xl lobster tracking-wide animated  fadeInLeft ">Popular MyTineraries</h1>
+                <div className="h-auto bg-gray-100 bg-opacity-75 text-black shadow-md md:mb-20">
+                    <h1 className="font-semibold py-8 mb-12 md:text-4xl text-3xl text-center md:text-left md:ml-20 md:text-5xl lobster">Popular MyTineraries</h1>
                 </div>
                 
                 <Slider /> 

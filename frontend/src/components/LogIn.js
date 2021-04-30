@@ -1,11 +1,14 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+
 import Footer from "./Footer"
 import Header from "./Header"
 
+import authActions from "../redux/actions/authActions"
 
-export const LogIn = () => {
+const LogIn = (props) => {
+
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
@@ -29,25 +32,25 @@ export const LogIn = () => {
         return passwordValidated
     }
 
-    const sendData = async (e) => {
+    const sendData = (e) => {
         e.preventDefault();
-        const user = logUser;
-        if(email.length >= 6 && email.includes('@') && password.length >= 8 && validatePassword()) {
-            const response = await axios.post('http://localhost:4000/api/login', user)
-            console.log(response)
+        if(email.length >= 6 && password.length >= 5) {
+            props.logUser(logUser)
+            setLogUser({
+                email: '',
+                password: ''
+            })
         } else {
-            console.log('Hay datos incompletos o erroneos')
+            console.log('Some fields are incomplete or wrong')
         }
     }
 
-
-    console.log(logUser)
-
+    console.log(props)
     return (
             <>
             <Header />
 
-            <div className="mh70 items-center flex align-middle h-screen -mt-16 -mb-16 md:h-full md:mt-0 md:mb-0">
+            <div className="mh70 items-center flex align-middle h-screen -mt-10 -mb-16 md:h-full md:mt-0 md:mb-0">
                 <div className="container mx-auto">
                     <div className="flex justify-center px-6 md:mt-10">
                         <div className="w-full lg:w-11/12 flex">
@@ -59,7 +62,7 @@ export const LogIn = () => {
                             ></div>
                             <div className="w-full lg:w-1/2 bg-white px-5 rounded lg:rounded-l-none">
                                 <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
-                                <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                                <form className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded">
                                     <div className="mb-4">
                                         <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                                             Email
@@ -101,7 +104,7 @@ export const LogIn = () => {
                                     <div className="mb-6 text-center">
                                         <div className="w-full mx-auto cursor-pointer md:w-8/12 items-center px-3 py-2 border border-t-0 border--0 font-normal duration-100 transition tracking-normal shadow-inner text-white bg-gray-100 md:hover:bg-gray-300 focus:outline-none focus:shadow-outline">
                                             <div className="flex justify-center items-center">
-                                                <img className="w-5 h-5" src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                                                <img className="w-5 h-5" src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon"/>
                                                 
                                                 <span className="mx-2 text-gray-800 text-sm md:text-base">
                                                     Sign In with Google
@@ -126,3 +129,15 @@ export const LogIn = () => {
             </>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        userLogged: state.authReducer.userLogged
+    }
+}
+
+const mapDispatchToProps = {
+    logUser: authActions.logUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn)

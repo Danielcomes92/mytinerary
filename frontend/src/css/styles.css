@@ -201,8 +201,8 @@ min-height: 90vh;
         right: 0px;
         top: 64px;
         width: 100vw;
-        background-color: rgb(41, 41, 100);
-        border-bottom: 10px solid rgba(0, 0, 0, 0.774);
+        background-color: rgb(44, 44, 44);
+        border-bottom: 4px solid rgba(0, 0, 0, 0.774);
     }
 }
 

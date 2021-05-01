@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import GoogleLogin from 'react-google-login';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -33,39 +33,54 @@ const SignUp = (props) => {
 			...newUser,
 			[e.target.name] : e.target.value
 		})
-		// validatePassword()
 	}
-
-	// const validatePassword = () => {
-	// 	let passwordValidated = Array.from(password).some(Number)
-	// 	return passwordValidated
-	// }
 	
-	const sendData = async (e) => {
-		e.preventDefault();
-		// if(firstName.length >= 2 && lastName.length >= 2 && email.length >= 3 && urlPic.length >= 5 && country && password.length >= 5) {
-			const response = await props.newUser(newUser)
-			if(response) {
-				console.log(response)
-			}
+	const sendData = async (e = null, googleUser = null) => {
+		e && e.preventDefault();
+		
+		let user = googleUser ? googleUser : newUser
 
-			// setNewUser({
-			// 	firstName: '',
-			// 	lastName: '',
-			// 	email: '',
-			// 	urlPic: '',
-			// 	country: '',
-			// 	password: ''
-			// })
-		// } else {
-		// 	console.log('datos incompletos')
-		// }
+		if(user.firstName && user.lastName && user.email && user.urlPic && user.country && user.password) {
+			const response = await props.newUser(user)
+			
+			/*dev*/if(response) {
+				console.log(response.details) 
+				console.log(response.details[0].message) 
+			}
+			
+			if(!response) {
+				setNewUser({
+					firstName: '',
+					lastName: '',
+					email: '',
+					urlPic: '',
+					country: '',
+					password: ''
+				})
+				alert("You've registered!")	
+				return props.history.push('/')
+			}
+		} else {
+			alert('Some fields are incomplete or wrong')
+		}
 	}
 
+    const responseGoogle = (response) => {
+		if(response.profileObj) {
+			const { givenName, familyName, email, imageUrl, googleId } = response.profileObj;
+			
+			const googleUser = {
+				firstName: givenName,
+				lastName: familyName,
+				email: email,
+				urlPic: imageUrl,
+				country: 'no_city',
+				password: googleId
+			}
+			sendData(null, googleUser)
+		}
+    }
 
-
-
-	console.log(props)
     return (
         <>
 			<Header />
@@ -82,10 +97,10 @@ const SignUp = (props) => {
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-4 md:flex md:justify-between">
-									<div className="mb-4 md:mr-2 md:mb-0">
-										<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="firstName">First Name</label>
+									<div className="mb-4 md:mr-2 mt-4">
+										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="firstName">First Name</label> */}
 										<input
-											className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="firstName"
 											type="text"
 											placeholder="First Name"
@@ -94,10 +109,10 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 										/>
 									</div>
-									<div className="md:ml-2">
-										<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="lastName">Last Name</label>
+									<div className="md:ml-2 mb-4 mt-4">
+										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="lastName">Last Name</label> */}
 										<input
-											className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="lastName"
 											type="text"
 											placeholder="Last Name"
@@ -107,10 +122,10 @@ const SignUp = (props) => {
 										/>
 									</div>
 								</div>
-								<div className="mb-4">
-									<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="email">Email</label>
+								<div className="mb-4 mt-4">
+									{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="email">Email</label> */}
 									<input
-										className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="email"
 										type="email"
 										placeholder="Email"
@@ -120,10 +135,10 @@ const SignUp = (props) => {
 									/>
 								</div>
 								<div className="mb-4 md:flex md:justify-between">
-									<div className="mb-4 md:mr-2 md:mb-0">
-										<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="urlPhoto">URL Photo</label>
+									<div className="mb-4 mt-4 md:mr-2 md:mb-0">
+										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="urlPhoto">URL Photo</label> */}
 										<input
-											className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="urlPhoto"
 											type="text"
 											placeholder="URL Photo"
@@ -132,8 +147,8 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 										/>
 									</div>
-									<div className="md:ml-2">
-										<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="country">Select Country</label>
+									<div className="md:ml-2 mt-4">
+										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="country">Select Country</label> */}
 										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-3 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
 											<option disabled selected value=''>Countries</option>
 										{
@@ -144,36 +159,26 @@ const SignUp = (props) => {
 									</div>
 								</div>
 								<div className="mb-0 md:flex md:justify-between">
-									<div className="mb-4 md:mr-2 md:mb-0">
-										<label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="password">Password</label>
+									<div className="mb-4 mt-4 md:mr-2">
+										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="password">Password</label> */}
 										<input
-											className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="password"
 											type="password"
-											placeholder="************"
+											placeholder="Password"
 											name="password"
 											value={password}
 											onChange={handleUserData}
+											autoComplete="off"
 										/>
 									</div>
-									{/* <div className="md:ml-2">
-										<label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="c_password">Confirm Password</label>
-										<input
-											className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-											id="c_password"
-											type="password"
-											placeholder="************"
-										/>
-									</div> */}
 								</div>
-								<div className="mb-6">
-									{/* <p className="text-xs italic text-red-500">* Please choose a valid password</p> */}
+								<div className="mb-10">
 									<p className="text-xs md:text-sm italic text-gray-600">* Password must have a number and a minimum of 8 characters </p>
-									{/* <p className="text-xs italic text-red-500">* Both password field must match</p> */}
 								</div>
 								<div className="mb-2 text-center">
 									<button
-										className="w-full md:w-8/12 px-4 py-2 tracking-wide text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
+										className="w-full md:w-8/12 px-4 py-2 tracking-wide text-white bg-blue-500 duration-100 transition border-gray-600 md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
 										type="button"
 										onClick={sendData}
 									>
@@ -181,14 +186,19 @@ const SignUp = (props) => {
 									</button>
 								</div>
 								<div className="mb-6 text-center">
-									<div className="w-full mx-auto cursor-pointer md:w-8/12 items-center px-3 py-2 border border-t-0 border--0 font-normal duration-100 transition tracking-normal shadow-inner text-white bg-gray-100 md:hover:bg-gray-300 focus:outline-none focus:shadow-outline">
-										<div className="flex justify-center items-center">
-											<img className="w-5 h-5" src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon"/>
-											<span className="mx-2 text-gray-800 text-sm md:text-base">
-											Sign Up with Google
-											</span>
-										</div>
-									</div>
+									<div className="mb-6 text-center mt-4 text-black">
+                                        <div className="focus:outline-none"> 
+                                            <GoogleLogin
+                                                clientId="526192152002-ar0p539juka51qiejcqnmh51tkl4t5kb.apps.googleusercontent.com"
+												
+                                                buttonText="Sign Up with Google"
+                                                onSuccess={responseGoogle}
+                                                onFailure={responseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                                className="noOutline w-full mx-auto flex justify-center cursor-pointer md:w-8/12 text-white bg-gray-100 md:hover:bg-gray-300"
+                                            />
+                                        </div>
+                                    </div>
 								</div>
 								<hr className="mb-4 border-t" />
 								<div className="text-center">

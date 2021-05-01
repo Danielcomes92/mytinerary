@@ -23,13 +23,10 @@ const usersControllers = {
                 //el metodo sign de jwt toma dos parametros, el objeto a tokenizar y la palabra clave
                 const token = jwt.sign({...userSaved}, process.env.SECRET_OR_KEY);
                 response = token;
-                console.log('estoy aca try')
             } catch (error) {
                 error
-                console.log('estoy aca catch')
             }
         } else {
-            console.log('estoy aca else')
             error = "Email is already used";
         }
         // console.log(error)
@@ -60,7 +57,7 @@ const usersControllers = {
                 error = "Email or password incorrect"
             }
         } catch (error) {
-            console.log(error)
+            error = "Internal database error"
         }       
 
         console.log(error)

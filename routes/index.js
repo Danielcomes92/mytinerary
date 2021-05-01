@@ -12,7 +12,6 @@ const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyIti
 const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
 const {addUser, logUser, loginWithLS} = usersControllers;
 
-
 //cities
 router.route('/cities')
     .get(getCities)

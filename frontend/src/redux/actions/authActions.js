@@ -8,7 +8,7 @@ const authActions = {
             try {
                 const response = await axios.post('http://localhost:4000/api/signup', newUser)
                 if(!response.data.success) {
-                    // console.log(response.data.errors)
+                    console.log(response.data.errors)
                     return response.data.errors
                 }
                 dispatch({
@@ -16,7 +16,7 @@ const authActions = {
                     payload: response.data.success ? response.data.response : null
                 })                
             } catch (error) {
-                console.log(error)
+                alert(error)
             }
         }
     },
@@ -25,11 +25,16 @@ const authActions = {
         return async (dispatch, getState) => {
             try {
                 const response = await axios.post('http://localhost:4000/api/login', logUser)
-                // console.log(response)
-                dispatch({
-                    type: 'ACCESS_USER',
-                    payload: response.data.success ? response.data.response : null
-                })                
+               
+                if(response.data.success) {
+                    dispatch({
+                        type: 'ACCESS_USER',
+                        payload: response.data.response
+                    })                
+                } else {
+                    console.log(response.data)
+                }
+
             } catch (error) {
                 console.log(error)
             }
@@ -47,15 +52,17 @@ const authActions = {
     loginWithLS: (userLS) => {
         return async(dispatch, getState) => {
             try {
+                console.log(userLS)
                 const response = await axios.get('http://localhost:4000/api/loginLS', {
                     headers: {
                         'Authorization': 'Bearer '+ userLS.token
                     }
                 })
+                console.log(response)
                 dispatch({
                     type: 'ACCESS_USER',
                     payload: {
-                        ...response.data,
+                        ...response.data.response,
                         token: userLS.token
                     }
                 })
@@ -64,9 +71,6 @@ const authActions = {
             }
         }
     }
-
-
-
 }
 
 export default authActions;

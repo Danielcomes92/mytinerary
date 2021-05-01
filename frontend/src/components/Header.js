@@ -5,7 +5,6 @@ import authActions from "../redux/actions/authActions";
 
 const Header = (props) => {
     const { firstName, urlPic } = props.userLogged || ''
-    
 
     const [menuClass, setMenuClass] = useState({
         open: false,
@@ -26,7 +25,7 @@ const Header = (props) => {
         }
     }
 
-    console.log(props)
+    // console.log(props)
     return(
         <div className="w-full fixed top-0 md:static md:bg-transparent overflow:hidden z-30">
             <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">

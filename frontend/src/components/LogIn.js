@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import GoogleLogin from 'react-google-login';
 
 import Footer from "./Footer"
 import Header from "./Header"
@@ -27,30 +28,45 @@ const LogIn = (props) => {
         })
     }
     
-    const validatePassword = () => {
-        let passwordValidated = Array.from(password).some(Number)
-        return passwordValidated
-    }
+    const sendData = async (e = null, googleUser = null) => {
+        e && e.preventDefault();
+        let user = googleUser ? googleUser : logUser
 
-    const sendData = (e) => {
-        e.preventDefault();
-        if(email.length >= 6 && password.length >= 5) {
-            props.logUser(logUser)
+        if(user.email && user.password) {
+            const response = await props.logUser(user)
+
+            if(response) {
+                console.log(response)
+            }
+
             setLogUser({
                 email: '',
                 password: ''
             })
         } else {
-            console.log('Some fields are incomplete or wrong')
+            alert('Some fields are incomplete or wrong')
+        }
+    }
+    
+    const responseGoogle = (response) => {
+        if(response.profileObj) {
+            const { email, googleId } = response.profileObj
+    
+            let googleUser = {
+                email,
+                password: googleId
+            }
+    
+            sendData(null, googleUser)
         }
     }
 
-    console.log(props)
+    // console.log(props)
     return (
             <>
             <Header />
 
-            <div className="mh70 items-center flex align-middle h-screen -mt-10 -mb-16 md:h-full md:mt-0 md:mb-0">
+            <div className="mh70 items-center flex align-middle h-screen -mt-4 -mb-16 md:h-full md:mt-0 md:mb-0">
                 <div className="container mx-auto">
                     <div className="flex justify-center px-6 md:mt-10">
                         <div className="w-full lg:w-11/12 flex">
@@ -62,13 +78,13 @@ const LogIn = (props) => {
                             ></div>
                             <div className="w-full lg:w-1/2 bg-white px-5 rounded lg:rounded-l-none">
                                 <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
-                                <form className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded">
+                                <form className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded" autoComplete="off">
                                     <div className="mb-4">
-                                        <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
+                                        {/* <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                                             Email
-                                        </label>
+                                        </label> */}
                                         <input
-                                            className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
                                             id="email"
                                             type="text"
                                             placeholder="Email"
@@ -78,41 +94,46 @@ const LogIn = (props) => {
 
                                         />
                                     </div>
-                                    <div className="mb-4">
-                                        <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
+                                    <div className="mb-4 mt-4">
+                                        {/* <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="password">
                                             Password
-                                        </label>
+                                        </label> */}
                                         <input
-                                            className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                                            className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
                                             id="password"
                                             type="password"
-                                            placeholder="************"
+                                            placeholder="Password"
                                             name="password"
                                             value={password}
                                             onChange={handleDataUser}
+                                            autoComplete="off"
                                         />
                                     </div>
-                                    <div className="mb-2 text-center">
+                                    <div className="mb-2 text-center mt-8">
                                     <button
                                         className="w-full md:w-8/12 px-4 py-2 tracking-wide text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none focus:shadow-outline  shadow-inner text-sm md:text-base"
                                         type="button"
                                         onClick={sendData}
                                     >
-                                        Sign In
+                                        Log In
                                     </button>
                                     </div>
-                                    <div className="mb-6 text-center">
-                                        <div className="w-full mx-auto cursor-pointer md:w-8/12 items-center px-3 py-2 border border-t-0 border--0 font-normal duration-100 transition tracking-normal shadow-inner text-white bg-gray-100 md:hover:bg-gray-300 focus:outline-none focus:shadow-outline">
-                                            <div className="flex justify-center items-center">
-                                                <img className="w-5 h-5" src="https://img.icons8.com/color/48/000000/google-logo.png" alt="google icon"/>
-                                                
-                                                <span className="mx-2 text-gray-800 text-sm md:text-base">
-                                                    Sign In with Google
-                                                </span>
-                                            </div>
+                                    <div className="mb-6 text-center mt-4 text-black">
+                                        <div className="focus:outline-none">
+                                            
+                                            <GoogleLogin
+                                                clientId="526192152002-ar0p539juka51qiejcqnmh51tkl4t5kb.apps.googleusercontent.com"
+                                                buttonText="Log In with Google"
+                                                onSuccess={responseGoogle}
+                                                onFailure={responseGoogle}
+                                                cookiePolicy={'single_host_origin'}
+                                                className="noOutline w-full mx-auto flex justify-center cursor-pointer md:w-8/12 text-white bg-gray-100 md:hover:bg-gray-300"
+                                            />
+
+                                            
                                         </div>
                                     </div>
-                                    <hr className="mb-6 border-t" />
+                                    <hr className="mb-4 border-t" />
                                     <div className="text-center">
                                         <Link to="/signup" className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">
                                             Create an Account!

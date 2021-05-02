@@ -73,6 +73,7 @@ const SignUp = (props) => {
 					urlPic: '',
 					password: ''
 				})
+				
 				//mapeo errores
 				response.details.map(err => setErrors(prevState => {
 					return {...prevState, [err.context.label]: err.message}
@@ -117,7 +118,6 @@ const SignUp = (props) => {
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-4 md:flex md:justify-between">
 									<div className="mb-2 md:mr-2 mt-2">
-										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="firstName">First Name</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="firstName"
@@ -132,7 +132,6 @@ const SignUp = (props) => {
 									</div>
 									</div>
 									<div className="md:ml-2 mb-2 mt-2">
-										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="lastName">Last Name</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="lastName"
@@ -148,7 +147,6 @@ const SignUp = (props) => {
 									</div>
 								</div>
 								<div className="mb-2 mt-2">
-									{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="email">Email</label> */}
 									<input
 										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="email"
@@ -164,7 +162,6 @@ const SignUp = (props) => {
 								</div>
 								<div className="mb-2 md:flex md:justify-between">
 									<div className="mb-2 mt-2 md:mr-2 md:mb-0">
-										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="urlPhoto">URL Photo</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="urlPhoto"
@@ -179,7 +176,6 @@ const SignUp = (props) => {
 										</div>
 									</div>
 									<div className="md:ml-2 mt-2">
-										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="country">Select Country</label> */}
 										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-6 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
 											<option disabled selected value=''>Countries</option>
 										{
@@ -191,7 +187,6 @@ const SignUp = (props) => {
 								</div>
 								<div className="mb-0 md:flex md:justify-between">
 									<div className="mb-2 mt-2 md:mr-2">
-										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="password">Password</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="password"
@@ -205,15 +200,15 @@ const SignUp = (props) => {
 										<div className="text-xs text-red-400 h-6">
 											{errors.password && errors.password}
 										</div>
-										<p onClick={() => setType(!type)} className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">Show password</p>
+										<p onClick={() => setType(!type)} className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">{type ? "Show password" : "Hide password"}</p>
 									</div>
 								</div>
 								<div className="mb-10">					
-									<p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p>
+									<p className="text-xs md:text-sm italic text-gray-500">* Password must contain at least one number and four letters </p>
 								</div>
 								<div className="mb-2 text-center">
 									<button
-										className="w-full md:w-8/12 px-4 py-3 tracking-wide text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
+										className="w-full md:w-8/12 bxShadow px-4 py-3 text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
 										type="button"
 										onClick={sendData}
 									>

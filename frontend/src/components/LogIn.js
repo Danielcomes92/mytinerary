@@ -115,15 +115,14 @@ const LogIn = (props) => {
                                     </div>
                                     <div className="mb-2 text-center mt-8">
                                     <button
-                                        className="w-full md:w-8/12 px-4 py-2 tracking-wide text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none focus:shadow-outline  shadow-inner text-sm md:text-base"
+                                        className="w-full bxShadow md:w-8/12 px-4 py-3 text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none focus:shadow-outline  shadow-inner text-sm md:text-base"
                                         type="button"
                                         onClick={sendData}
                                     >
                                         Log In
                                     </button>
                                     </div>
-                                    <div className="mb-6 text-center mt-4 text-black">
-                                        <div className="focus:outline-none">
+                                    <div className="mb-6 text-center mt-4">
                                             
                                             <GoogleLogin
                                                 clientId="526192152002-ar0p539juka51qiejcqnmh51tkl4t5kb.apps.googleusercontent.com"
@@ -131,11 +130,9 @@ const LogIn = (props) => {
                                                 onSuccess={responseGoogle}
                                                 onFailure={responseGoogle}
                                                 cookiePolicy={'single_host_origin'}
-                                                className="noOutline w-full mx-auto flex justify-center cursor-pointer md:w-8/12 text-white bg-gray-100 md:hover:bg-gray-300"
+                                                className="noOutline w-full flex justify-center md:w-8/12"
                                             />
 
-                                            
-                                        </div>
                                     </div>
                                     <hr className="mb-4 border-t" />
                                     <div className="text-center">

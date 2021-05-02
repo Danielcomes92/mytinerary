@@ -7,14 +7,14 @@ const validator = (req, res, next) => {
         .trim()
         .required()
         .min(2).message("The first name length must be superior of 1")
-        .pattern(new RegExp(/^[a-zA-Z]+$/)).message("The first name can´t contain numbers"),
+        .pattern(new RegExp(/^[a-zA-Z]+$/)).message("The first name only can contain letters"),
 
         lastName:
         joi.string()
         .trim()
         .required()
         .min(2).message("The last name length must be superior of 1")
-        .pattern(new RegExp(/^[a-zA-Z]+$/)).message("The last name can´t contain numbers"),
+        .pattern(new RegExp(/^[a-zA-Z]+$/)).message("The last name only can contain letters"),
 
         email:
         joi.string()
@@ -35,8 +35,8 @@ const validator = (req, res, next) => {
         .alphanum()
         .trim()
         .required()
-        .min(5).message("The password length must be superior of 4 letters and numbers")
-        .pattern(/(?=.*[0-9])(?=.{5,})/).message("The password must have numbers and letters")
+        .min(5).message("The password must be superior of 4")
+        .pattern(/(?=.*[0-9])/).message("Password must contain numbers and letters")
     })
 
     const validation = schema.validate(req.body, {abortEarly: false});

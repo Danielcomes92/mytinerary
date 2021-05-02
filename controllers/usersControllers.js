@@ -8,12 +8,13 @@ const usersControllers = {
     addUser: async(req, res) => {
         let { email, password } = req.body;
         const userDb = await User.findOne({email});
+        password = 'Gen3rik'+password
         password = bcryptjs.hashSync(password, 10)
         
         let response;
         let error;
         let userSaved;
-        
+
         if(!userDb) {
             try {
                 userSaved = new User({...req.body, password});
@@ -39,7 +40,8 @@ const usersControllers = {
     },
 
     logUser: async (req, res) => {
-        const { email, password } = req.body;
+        let { email, password } = req.body;
+        password = 'Gen3rik'+password
         
         let response;
         let error;

@@ -25,7 +25,6 @@ const Header = (props) => {
         }
     }
 
-    // console.log(props)
     return(
         <div className="w-full fixed top-0 md:static md:bg-transparent overflow:hidden z-30">
             <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
@@ -49,7 +48,16 @@ const Header = (props) => {
                     </div>
                     <div className="flex items-center">
                         <span className="text-white mx-2">{firstName ? `Welcome ${firstName}!` : ""}</span>
-                        <span className="material-icons text-5xl text-white">person</span>
+                        
+                        {
+                            props.userLogged
+                            ?
+                            <div className="w-10 h-10 bgCenter bgCover rounded-full" style={{
+                                backgroundImage: `url(${props.userLogged.urlPic})`
+                            }}></div>
+                            :
+                            <span className="material-icons text-5xl text-white">person</span>
+                        }
                     </div>
                 </div>
             </div>
@@ -70,7 +78,16 @@ const Header = (props) => {
                     <div className={menuClass.classes}>
                         <div className="flex flex-col md:flex-row md:justify-between items-center lato font-normal z-30 navResponsive">
                             <span className="md:hidden font-semibold mt-4">{firstName ? `Welcome ${firstName}!` : ""}</span>
-                            <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
+                            
+                            {
+                                props.userLogged
+                                ?
+                                <div className="my-2 w-12 h-12 bgCenter bgCover rounded-full md:hidden" style={{
+                                    backgroundImage: `url(${props.userLogged.urlPic})`
+                                }}></div>
+                                :
+                                <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
+                            }
                             <NavLink exact to="/" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Home</span></NavLink>
                             <NavLink exact to="/cities" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
                             {

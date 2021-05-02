@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import GoogleLogin from 'react-google-login';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import Footer from "./Footer"
 import Header from "./Header"
+import GoogleLogin from 'react-google-login';
 
 import authActions from "../redux/actions/authActions"
+
+toast.configure()
 
 const LogIn = (props) => {
 
@@ -35,16 +40,16 @@ const LogIn = (props) => {
         if(user.email && user.password) {
             const response = await props.logUser(user)
 
-            if(response) {
-                console.log(response)
+            if(!response) {
+                setLogUser({
+                    email: '',
+                    password: ''
+                })
+            } else { 
+                toast.error(response, {position: toast.POSITION.TOP_RIGHT})
             }
-
-            setLogUser({
-                email: '',
-                password: ''
-            })
         } else {
-            alert('Some fields are incomplete or wrong')
+            toast.error('Some fields are incomplete or wrong', {position: toast.POSITION.TOP_RIGHT})
         }
     }
     
@@ -61,7 +66,6 @@ const LogIn = (props) => {
         }
     }
 
-    // console.log(props)
     return (
             <>
             <Header />

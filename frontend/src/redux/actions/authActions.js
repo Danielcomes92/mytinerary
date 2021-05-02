@@ -1,22 +1,28 @@
 import axios from "axios";
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+toast.configure()
 
 const authActions = {
-
     newUser: (newUser) => {
         return async (dispatch, getState) => {
             try {
                 const response = await axios.post('http://localhost:4000/api/signup', newUser)
-                if(!response.data.success) {
-                    console.log(response.data.errors)
-                    return response.data.errors
+
+                if(response.data.validatorErrors) {   
+                    return response.data.validatorErrors //joi validator
+                } else if(!response.data.success) {
+                    toast.error(response.data.error, {position: toast.POSITION.TOP_RIGHT})
+                } else {
+                    dispatch({
+                        type: 'ACCESS_USER',
+                        payload: response.data.response
+                    })
                 }
-                dispatch({
-                    type: 'ACCESS_USER',
-                    payload: response.data.success ? response.data.response : null
-                })                
-            } catch (error) {
-                alert(error)
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -32,11 +38,11 @@ const authActions = {
                         payload: response.data.response
                     })                
                 } else {
-                    console.log(response.data)
+                    //aca va a venir el error de pass o mail incorrect // o database error
+                    toast.error(response.data.error, {position: toast.POSITION.TOP_RIGHT})
                 }
-
-            } catch (error) {
-                console.log(error)
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -52,13 +58,11 @@ const authActions = {
     loginWithLS: (userLS) => {
         return async(dispatch, getState) => {
             try {
-                console.log(userLS)
                 const response = await axios.get('http://localhost:4000/api/loginLS', {
                     headers: {
                         'Authorization': 'Bearer '+ userLS.token
                     }
                 })
-                console.log(response)
                 dispatch({
                     type: 'ACCESS_USER',
                     payload: {
@@ -66,8 +70,8 @@ const authActions = {
                         token: userLS.token
                     }
                 })
-            } catch (error) {
-                console.log(error)         
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     }

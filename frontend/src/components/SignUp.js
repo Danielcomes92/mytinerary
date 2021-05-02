@@ -1,28 +1,39 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import GoogleLogin from 'react-google-login';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import GoogleLogin from 'react-google-login';
 import Header from './Header';
 import Footer from './Footer';
 
 import authActions from '../redux/actions/authActions';
 
+toast.configure()
+
 const SignUp = (props) => {
 	useEffect(() => {
 		window.scroll(0, 0)
 	}, [])
-	
-	// const [errors, setErrors] = useState([])
-	
+
 	const [newUser,  setNewUser] = useState({
 		firstName: '',
         lastName: '',
         email: '',
         urlPic: '',
-        country: '',
         password: ''
     });
+
+	const [errors,  setErrors] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		urlPic: '',
+		country: '',
+		password: ''
+	});
 	
 	const { firstName, lastName, email, urlPic, country, password } = newUser;
 	const countries = ['United States', 'Argentina', 'Chile', 'Mexico', 'Brazil', 'Canada', 'France', 'Spain', 'United Kingdom', 'Russia', 'New Zealand', 'Denmark'];
@@ -42,12 +53,8 @@ const SignUp = (props) => {
 
 		if(user.firstName && user.lastName && user.email && user.urlPic && user.country && user.password) {
 			const response = await props.newUser(user)
-			
-			/*dev*/if(response) {
-				console.log(response.details) 
-				console.log(response.details[0].message) 
-			}
-			
+					
+			//si no existe response, significa que no hubo errores
 			if(!response) {
 				setNewUser({
 					firstName: '',
@@ -57,11 +64,21 @@ const SignUp = (props) => {
 					country: '',
 					password: ''
 				})
-				alert("You've registered!")	
-				return props.history.push('/')
+			} else {
+				setErrors({
+					firstName: '',
+					lastName: '',
+					email: '',
+					urlPic: '',
+					password: ''
+				})
+				//mapeo errores
+				response.details.map(err => setErrors(prevState => {
+					return {...prevState, [err.context.label]: err.message}
+				}))
 			}
-		} else {
-			alert('Some fields are incomplete or wrong')
+		} else { // si no completo ningun campo el usuario
+			toast.error('Some fields are incomplete or wrong', {position: toast.POSITION.TOP_RIGHT})
 		}
 	}
 
@@ -81,6 +98,7 @@ const SignUp = (props) => {
 		}
     }
 
+	console.log(errors)
     return (
         <>
 			<Header />
@@ -97,19 +115,22 @@ const SignUp = (props) => {
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-4 md:flex md:justify-between">
-									<div className="mb-4 md:mr-2 mt-4">
+									<div className="mb-2 md:mr-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="firstName">First Name</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="firstName"
 											type="text"
-											placeholder="First Name"
+											placeholder="First name"
 											name="firstName"
 											value={firstName}
 											onChange={handleUserData}
 										/>
+									<div className="text-xs text-red-400 h-6">
+										{errors.firstName ? errors.firstName : ''}
 									</div>
-									<div className="md:ml-2 mb-4 mt-4">
+									</div>
+									<div className="md:ml-2 mb-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="lastName">Last Name</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -120,9 +141,12 @@ const SignUp = (props) => {
 											value={lastName}
 											onChange={handleUserData}
 										/>
+										<div className="text-xs text-red-400 h-6">
+											{errors.lastName ? errors.lastName : ''}
+										</div>
 									</div>
 								</div>
-								<div className="mb-4 mt-4">
+								<div className="mb-2 mt-2">
 									{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="email">Email</label> */}
 									<input
 										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -133,9 +157,12 @@ const SignUp = (props) => {
 										value={email}
 										onChange={handleUserData}
 									/>
+									<div className="text-xs text-red-400 h-6">
+										{errors.email ? errors.email : ''}
+									</div>
 								</div>
-								<div className="mb-4 md:flex md:justify-between">
-									<div className="mb-4 mt-4 md:mr-2 md:mb-0">
+								<div className="mb-2 md:flex md:justify-between">
+									<div className="mb-2 mt-2 md:mr-2 md:mb-0">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="urlPhoto">URL Photo</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -146,8 +173,11 @@ const SignUp = (props) => {
 											value={urlPic}
 											onChange={handleUserData}
 										/>
+										<div className="text-xs text-red-400 h-6">
+											{errors.urlPic ? errors.urlPic : ''}
+										</div>
 									</div>
-									<div className="md:ml-2 mt-4">
+									<div className="md:ml-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="country">Select Country</label> */}
 										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-3 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
 											<option disabled selected value=''>Countries</option>
@@ -155,11 +185,11 @@ const SignUp = (props) => {
 											countries.map( (country, index) => <option key={index} value={country}> {country} </option>)
 										}
 										</select>
-										
+										<div className="text-xs text-red-400 h-6"></div>
 									</div>
 								</div>
 								<div className="mb-0 md:flex md:justify-between">
-									<div className="mb-4 mt-4 md:mr-2">
+									<div className="mb-2 mt-2 md:mr-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="password">Password</label> */}
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -171,10 +201,25 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 											autoComplete="off"
 										/>
+										<div className="text-xs text-red-400 h-6">
+											{errors.password ? errors.password : ''}
+										</div>
+										<p className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">Show password</p>
 									</div>
 								</div>
 								<div className="mb-10">
-									<p className="text-xs md:text-sm italic text-gray-600">* Password must have a number and a minimum of 8 characters </p>
+									{/* <p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p> */}
+									
+									{
+										// response
+										// ?
+										// response.details.map(err => {
+										// 	return <p className="text-xs md:text-sm italic text-red-500">*{err.message}</p>
+										// })
+										// :
+										<p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p>
+									}
+
 								</div>
 								<div className="mb-2 text-center">
 									<button

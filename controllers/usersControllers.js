@@ -22,9 +22,9 @@ const usersControllers = {
                 //tokenizamos el usuario
                 //el metodo sign de jwt toma dos parametros, el objeto a tokenizar y la palabra clave
                 const token = jwt.sign({...userSaved}, process.env.SECRET_OR_KEY);
-                response = token;
-            } catch (error) {
-                error
+                response = {token, urlPic: userSaved.urlPic, firstName: userSaved.firstName};
+            } catch {
+                error = "Internal database error, please try in a moment"
             }
         } else {
             error = "Email is already used";
@@ -33,7 +33,7 @@ const usersControllers = {
         res.json({
             success: !error ? true : false,
             //la respuesta al front va a ser; el usuario completo tokenizado, y las propiedades picture/firstname sin tokenizar
-            response: response && {token: response, urlPic: userSaved.urlPic, firstName: userSaved.firstName},
+            response,
             error
         })
     },
@@ -52,19 +52,18 @@ const usersControllers = {
                 //como tanto al logearse, como al crear un usuario, lo alojamos en localstorage, es necesario tokenizar ambos procesos para que solo sea visible lo que no genere
                 //un problema de seguridad, y de igual manera, lo que sea necesario mantener oculto enviarlo tokenizado
                 const token = jwt.sign({...userDb}, process.env.SECRET_OR_KEY);
-                response = token;
+                response = {token, urlPic: userDb.urlPic, firstName: userDb.firstName};
             } else {
                 error = "Email or password incorrect"
             }
-        } catch (error) {
-            error = "Internal database error"
+        } catch {
+            error = "Internal database error, please try in a moment"
         }       
 
-        console.log(error)
         res.json({
             success: !error ? true : false,
             //la respuesta al front va a ser; el usuario completo tokenizado, y las propiedades picture/firstname sin tokenizar
-            response: response && {token: response, urlPic: userDb.urlPic, firstName: userDb.firstName},
+            response,
             error
         })
     },

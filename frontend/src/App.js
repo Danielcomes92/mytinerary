@@ -9,13 +9,10 @@ import { connect } from 'react-redux';
 import authActions from './redux/actions/authActions';
 
 function App(props) {
-
   //si la prop userlogged no tiene nada, y en localstorage existe el item token ingresa aca
   if(!props.userLogged && localStorage.getItem('token')) {
-
     //guardamos los datos que tenemos en la propiedad userLogged de localstorage
     const dataUserLogged = JSON.parse(localStorage.getItem('userLogged'))
-
     //unificamos nuevamente el objeto, con los datos del usuario tokenizados y los datos que teniamos separados
     const userLS = {
       token: localStorage.getItem('token'),
@@ -29,8 +26,8 @@ function App(props) {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/cities" component={Cities} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={LogIn} />
+        {!props.userLogged && <Route path="/signup" component={SignUp} />}
+        {!props.userLogged && <Route path="/login" component={LogIn} />}
         <Route path="/city/:id" component={City} />
         <Redirect to = "/" />
       </Switch>    

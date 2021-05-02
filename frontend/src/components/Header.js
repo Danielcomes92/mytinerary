@@ -27,8 +27,8 @@ const Header = (props) => {
 
     return(
         <div className="w-full fixed top-0 md:static md:bg-transparent overflow:hidden z-30">
-            <div className="h-12 w-full bg-black bg-opacity-90 flex hidden md:block">
-                <div className="w-10/12 mx-auto flex justify-center md:justify-between pt-1">
+            <div className="h-16 w-full bg-black  flex hidden md:block">
+                <div className="w-10/12 mx-auto flex items-center pt-2 justify-center md:justify-between">
                     <div className="text-gray-100 flex justify-between items-center">
                         <div className="flex justify-between lato mr-10">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-phone mr-2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -48,16 +48,9 @@ const Header = (props) => {
                     </div>
                     <div className="flex items-center">
                         <span className="text-white mx-2">{firstName ? `Welcome ${firstName}!` : ""}</span>
-                        
-                        {
-                            props.userLogged
-                            ?
-                            <div className="w-10 h-10 bgCenter bgCover rounded-full" style={{
-                                backgroundImage: `url(${props.userLogged.urlPic})`
+                            <div className="w-12 h-12 bg-opacity-none bgCenter bgCover rounded-full" style={{
+                                backgroundImage: `url(${ urlPic ? urlPic : '/img/userunknown.png'})`
                             }}></div>
-                            :
-                            <span className="material-icons text-5xl text-white">person</span>
-                        }
                     </div>
                 </div>
             </div>
@@ -77,17 +70,10 @@ const Header = (props) => {
 
                     <div className={menuClass.classes}>
                         <div className="flex flex-col md:flex-row md:justify-between items-center lato font-normal z-30 navResponsive">
-                            <span className="md:hidden font-semibold mt-4">{firstName ? `Welcome ${firstName}!` : ""}</span>
-                            
-                            {
-                                props.userLogged
-                                ?
-                                <div className="my-2 w-12 h-12 bgCenter bgCover rounded-full md:hidden" style={{
-                                    backgroundImage: `url(${props.userLogged.urlPic})`
-                                }}></div>
-                                :
-                                <span className="material-icons text-6xl mt-4 mb-2 md:hidden">person</span>
-                            }
+                            <span className="md:hidden font-semibold mt-4">{firstName ? `Welcome ${firstName}!` : ""}</span>                          
+                            <div className="my-2 w-16 h-16 bgCenter bgCover rounded-full md:hidden" style={{
+                                backgroundImage: `url(${urlPic ? urlPic : '/img/userunknown.png'})`
+                            }}></div>
                             <NavLink exact to="/" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Home</span></NavLink>
                             <NavLink exact to="/cities" className="mt-5 mb-2 md:mt-0 md:mb-0 text-md"><span className="mx-2 cursor-pointer">Cities</span></NavLink>
                             {

@@ -118,7 +118,7 @@ const SignUp = (props) => {
 									<div className="mb-2 md:mr-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="firstName">First Name</label> */}
 										<input
-											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="firstName"
 											type="text"
 											placeholder="First name"
@@ -133,7 +133,7 @@ const SignUp = (props) => {
 									<div className="md:ml-2 mb-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="lastName">Last Name</label> */}
 										<input
-											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="lastName"
 											type="text"
 											placeholder="Last Name"
@@ -149,7 +149,7 @@ const SignUp = (props) => {
 								<div className="mb-2 mt-2">
 									{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="email">Email</label> */}
 									<input
-										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
+										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="email"
 										type="email"
 										placeholder="Email"
@@ -165,7 +165,7 @@ const SignUp = (props) => {
 									<div className="mb-2 mt-2 md:mr-2 md:mb-0">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="urlPhoto">URL Photo</label> */}
 										<input
-											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="urlPhoto"
 											type="text"
 											placeholder="URL Photo"
@@ -179,7 +179,7 @@ const SignUp = (props) => {
 									</div>
 									<div className="md:ml-2 mt-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="country">Select Country</label> */}
-										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-3 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
+										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-6 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
 											<option disabled selected value=''>Countries</option>
 										{
 											countries.map( (country, index) => <option key={index} value={country}> {country} </option>)
@@ -192,7 +192,7 @@ const SignUp = (props) => {
 									<div className="mb-2 mt-2 md:mr-2">
 										{/* <label className="block mb-2 text-sm font-bold text-gray-500" htmlFor="password">Password</label> */}
 										<input
-											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-3 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
+											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="password"
 											type="password"
 											placeholder="Password"

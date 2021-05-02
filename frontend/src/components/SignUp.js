@@ -116,7 +116,7 @@ const SignUp = (props) => {
 						<div className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
-								<div className="mb-4 md:flex md:justify-between">
+								<div className="mb-2 md:flex md:justify-between">
 									<div className="mb-2 md:mr-2 mt-2">
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -146,7 +146,7 @@ const SignUp = (props) => {
 										</div>
 									</div>
 								</div>
-								<div className="mb-2 mt-2">
+								<div className="mb-2">
 									<input
 										className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 										id="email"
@@ -176,13 +176,13 @@ const SignUp = (props) => {
 										</div>
 									</div>
 									<div className="md:ml-2 mt-2">
-										<select id="country" name="country" onChange={handleUserData} value={country} className="w-full border bg-white rounded pr-12 px-6 py-2 outline-none text-sm text-gray-700 border rounded shadow focus:outline-none focus:shadow-outline">
-											<option disabled selected value=''>Countries</option>
-										{
+										<select id="country" name="country" onChange={handleUserData} value={country} className="block w-full md:w-52 text-gray-700 pr-12 px-6 py-2 border border-gray-300 bg-white focus:outline-none text-sm focus:shadow-outline shadow">
+											<option disabled selected value=''>Select Country </option>
+											{
 											countries.map( (country, index) => <option key={index} value={country}> {country} </option>)
-										}
+											}
 										</select>
-										<div className="text-xs text-red-400 h-6"></div>
+										<div className="h-6"></div>
 									</div>
 								</div>
 								<div className="mb-0 md:flex md:justify-between">
@@ -204,7 +204,7 @@ const SignUp = (props) => {
 									</div>
 								</div>
 								<div className="mb-10">					
-									<p className="text-xs md:text-sm italic text-gray-500">* Password must contain at least one number and four letters </p>
+									<p className="text-xs md:text-sm italic text-gray-500">* Password must contain at least 1 number and 4 letters </p>
 								</div>
 								<div className="mb-2 text-center">
 									<button

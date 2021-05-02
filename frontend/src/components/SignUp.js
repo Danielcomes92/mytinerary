@@ -18,6 +18,8 @@ const SignUp = (props) => {
 		window.scroll(0, 0)
 	}, [])
 
+	const [type, setType] = useState(true)
+
 	const [newUser,  setNewUser] = useState({
 		firstName: '',
         lastName: '',
@@ -53,7 +55,6 @@ const SignUp = (props) => {
 
 		if(user.firstName && user.lastName && user.email && user.urlPic && user.country && user.password) {
 			const response = await props.newUser(user)
-					
 			//si no existe response, significa que no hubo errores
 			if(!response) {
 				setNewUser({
@@ -98,7 +99,7 @@ const SignUp = (props) => {
 		}
     }
 
-	console.log(errors)
+	// console.log(newUser)
     return (
         <>
 			<Header />
@@ -127,7 +128,7 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 										/>
 									<div className="text-xs text-red-400 h-6">
-										{errors.firstName ? errors.firstName : ''}
+										{errors.firstName && errors.firstName}
 									</div>
 									</div>
 									<div className="md:ml-2 mb-2 mt-2">
@@ -142,7 +143,7 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 										/>
 										<div className="text-xs text-red-400 h-6">
-											{errors.lastName ? errors.lastName : ''}
+											{errors.lastName && errors.lastName}
 										</div>
 									</div>
 								</div>
@@ -158,7 +159,7 @@ const SignUp = (props) => {
 										onChange={handleUserData}
 									/>
 									<div className="text-xs text-red-400 h-6">
-										{errors.email ? errors.email : ''}
+										{errors.email && errors.email}
 									</div>
 								</div>
 								<div className="mb-2 md:flex md:justify-between">
@@ -174,7 +175,7 @@ const SignUp = (props) => {
 											onChange={handleUserData}
 										/>
 										<div className="text-xs text-red-400 h-6">
-											{errors.urlPic ? errors.urlPic : ''}
+											{errors.urlPic && errors.urlPic}
 										</div>
 									</div>
 									<div className="md:ml-2 mt-2">
@@ -194,7 +195,7 @@ const SignUp = (props) => {
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
 											id="password"
-											type="password"
+											type={type ? "password" : "text"}
 											placeholder="Password"
 											name="password"
 											value={password}
@@ -202,28 +203,17 @@ const SignUp = (props) => {
 											autoComplete="off"
 										/>
 										<div className="text-xs text-red-400 h-6">
-											{errors.password ? errors.password : ''}
+											{errors.password && errors.password}
 										</div>
-										<p className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">Show password</p>
+										<p onClick={() => setType(!type)} className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">Show password</p>
 									</div>
 								</div>
-								<div className="mb-10">
-									{/* <p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p> */}
-									
-									{
-										// response
-										// ?
-										// response.details.map(err => {
-										// 	return <p className="text-xs md:text-sm italic text-red-500">*{err.message}</p>
-										// })
-										// :
-										<p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p>
-									}
-
+								<div className="mb-10">					
+									<p className="text-xs md:text-sm italic text-gray-500">* Password must have a number and a minimum of 8 characters </p>
 								</div>
 								<div className="mb-2 text-center">
 									<button
-										className="w-full md:w-8/12 px-4 py-2 tracking-wide text-white bg-blue-500 duration-100 transition border-gray-600 md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
+										className="w-full md:w-8/12 px-4 py-3 tracking-wide text-white bg-blue-500 duration-100 transition md:hover:bg-blue-700 focus:outline-none shadow-inner focus:shadow-outline text-sm md:text-base"
 										type="button"
 										onClick={sendData}
 									>

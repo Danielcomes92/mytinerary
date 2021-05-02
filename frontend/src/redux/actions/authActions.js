@@ -20,6 +20,7 @@ const authActions = {
                         type: 'ACCESS_USER',
                         payload: response.data.response
                     })
+                    toast.success("You've been registered!", {position: toast.POSITION.TOP_RIGHT})
                 }
             } catch {
                 toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})

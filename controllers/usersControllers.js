@@ -1,7 +1,7 @@
-const User = require('../models/User');
 const bcryptjs = require('bcryptjs');
-
 const jwt = require('jsonwebtoken');
+
+const User = require('../models/User');
 
 const usersControllers = {
 
@@ -52,6 +52,7 @@ const usersControllers = {
                 //como tanto al logearse, como al crear un usuario, lo alojamos en localstorage, es necesario tokenizar ambos procesos para que solo sea visible lo que no genere
                 //un problema de seguridad, y de igual manera, lo que sea necesario mantener oculto enviarlo tokenizado
                 const token = jwt.sign({...userDb}, process.env.SECRET_OR_KEY);
+                //la respuesta al front va a ser; el usuario completo tokenizado, y las propiedades picture/firstname sin tokenizar
                 response = {token, urlPic: userDb.urlPic, firstName: userDb.firstName};
             } else {
                 error = "Email or password incorrect"
@@ -62,7 +63,6 @@ const usersControllers = {
 
         res.json({
             success: !error ? true : false,
-            //la respuesta al front va a ser; el usuario completo tokenizado, y las propiedades picture/firstname sin tokenizar
             response,
             error
         })

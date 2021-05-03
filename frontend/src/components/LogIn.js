@@ -39,7 +39,7 @@ const LogIn = (props) => {
         e && e.preventDefault();
         let user = googleUser ? googleUser : logUser
 
-        if(user.email && user.password) {
+        if(!Object.values(user).some(value => !value)) {
             const response = await props.logUser(user)
 
             if(!response) {

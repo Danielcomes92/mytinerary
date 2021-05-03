@@ -54,35 +54,27 @@ const SignUp = (props) => {
 	
 	const sendData = async (e = null, googleUser = null) => {
 		e && e.preventDefault();
-		
 		let user = googleUser ? googleUser : newUser
 
-		if(user.firstName && user.lastName && user.email && user.urlPic && user.country && user.password) {
+		if(!Object.values(user).some(value => !value)) {
 			const response = await props.newUser(user)
-			//si no existe response, significa que no hubo errores
-			if(!response) {
-				setNewUser({
-					firstName: '',
-					lastName: '',
-					email: '',
-					urlPic: '',
-					country: '',
-					password: ''
-				})
-			} else {
-				setErrors({
-					firstName: '',
-					lastName: '',
-					email: '',
-					urlPic: '',
-					password: ''
-				})
-				
-				//mapeo errores
-				response.details.map(err => setErrors(prevState => {
-					return {...prevState, [err.context.label]: err.message}
-				}))
+
+			let fields = {
+				firstName: '',
+				lastName: '',
+				email: '',
+				urlPic: '',
+				country: '',
+				password: ''
 			}
+			//si no existe response, significa que no hubo errores
+			response ? setErrors({fields}) : setNewUser({fields})
+			
+			//mapeo errores
+			response && response.details.map(err => setErrors(prevState => {
+				return {...prevState, [err.context.label]: err.message}
+			}))
+			
 		} else { // si no completo ningun campo el usuario
 			toast.error('All the fields are mandatory', {position: toast.POSITION.TOP_RIGHT})
 		}

@@ -18,6 +18,10 @@ const SignUp = (props) => {
 		window.scroll(0, 0)
 	}, [])
 
+	const updatePosition = () => {
+        window.innerWidth >= 768 && window.scrollTo({top: 235, left: 0, behavior: 'smooth' })
+    }
+
 	const [type, setType] = useState(true)
 
 	const [newUser,  setNewUser] = useState({
@@ -80,7 +84,7 @@ const SignUp = (props) => {
 				}))
 			}
 		} else { // si no completo ningun campo el usuario
-			toast.error('Some fields are incomplete or wrong', {position: toast.POSITION.TOP_RIGHT})
+			toast.error('All the fields are mandatory', {position: toast.POSITION.TOP_RIGHT})
 		}
 	}
 
@@ -113,7 +117,7 @@ const SignUp = (props) => {
 								backgroundImage: "url('/img/signin-bg.jpg')"
 							}}
 						></div>
-						<div className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
+						<div onClick={updatePosition} className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-2 md:flex md:justify-between">

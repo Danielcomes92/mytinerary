@@ -112,6 +112,10 @@ body {
     height: 60vh;
 }
 
+.cardCityContainer {
+    height: 45vh;
+}
+
 .h50 {
     height: 50%;
 }
@@ -212,6 +216,9 @@ min-height: 90vh;
     }
     .mh70 {
         min-height: 15vh;
+    }
+    .heroCities {
+        height: 32vh;
     }
     .navResponsive {
         position: absolute;

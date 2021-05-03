@@ -14,16 +14,18 @@ import authActions from "../redux/actions/authActions"
 toast.configure()
 
 const LogIn = (props) => {
-
     useEffect(() => {
         window.scroll(0, 0)
     }, [])
+
+    const updatePosition = () => {
+        window.innerWidth >= 768 && window.scrollTo({top: 75, left: 0, behavior: 'smooth' })
+    }
 
     const [logUser, setLogUser] = useState({
         email: '',
         password: ''
     })
-
     const { email, password } = logUser;
 
     const handleDataUser = (e) => {
@@ -49,7 +51,7 @@ const LogIn = (props) => {
                 toast.error(response, {position: toast.POSITION.TOP_RIGHT})
             }
         } else {
-            toast.error('Some fields are incomplete or wrong', {position: toast.POSITION.TOP_RIGHT})
+            toast.error('All the fields are mandatory', {position: toast.POSITION.TOP_RIGHT})
         }
     }
     
@@ -82,7 +84,7 @@ const LogIn = (props) => {
                             ></div>
                             <div className="w-full lg:w-1/2 bg-white px-5 rounded lg:rounded-l-none">
                                 <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
-                                <form className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded" autoComplete="off">
+                                <div onClick={updatePosition} className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded" autoComplete="off">
                                     <div className="mb-4">
                                         {/* <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                                             Email
@@ -95,7 +97,6 @@ const LogIn = (props) => {
                                             name="email"
                                             value={email}
                                             onChange={handleDataUser}
-
                                         />
                                     </div>
                                     <div className="mb-4 mt-4">
@@ -140,7 +141,7 @@ const LogIn = (props) => {
                                             Create an Account!
                                         </Link>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

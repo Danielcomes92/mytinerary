@@ -19,20 +19,12 @@ const SignUp = (props) => {
 	}, [])
 
 	const updatePosition = () => {
-        window.innerWidth >= 768 && window.scrollTo({top: 235, left: 0, behavior: 'smooth' })
+        window.innerWidth > 768 && window.scrollTo({top: 235, left: 0, behavior: 'smooth' })
     }
 
 	const [type, setType] = useState(true)
 
 	const [newUser,  setNewUser] = useState({
-		firstName: '',
-        lastName: '',
-        email: '',
-        urlPic: '',
-        password: ''
-    });
-
-	const [errors,  setErrors] = useState({
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -40,9 +32,16 @@ const SignUp = (props) => {
 		country: '',
 		password: ''
 	});
+
+	const [errors,  setErrors] = useState({
+		firstName: '',
+		lastName: '',
+		email: '',
+		urlPic: '',
+		password: ''
+	});
 	
-	const { firstName, lastName, email, urlPic, country, password } = newUser;
-	const countries = ['United States', 'Argentina', 'Chile', 'Mexico', 'Brazil', 'Canada', 'France', 'Spain', 'United Kingdom', 'Russia', 'New Zealand', 'Denmark'];
+	const countries = ['United States', 'Argentine', 'Chile', 'Mexico', 'Brazil', 'Canada', 'France', 'Spain', 'United Kingdom', 'Russia', 'New Zealand', 'Denmark'];
 	
 	const handleUserData = (e) => {
 		e.preventDefault();
@@ -56,7 +55,7 @@ const SignUp = (props) => {
 		e && e.preventDefault();
 		let user = googleUser ? googleUser : newUser
 
-		if(!Object.values(user).some(value => !value)) {
+		if(!Object.values(user).some(value => value === '')) {
 			const response = await props.newUser(user)
 
 			let fields = {
@@ -67,6 +66,7 @@ const SignUp = (props) => {
 				country: '',
 				password: ''
 			}
+
 			//si no existe response, significa que no hubo errores
 			response ? setErrors({fields}) : setNewUser({fields})
 			
@@ -109,10 +109,12 @@ const SignUp = (props) => {
 								backgroundImage: "url('/img/signin-bg.jpg')"
 							}}
 						></div>
+						{/* onClick={updatePosition} */}
 						<div onClick={updatePosition} className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-2 md:flex md:justify-between">
+									
 									<div className="mb-2 md:mr-2 mt-2">
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -120,13 +122,14 @@ const SignUp = (props) => {
 											type="text"
 											placeholder="First name"
 											name="firstName"
-											value={firstName}
+											value={newUser.firstName}
 											onChange={handleUserData}
 										/>
-									<div className="text-xs text-red-400 h-6">
-										{errors.firstName && errors.firstName}
+										<div className="text-xs text-red-400 h-6">
+											{errors.firstName && errors.firstName}
+										</div>
 									</div>
-									</div>
+
 									<div className="md:ml-2 mb-2 mt-2">
 										<input
 											className="placeholder-gray-600 focus:placeholder-gray-400 w-full px-6 py-2 text-sm leading-tight text-gray-700 border shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -134,13 +137,14 @@ const SignUp = (props) => {
 											type="text"
 											placeholder="Last Name"
 											name="lastName"
-											value={lastName}
+											value={newUser.lastName}
 											onChange={handleUserData}
 										/>
 										<div className="text-xs text-red-400 h-6">
 											{errors.lastName && errors.lastName}
 										</div>
 									</div>
+									
 								</div>
 								<div className="mb-2">
 									<input
@@ -149,7 +153,7 @@ const SignUp = (props) => {
 										type="email"
 										placeholder="Email"
 										name="email"
-										value={email}
+										value={newUser.email}
 										onChange={handleUserData}
 									/>
 									<div className="text-xs text-red-400 h-6">
@@ -164,7 +168,7 @@ const SignUp = (props) => {
 											type="text"
 											placeholder="URL Photo"
 											name="urlPic"
-											value={urlPic}
+											value={newUser.urlPic}
 											onChange={handleUserData}
 										/>
 										<div className="text-xs text-red-400 h-6">
@@ -172,7 +176,7 @@ const SignUp = (props) => {
 										</div>
 									</div>
 									<div className="md:ml-2 mt-2">
-										<select id="country" name="country" onChange={handleUserData} value={country} className="block w-full md:w-52 text-gray-700 pr-12 px-6 py-2 border border-gray-300 bg-white focus:outline-none text-sm focus:shadow-outline shadow">
+										<select id="country" name="country" onChange={handleUserData} value={newUser.country} className="block w-full md:w-52 text-gray-700 pr-12 px-6 py-2 border border-gray-300 bg-white focus:outline-none text-sm focus:shadow-outline shadow">
 											<option disabled selected value=''>Select Country </option>
 											{
 											countries.map( (country, index) => <option key={index} value={country}> {country} </option>)
@@ -189,7 +193,7 @@ const SignUp = (props) => {
 											type={type ? "password" : "text"}
 											placeholder="Password"
 											name="password"
-											value={password}
+											value={newUser.password}
 											onChange={handleUserData}
 											autoComplete="off"
 										/>

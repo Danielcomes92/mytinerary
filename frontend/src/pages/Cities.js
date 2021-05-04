@@ -16,7 +16,7 @@ class Cities extends React.Component {
     }
 
     updatePosition = () => {
-        window.innerWidth >= 768 && window.scrollTo({top: 75, left: 0, behavior: 'smooth' })
+        window.innerWidth >= 768 && window.scrollTo({top: 70, left: 0, behavior: 'smooth' })
     }
 
     render() {

@@ -7,7 +7,7 @@ const Header = (props) => {
     const { firstName, urlPic } = props.userLogged || ''
 
     const [menuClass, setMenuClass] = useState({
-        open: false,
+        open: true,
         classes:'hidden md:block'
     });
 
@@ -89,10 +89,16 @@ const Header = (props) => {
                         </div>
                     </div>
 
-                    <div onClick={handleMenuNav} className="md:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-10" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                        </svg>
+                    <div className="md:hidden">
+                        <input type="checkbox" id="checkbox1" className="checkbox1 visuallyHidden" />
+                            <label htmlFor="checkbox1">
+                                <div onClick={handleMenuNav} className="hamburger hamburger1">
+                                    <span className="bar bar1"></span>
+                                    <span className="bar bar2"></span>
+                                    <span className="bar bar3"></span>
+                                    <span className="bar bar4"></span>
+                                </div>
+                            </label>
                     </div>
                 </div>
             </div>

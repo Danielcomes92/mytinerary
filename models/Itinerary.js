@@ -46,13 +46,6 @@ const itinerarySchema = new mongoose.Schema({
     }
 })
 
-// itinerarySchema.path('hashtags').validate(function (value) {
-//     console.log(value.length)
-//     if (value.length > 5 && value.length <= 1 ) {
-//       throw new Error("Assigned person's size can't be greater than 10!");
-//     }
-// });
-
 const Itinerary = mongoose.model('itinerary', itinerarySchema);
 
 module.exports = Itinerary;

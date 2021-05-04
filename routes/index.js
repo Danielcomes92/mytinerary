@@ -7,10 +7,12 @@ const passport = require('passport')
 const citiesController = require('../controllers/citiesControllers');
 const itinerariesController = require('../controllers/itinerariesControllers');
 const usersControllers = require('../controllers/usersControllers');
+const activitiesControllers = require('../controllers/activitiesController');
 
 const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary} = itinerariesController;
 const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
 const {addUser, logUser, loginWithLS} = usersControllers;
+const {addActivity, getItineraryActivities} = activitiesControllers;
 
 //cities
 router.route('/cities')
@@ -44,5 +46,12 @@ router.route('/login')
 
 router.route('/loginLS')
     .get(passport.authenticate('jwt', {session: false}), loginWithLS)
+
+//activities
+router.route('/activity')
+    .post(addActivity)
+
+router.route('/activities/:id')
+    .get(getItineraryActivities)
 
 module.exports = router;

@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 const usersControllers = {
-
     addUser: async(req, res) => {
         let { email, password } = req.body;
         const userDb = await User.findOne({email});

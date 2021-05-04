@@ -196,6 +196,10 @@ min-height: 90vh;
     font-weight: 100 !important;
 }
 
+.cardActivities {
+    height: 25vh;
+}
+
 .bxShadow {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
 }
@@ -227,6 +231,9 @@ min-height: 90vh;
         width: 100vw;
         background-color: rgb(44, 44, 44);
         border-bottom: 4px solid rgba(0, 0, 0, 0.774);
+    }  
+    .cardActivities {
+        height: 17.5vh;
     }
 }
 

@@ -1,9 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
 
-const Itinerary = ({city}) => {
-    const {authorName, authorPic, duration, hashtags, likes, price, title} = city;
+import activitiesActions from '../redux/actions/activitiesActions'
+import ActivityCard from './ActivityCard';
+
+const Itinerary = (props) => {
+    const {authorName, authorPic, duration, hashtags, likes, price, title} = props.city;
+
     const [collapse, setCollapse] = useState(true)
-    
+
+    const handleActivities = () => {
+        setCollapse(!collapse)
+    }
+
     const getCountIcons = (variable) => {
         let aux = [];
         for(let i=0; i < variable; i++) {
@@ -83,12 +92,12 @@ const Itinerary = ({city}) => {
                     !collapse &&
                         <>
                         {/* contenedor de activities y comments */}
-                            <div className="px-2 mx-auto mt-4 mb-4">
+                            <div className="px-2 mx-auto mt-4 mb-4 w-8/12">
 
                                 {/* contenedor activities */}
-                                <div className="px-2 mx-auto mt-4 mb-4 bg-gray-600">
-                                    <span className="lobster text-2xl md:text-4xl"> Activities is under construction </span>
-                                </div>
+                                
+                                <ActivityCard id={props.city._id}/>
+                                
                                 {/* fin activities */}
 
                                 {/* contenedor comments */}
@@ -103,7 +112,7 @@ const Itinerary = ({city}) => {
                     }         
 
                     <div className="mx-auto mb-4 mt-4">
-                        <span onClick={() => setCollapse(!collapse)} className="shadow-md text-center hover:shadow-xl text-white py-2 px-5 md:px-9 bg-blue-500 duration-500 transition md:hover:bg-white md:hover:text-blue-900 cursor-pointer lato rounded">{collapse ? 'View more' : 'View less'}</span>
+                        <span onClick={(e) => handleActivities()} className="shadow-md text-center hover:shadow-xl text-white py-2 px-5 md:px-9 bg-blue-500 duration-500 transition md:hover:bg-white md:hover:text-blue-900 cursor-pointer lato rounded">{collapse ? 'View more' : 'View less'}</span>
                     </div>
 
                     {/* card footer */}
@@ -114,4 +123,17 @@ const Itinerary = ({city}) => {
     )
 }
 
-export default Itinerary;
+// const mapStateToProps = state => {
+//     return {
+//         itineraryActivities: state.activityReducer.itineraryActivities,
+//         loading: state.activityReducer.loading
+//     }
+// }
+
+const mapDispatchToProps = {
+    getItineraryActivities: activitiesActions.getItineraryActivities,
+    updateLoadingState: activitiesActions.updateLoadingState
+}
+
+export default connect(null, mapDispatchToProps)(Itinerary);
+

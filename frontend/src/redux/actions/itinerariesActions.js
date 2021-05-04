@@ -24,7 +24,6 @@ const itinerariesActions = {
         }
     },
     
-
 }
 
 export default itinerariesActions;

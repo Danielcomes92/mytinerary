@@ -5,12 +5,14 @@ import { combineReducers } from 'redux';
 import cityReducer from './cityReducer';
 import itineraryReducer from './itineraryReducer';
 import authReducer from './authReducer';
+import activityReducer from './activityReducer';
 
 //aca adentro van nuestros reducers ALIAS : NAME REDUCER
 const mainReducer = combineReducers({
     cityReducer,
     itineraryReducer,
-    authReducer
+    authReducer,
+    activityReducer
 })
 
 export default mainReducer;

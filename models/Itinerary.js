@@ -32,8 +32,17 @@ const itinerarySchema = new mongoose.Schema({
     usersLiked: [String],
     hashtags: [String],
     comments: [{
+        userId: {
+            type: mongoose.Types.ObjectId, ref: 'user',
+            required: true
+        },
         user: {
-            type: mongoose.Types.ObjectId, ref: 'user'
+            type: String,
+            required: true
+        },
+        userImg: {
+            type: String,
+            required: true
         },
         message: {
             type: String,

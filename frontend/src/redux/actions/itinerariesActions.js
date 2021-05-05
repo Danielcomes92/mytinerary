@@ -23,6 +23,22 @@ const itinerariesActions = {
             })
         }
     },
+
+    handleComments: (comment) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.post(`http://localhost:4000/api/enterComment/${comment.itinerary_id}`, {comment: comment.message}, {
+                    headers: {
+                        'Authorization': 'Bearer '+ comment.token
+                    }
+                })
+
+                return response
+            } catch(err) {
+                return err
+            }
+        }
+    }
     
 }
 

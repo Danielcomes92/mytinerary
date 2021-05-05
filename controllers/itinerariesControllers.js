@@ -108,6 +108,42 @@ const itinerariesController = {
                 success: false
             })
         }
+    },
+
+    addComment: async (req, res) => {  
+        const { comment } = req.body;
+        const { _id, firstName, urlPic } = req.user;
+
+        let response;
+        let error;
+        try {
+            response = await Itinerary.findOneAndUpdate({_id: req.params.id}, {$push: { comments: {userId: _id, user: firstName, userImg: urlPic, message: comment}}}, {new: true})
+        } catch (error) {
+            error = "Database internal error"
+        }
+        
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
+
+    getComments: async(req, res) => {
+        let error;
+        let response; 
+        // console.log(req.params.id)
+        try {
+            const itineraryComments = await Itinerary.find({_id: req.params.id})
+            console.log(itineraryComments)
+            
+        } catch {
+            console.log("Database internal error")
+        }
+        // res.json({
+        //     error,
+        //     success: false
+        // })
     }
 }
 

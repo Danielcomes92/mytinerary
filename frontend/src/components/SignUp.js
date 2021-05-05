@@ -19,7 +19,7 @@ const SignUp = (props) => {
 	}, [])
 
 	const updatePosition = () => {
-        window.innerWidth > 768 && window.scrollTo({top: 235, left: 0, behavior: 'smooth' })
+        window.innerWidth > 768 && window.scrollTo({top: 70, left: 0, behavior: 'smooth' })
     }
 
 	const [type, setType] = useState(true)

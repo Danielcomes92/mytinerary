@@ -4,7 +4,7 @@ const activitiesActions = {
     getItineraryActivities: (ItineraryId) => {
         return async (dispatch, getState) => {
            const response = await axios.get(`http://localhost:4000/api/activities/${ItineraryId}`)           
-            return response.data.response
+           return response.data.response
         }
     }   
 }

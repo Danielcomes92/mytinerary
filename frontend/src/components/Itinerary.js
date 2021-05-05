@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import activitiesActions from '../redux/actions/activitiesActions'
 import ActivityCard from './ActivityCard';
+import Comments from './Comments';
 
 const Itinerary = (props) => {
-    const {authorName, authorPic, duration, hashtags, likes, price, title} = props.city;
-
+    const {authorName, authorPic, duration, hashtags, likes, price, title, comments} = props.city;
     const [collapse, setCollapse] = useState(true)
-
+ 
     const handleActivities = () => {
         setCollapse(!collapse)
     }
@@ -23,7 +23,7 @@ const Itinerary = (props) => {
 
     return (
         <>
-            <div className="w-11/12 md:w-8/12 mx-auto bg-gray-100 rounded-xl mt-12 md:mt-16 mb-10 md:mb-10 rounded-md shadow-md hover:shadow-lg">          
+            <div className="w-11/12 md:w-8/12 mx-auto bg-gray-100 rounded-xl mt-12 md:mt-16 mb-10 md:mb-10 shadow-md hover:shadow-lg">          
                 <div className="w-full rounded-md flex flex-col bg-gray-700">
 
                     {/* div principal interno parte fija */}
@@ -92,18 +92,14 @@ const Itinerary = (props) => {
                     !collapse &&
                         <>
                         {/* contenedor de activities y comments */}
-                            <div className="px-2 mx-auto mt-4 mb-4 w-8/12">
+                            <div className="px-2 mx-auto mt-4 mb-4 w-11/12 md:w-8/12">
 
                                 {/* contenedor activities */}
-                                
                                 <ActivityCard id={props.city._id}/>
-                                
                                 {/* fin activities */}
 
                                 {/* contenedor comments */}
-                                <div className="px-2 mx-auto mt-4 mb-4 bg-gray-400">
-                                    <span className="lobster text-2xl md:text-4xl"> Comments is under construction </span>
-                                </div>
+                                <Comments comments={comments} id={props.city._id}/>
                                 {/* fin comments */}
                                 
                             </div>

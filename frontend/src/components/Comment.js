@@ -4,17 +4,34 @@ import { connect } from 'react-redux'
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
 const Comment = (props) => {
-    const token = props.userLogged.token;
+    let token;
+    if(props.userLogged) {
+        token = props.userLogged.token;
+    }
     const {_id, userId, user, userImg, message} = props.comment
     const [updateMessage, setUpdateMessage] = useState(false)
 
     const [newMessage, setNewMessage] = useState(message)
 
-    const handleNewMessage = async (e) => {
+    const handleNewMessage = (e) => {
         setNewMessage(e.target.value)
-        if(message.length > 0) {
-            const response = await props.updateComment(_id, token, newMessage)
-            console.log(response)
+    }
+
+    const sendNewMessage = async () => {
+        if(props.userLogged) {
+            if(message.length > 0) {
+                const response = await props.updateComment(_id, token, newMessage)
+                if(response.data.success) {
+                    props.setComments(response.data.response)
+                } else {
+                    alert(response.data.error)
+                }
+                setUpdateMessage(!updateMessage)
+            } else {
+                alert('The message is empty')
+            }
+        } else {
+            alert('You must be logged in to update a message')
         }
     }
     
@@ -26,7 +43,8 @@ const Comment = (props) => {
             } else {
                 alert(response.data.error)
             }
-
+        } else {
+            alert('You must be logged in to remove a message')
         }
     }
     
@@ -42,7 +60,7 @@ const Comment = (props) => {
                     ?
                     <span className="ml-8 text-sm">{message}</span>
                     :
-                    <input type="text" onChange={handleNewMessage} value={newMessage.message} className="ml-8 text-sm w-1/4 bg-gray-200 border-b border-black"></input>
+                    <input type="text" onChange={handleNewMessage} value={newMessage} className="ml-8 text-sm w-1/4 bg-gray-200 border-b border-black"></input>
                 }
                 
                 {
@@ -57,7 +75,7 @@ const Comment = (props) => {
                     :
                     <div className="h-5 text-sm ml-8">
                         {/* confirmar edicion */}
-                        <span className="mr-1 cursor-pointer">Enviar</span>
+                        <span onClick={sendNewMessage} className="mr-1 cursor-pointer">Enviar</span>
                         {/* cancelar edicion */}
                         <span onClick={() => setUpdateMessage(!updateMessage)} className="cursor-pointer">Cerrar</span>
                     </div>

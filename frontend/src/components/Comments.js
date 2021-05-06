@@ -22,8 +22,8 @@ const Comments = (props) => {
         let commentObj;
         let response;
 
-        if(message.message.length > 0) {
-            if(props.userLogged) {
+        if(props.userLogged) {
+            if(message.message.length > 0) {
                 commentObj = {
                     message: message.message,
                     itinerary_id: props.id,
@@ -33,10 +33,10 @@ const Comments = (props) => {
                 setComments(response.data.response.comments)
                 setMessage({message: ''})
             } else {
-                alert('You must be logged in to comment')
+                alert('The message is empty')
             }
         } else {
-            alert('The message is empty')
+            alert('You must be logged in to comment')
         }
     }
     

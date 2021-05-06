@@ -56,10 +56,10 @@ const itinerariesActions = {
         }
     },
 
-    updateComment: (_id, token, newMessage) => {
+    updateComment: (_id, token, message) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.put(`http://localhost:4000/api/updateComment/${_id}`, {
+                const response = await axios.put(`http://localhost:4000/api/updateComment/${_id}`, {message}, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }

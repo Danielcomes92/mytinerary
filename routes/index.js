@@ -45,7 +45,7 @@ router.route('/removeComment/:id')
     .delete(passport.authenticate('jwt', {session: false}), removeComment)
     
 router.route('/updateComment/:id')
-    .delete(passport.authenticate('jwt', {session: false}), updateComment)
+    .put(passport.authenticate('jwt', {session: false}), updateComment)
     
 
 //users

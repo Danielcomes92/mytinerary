@@ -139,7 +139,7 @@ const itinerariesController = {
                 let commentsUpdated = await Itinerary.findOneAndUpdate({"comments._id": req.params.id}, {$pull: {comments: {_id: req.params.id}}}, {new: true});
                 response = commentsUpdated.comments;
             } else {
-                error = "This comment doesn't belong to you"
+                error = "You cannot remove this comment, doesn't belong to you"
             }
         } catch {
             error = "Database internal error"
@@ -155,12 +155,23 @@ const itinerariesController = {
         let response;
         let error;
         try {
+            let ownerComment = await Itinerary.findOne({"comments._id": req.params.id, "comments.userId": req.user._id})  
 
-            
-            
+            if(ownerComment) {
+                let commentsUpdated = await Itinerary.findOneAndUpdate({"comments._id": req.params.id}, {$set: {"comments.$.message": req.body.message}}, {new: true})
+                response = commentsUpdated.comments;
+            } else {
+                error = "You cannot edit this comment, doesn't belong to you"
+            }
         } catch {
-            error = "Database internal errors"
+            error = "Database internal error"
         }
+
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
     }
 
     

@@ -86,10 +86,10 @@ const itinerariesActions = {
         }
     },
 
-    getLikes: (_id, token) => {
+    getUserLikesComments: (_id, token) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/getLikes/${_id}`, {
+                const response = await axios.get(`http://localhost:4000/api/getUserLikesComments/${_id}`, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }

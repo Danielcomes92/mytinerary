@@ -5,7 +5,7 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 import Comment from './Comment'
 
 const Comments = (props) => {
-    const {userComments} = props
+    const {userComments, renderUserLikesComments} = props
     const [message, setMessage] = useState({
         message: ''
     })
@@ -32,6 +32,7 @@ const Comments = (props) => {
                 }
                 response = await props.handleComments(commentObj)
                 setComments(response.data.response.comments)
+                renderUserLikesComments()
                 setMessage({message: ''})
             } else {
                 alert('The message is empty')

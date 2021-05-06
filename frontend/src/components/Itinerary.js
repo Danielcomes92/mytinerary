@@ -25,7 +25,7 @@ const Itinerary = (props) => {
     }, [])
 
     const renderUserLikesComments = async () => {
-        const response = await props.getLikes(_id, props.userLogged.token);
+        const response = await props.getUserLikesComments(_id, props.userLogged.token);
         setLiked(response.data.likedResponse);
         setUserComments(response.data.commentResponse);
     }
@@ -134,7 +134,7 @@ const Itinerary = (props) => {
                                     {/* fin activities */}
 
                                     {/* contenedor comments */}
-                                    <Comments comments={comments} userComments={userComments} id={props.city._id}/>
+                                    <Comments comments={comments} userComments={userComments} renderUserLikesComments={renderUserLikesComments} setUserComments={setUserComments} id={props.city._id}/>
                                     {/* fin comments */}
                                     
                                 </div>
@@ -165,7 +165,7 @@ const mapDispatchToProps = {
     getItineraryActivities: activitiesActions.getItineraryActivities,
     updateLoadingState: activitiesActions.updateLoadingState,
     updateLikes: itinerariesActions.updateLikes,
-    getLikes: itinerariesActions.getLikes
+    getUserLikesComments: itinerariesActions.getUserLikesComments
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);

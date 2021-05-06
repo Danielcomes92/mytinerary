@@ -200,7 +200,7 @@ const itinerariesController = {
         })
     },
 
-    getLikes: async(req, res) => {
+    getUserLikesComments: async(req, res) => {
         let error;
         let userLiked;
         let likedResponse;

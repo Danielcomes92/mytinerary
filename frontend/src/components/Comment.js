@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
-
-
 const Comment = (props) => {
     const {userComments} = props
     let token;
@@ -16,12 +14,12 @@ const Comment = (props) => {
     const [newMessage, setNewMessage] = useState(message)
     const [isOwner, setIsOwner] = useState(false)
 
+    console.log(props)
     useEffect( () => {
         userComments.length > 0 && setIsOwner(userComments)
     }, [])
 
-    let validador = userComments.some(id => id === _id)
-    console.log(validador)
+    let validateOwnerComment = userComments.some(id => id === _id)
 
     const handleNewMessage = (e) => {
         setNewMessage(e.target.value)
@@ -65,8 +63,9 @@ const Comment = (props) => {
                     <div className="h-6 w-6 rounded-full" style={{backgroundImage: `url(${userImg})`}}></div>
                     <span className="ml-2 block font-semibold lato text-sm">{user} says:</span>
                 </div>
+                
                 {
-                    !validador
+                    !updateMessage
                     ?
                     <span className="ml-8 text-sm">{message}</span>
                     :
@@ -74,7 +73,7 @@ const Comment = (props) => {
                 }
                 
                 {
-                    validador &&
+                    validateOwnerComment &&
                     <> 
                        {   !updateMessage
                             ?

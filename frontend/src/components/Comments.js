@@ -1,44 +1,37 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 
 import itinerariesActions from '../redux/actions/itinerariesActions'
-import { Comment } from './Comment'
+import Comment from './Comment'
 
 const Comments = (props) => {
-    const [comment, setComment] = useState({
+    const [message, setMessage] = useState({
         message: ''
     })
 
-    const [comments, setComments] = useState([])
+    const [comments, setComments] = useState(props.comments)
 
     const handleMessage = (e) => {
-        setComment({
+        setMessage({
             message: e.target.value
         })
     }
-
-    useEffect(() => {
-        setComments(props.comments)
-    }, [])
-
-    console.log('props..', props)
     
     const sendCommentObj = async (e) => {
         e.preventDefault();
         let commentObj;
         let response;
 
-        if(comment.message.length > 0) {
+        if(message.message.length > 0) {
             if(props.userLogged) {
                 commentObj = {
-                    message: comment.message,
+                    message: message.message,
                     itinerary_id: props.id,
                     token: props.userLogged.token
                 }
                 response = await props.handleComments(commentObj)
                 setComments(response.data.response.comments)
-                setComment({message: ''})
+                setMessage({message: ''})
             } else {
                 alert('You must be logged in to comment')
             }
@@ -54,7 +47,7 @@ const Comments = (props) => {
                 comments.length > 0
                 ?
                 comments.map(comment => {
-                    return <Comment key={comment._id} comment={comment} />
+                    return <Comment key={comment._id} setComments={setComments} setMessage={setMessage} comment={comment} />
                 })
                 :
                 <div className="text-center">This chat is empty</div>
@@ -63,7 +56,7 @@ const Comments = (props) => {
             
             <div className="text-center">
                 <input type="text" className="mx-auto bg-gray-200 rounded-full text-black h-8 px-2 mt-2 w-2/4"
-                    value={comment.message}
+                    value={message.message}
                     onChange={handleMessage}
                 ></input>
                 <span onClick={sendCommentObj} className="ml-2 text-white font-bold cursor-pointer">Send!</span>

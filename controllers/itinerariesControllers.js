@@ -129,22 +129,41 @@ const itinerariesController = {
         })
     },
 
-    getComments: async(req, res) => {
+    removeComment: async (req, res) => {
+        let response;
         let error;
-        let response; 
-        // console.log(req.params.id)
         try {
-            const itineraryComments = await Itinerary.find({_id: req.params.id})
-            console.log(itineraryComments)
+            let ownerComment = await Itinerary.findOne({"comments._id": req.params.id, "comments.userId": req.user._id})            
+            
+            if(ownerComment) {
+                let commentsUpdated = await Itinerary.findOneAndUpdate({"comments._id": req.params.id}, {$pull: {comments: {_id: req.params.id}}}, {new: true});
+                response = commentsUpdated.comments;
+            } else {
+                error = "This comment doesn't belong to you"
+            }
+        } catch {
+            error = "Database internal error"
+        }
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
+
+    updateComment: async (req, res) => {
+        let response;
+        let error;
+        try {
+
+            
             
         } catch {
-            console.log("Database internal error")
+            error = "Database internal errors"
         }
-        // res.json({
-        //     error,
-        //     success: false
-        // })
     }
+
+    
 }
 
 module.exports = itinerariesController;

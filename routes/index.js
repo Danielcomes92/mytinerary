@@ -9,7 +9,7 @@ const itinerariesController = require('../controllers/itinerariesControllers');
 const usersControllers = require('../controllers/usersControllers');
 const activitiesControllers = require('../controllers/activitiesController');
 
-const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary, addComment, getComments} = itinerariesController;
+const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary, addComment, removeComment, updateComment} = itinerariesController;
 const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
 const {addUser, logUser, loginWithLS} = usersControllers;
 const {addActivity, getItineraryActivities} = activitiesControllers;
@@ -23,6 +23,7 @@ router.route('/city/:id')
     .get(getCity)
     .put(modifyCity)
     .delete(removeCity)
+
     
 //itineraries
 router.route('/itineraries')
@@ -36,13 +37,16 @@ router.route('/itinerary/:id')
     .get(getItinerary)
     .put(modifyItinerary)
     .delete(removeItinerary)
-
     
 router.route('/enterComment/:id')
     .post(passport.authenticate('jwt', {session: false}), addComment)
+
+router.route('/removeComment/:id')
+    .delete(passport.authenticate('jwt', {session: false}), removeComment)
     
-router.route('/getComments/:id')
-    .get(getComments)
+router.route('/updateComment/:id')
+    .delete(passport.authenticate('jwt', {session: false}), updateComment)
+    
 
 //users
 router.route('/signup')
@@ -53,6 +57,7 @@ router.route('/login')
 
 router.route('/loginLS')
     .get(passport.authenticate('jwt', {session: false}), loginWithLS)
+
 
 //activities
 router.route('/activity')

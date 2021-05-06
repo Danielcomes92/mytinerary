@@ -25,6 +25,7 @@ const itinerariesActions = {
     },
 
     handleComments: (comment) => {
+        // console.log(comment)
         return async (dispatch, getState) => {
             try {
                 const response = await axios.post(`http://localhost:4000/api/enterComment/${comment.itinerary_id}`, {comment: comment.message}, {
@@ -36,6 +37,36 @@ const itinerariesActions = {
                 return response
             } catch(err) {
                 return err
+            }
+        }
+    },
+
+    removeComment: (_id, token) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.delete(`http://localhost:4000/api/removeComment/${_id}`, {
+                    headers: {
+                        'Authorization': 'Bearer '+ token
+                    }
+                })
+                return response
+            } catch (error) {
+                return error
+            }
+        }
+    },
+
+    updateComment: (_id, token, newMessage) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.put(`http://localhost:4000/api/updateComment/${_id}`, {
+                    headers: {
+                        'Authorization': 'Bearer '+ token
+                    }
+                })
+                return response
+            } catch (error) {
+                return error
             }
         }
     }

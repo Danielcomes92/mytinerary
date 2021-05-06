@@ -7,6 +7,7 @@ import Comments from './Comments';
 
 const Itinerary = (props) => {
     const {authorName, authorPic, duration, hashtags, likes, price, title, comments} = props.city;
+
     const [collapse, setCollapse] = useState(true)
  
     const handleActivities = () => {
@@ -89,21 +90,22 @@ const Itinerary = (props) => {
                     {/* fin div principal parte fija */}
                             
                     {   
-                    !collapse &&
                         <>
-                        {/* contenedor de activities y comments */}
-                            <div className="px-2 mx-auto mt-4 mb-4 w-11/12 md:w-8/12">
+                            <div className={collapse ? 'hidden' : 'block'}>
+                            {/* contenedor de activities y comments */}
+                                <div className="px-2 mx-auto mt-4 mb-4 w-11/12 md:w-8/12">
 
-                                {/* contenedor activities */}
-                                <ActivityCard id={props.city._id}/>
-                                {/* fin activities */}
+                                    {/* contenedor activities */}
+                                    <ActivityCard id={props.city._id}/>
+                                    {/* fin activities */}
 
-                                {/* contenedor comments */}
-                                <Comments comments={comments} id={props.city._id}/>
-                                {/* fin comments */}
-                                
-                            </div>
+                                    {/* contenedor comments */}
+                                    <Comments comments={comments} id={props.city._id}/>
+                                    {/* fin comments */}
+                                    
+                                </div>
                             {/* fin contenedor act y comments */}
+                            </div>
                         </>
                     }         
 
@@ -118,13 +120,6 @@ const Itinerary = (props) => {
         </>
     )
 }
-
-// const mapStateToProps = state => {
-//     return {
-//         itineraryActivities: state.activityReducer.itineraryActivities,
-//         loading: state.activityReducer.loading
-//     }
-// }
 
 const mapDispatchToProps = {
     getItineraryActivities: activitiesActions.getItineraryActivities,

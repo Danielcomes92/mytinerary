@@ -2,13 +2,47 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
 import activitiesActions from '../redux/actions/activitiesActions'
+import itinerariesActions from '../redux/actions/itinerariesActions';
 import ActivityCard from './ActivityCard';
 import Comments from './Comments';
 
 const Itinerary = (props) => {
-    const {authorName, authorPic, duration, hashtags, likes, price, title, comments} = props.city;
+    let token;
+    if(props.userLogged) {
+        token = props.userLogged.token;
+    }
 
+    const {_id, authorName, authorPic, duration, hashtags, likes, price, title, comments} = props.city;
+    
     const [collapse, setCollapse] = useState(true)
+    const [liked, setLiked] = useState(false)
+    const [processingLike, setProcessingLike] = useState(false)
+    const [counterLikes, setCounterLikes] = useState(likes)
+    const [userComments, setUserComments] = useState([])
+
+    useEffect(() => {
+        props.userLogged && renderUserLikesComments()
+    }, [])
+
+    const renderUserLikesComments = async () => {
+        const response = await props.getLikes(_id, props.userLogged.token);
+        setLiked(response.data.likedResponse);
+        setUserComments(response.data.commentResponse);
+    }
+
+    const handleLike = async () => {
+        if(props.userLogged) {
+            if(!processingLike) {
+                setProcessingLike(true)
+                setLiked(!liked)
+                const response =  await props.updateLikes(_id, token)
+                setCounterLikes(response.data.response.likes)
+                setProcessingLike(false)
+            }
+        } else {
+            alert('You must be logged in to like an itinerary')
+        }
+    }
  
     const handleActivities = () => {
         setCollapse(!collapse)
@@ -46,12 +80,12 @@ const Itinerary = (props) => {
 
                                 <div className="ml-4">
                                     <div className="flex flex-row items-center">
-                                        <div>
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-10 md:w-10 text-red-600 cursor-pointer animated infinite pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                        </svg>
+                                        <div onClick={handleLike}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 md:h-10 md:w-10 text-red-600 cursor-pointer animated infinite pulse" fill={liked ? "red" : "none"} viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                            </svg>
                                         </div>
-                                        <span className="text-red-200 lato text-sm md:text-base">{likes}</span>
+                                        <span className="text-red-200 lato text-sm md:text-base">{counterLikes}</span>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +134,7 @@ const Itinerary = (props) => {
                                     {/* fin activities */}
 
                                     {/* contenedor comments */}
-                                    <Comments comments={comments} id={props.city._id}/>
+                                    <Comments comments={comments} userComments={userComments} id={props.city._id}/>
                                     {/* fin comments */}
                                     
                                 </div>
@@ -121,10 +155,18 @@ const Itinerary = (props) => {
     )
 }
 
-const mapDispatchToProps = {
-    getItineraryActivities: activitiesActions.getItineraryActivities,
-    updateLoadingState: activitiesActions.updateLoadingState
+const mapStateToProps = state => {
+    return {
+        userLogged: state.authReducer.userLogged
+    }
 }
 
-export default connect(null, mapDispatchToProps)(Itinerary);
+const mapDispatchToProps = {
+    getItineraryActivities: activitiesActions.getItineraryActivities,
+    updateLoadingState: activitiesActions.updateLoadingState,
+    updateLikes: itinerariesActions.updateLikes,
+    getLikes: itinerariesActions.getLikes
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary);
 

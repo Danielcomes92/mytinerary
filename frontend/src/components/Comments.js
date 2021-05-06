@@ -5,6 +5,7 @@ import itinerariesActions from '../redux/actions/itinerariesActions'
 import Comment from './Comment'
 
 const Comments = (props) => {
+    const {userComments} = props
     const [message, setMessage] = useState({
         message: ''
     })
@@ -47,7 +48,7 @@ const Comments = (props) => {
                 comments.length > 0
                 ?
                 comments.map(comment => {
-                    return <Comment key={comment._id} setComments={setComments} setMessage={setMessage} comment={comment} />
+                    return <Comment key={comment._id} setComments={setComments} userComments={userComments} setMessage={setMessage} comment={comment} />
                 })
                 :
                 <div className="text-center">This chat is empty</div>

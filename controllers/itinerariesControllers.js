@@ -172,9 +172,60 @@ const itinerariesController = {
             response,
             error
         })
-    }
-
+    },
     
+    updateLikes: async (req, res) => {
+        let response;
+        let error;
+        let updateLikes;
+        try {
+            let userLiked = await Itinerary.findOne({_id: req.params.id, usersLiked: req.user._id})
+            if(!userLiked) {
+                //si no da true la comprobacion anterior es por que todavia no le habia dado like
+                //lo agregamos al array de usuarios que likearon
+                //incrementamos la propiedad likes en 1
+                updateLikes = await Itinerary.findOneAndUpdate({_id: req.params.id}, {$push: { usersLiked: req.user._id}}, {new: true})
+            } else {
+                updateLikes = await Itinerary.findOneAndUpdate({_id: req.params.id}, {$pull: { usersLiked: req.user._id}}, {new: true})
+            }
+            response = await Itinerary.findOneAndUpdate({_id: req.params.id}, {$set: {likes: updateLikes.usersLiked.length}}, {new: true})
+        } catch (error) {
+            error = "Database internal error"
+        }
+
+        res.json({
+            success: !error ? true : false,
+            response,
+            error
+        })
+    },
+
+    getLikes: async(req, res) => {
+        let error;
+        let userLiked;
+        let likedResponse;
+        try {
+            userLiked = await Itinerary.findOne({_id: req.params.id, usersLiked: req.user._id})
+
+            let userComments = [];
+            let itinerary = await Itinerary.findOne({_id: req.params.id})
+            userComment = itinerary.comments.map(comment => {
+                if((comment.userId).toString() === (req.user._id).toString()) {
+                    userComments.push(comment._id)
+                }
+            })
+            commentResponse = userComments
+        } catch (error) {
+            error = "Database internal error"
+        }
+        
+        res.json({
+            success: !error ? true : false,
+            likedResponse: userLiked ? true : false,
+            commentResponse,
+            error
+        })
+    }
 }
 
 module.exports = itinerariesController;

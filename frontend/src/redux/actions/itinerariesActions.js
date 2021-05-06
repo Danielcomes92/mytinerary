@@ -69,6 +69,36 @@ const itinerariesActions = {
                 return error
             }
         }
+    },
+
+    updateLikes: (_id, token) => {
+        return async (dispatch, getState) => { 
+            try {
+                const response = await axios.get(`http://localhost:4000/api/updateLikes/${_id}`, {
+                    headers: {
+                        'Authorization': 'Bearer '+ token
+                    }
+                })
+                return response
+            } catch (error) {
+                return error
+            }
+        }
+    },
+
+    getLikes: (_id, token) => {
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.get(`http://localhost:4000/api/getLikes/${_id}`, {
+                    headers: {
+                        'Authorization': 'Bearer '+ token
+                    }
+                })
+                return response
+            } catch (error) {
+                return error
+            }
+        }
     }
     
 }

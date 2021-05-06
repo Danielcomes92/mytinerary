@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
 import itinerariesActions from '../redux/actions/itinerariesActions'
 
+
+
 const Comment = (props) => {
+    const {userComments} = props
     let token;
     if(props.userLogged) {
         token = props.userLogged.token;
     }
-    const {_id, userId, user, userImg, message} = props.comment
+    const {_id, user, userImg, message} = props.comment
     const [updateMessage, setUpdateMessage] = useState(false)
-
     const [newMessage, setNewMessage] = useState(message)
+    const [isOwner, setIsOwner] = useState(false)
+
+    useEffect( () => {
+        userComments.length > 0 && setIsOwner(userComments)
+    }, [])
+
+    let validador = userComments.some(id => id === _id)
+    console.log(validador)
 
     const handleNewMessage = (e) => {
         setNewMessage(e.target.value)
@@ -56,7 +66,7 @@ const Comment = (props) => {
                     <span className="ml-2 block font-semibold lato text-sm">{user} says:</span>
                 </div>
                 {
-                    !updateMessage
+                    !validador
                     ?
                     <span className="ml-8 text-sm">{message}</span>
                     :
@@ -64,21 +74,25 @@ const Comment = (props) => {
                 }
                 
                 {
-                    !updateMessage
-                    ?
-                    <div className="h-5 text-sm ml-8">
-                        {/* editar comentario */}
-                        <span onClick={() => setUpdateMessage(!updateMessage)} className="mr-1 cursor-pointer">Editar</span>
-                        {/* borrar comentario */}
-                        <span onClick={removeComment} className="cursor-pointer">Borrar</span>
-                    </div>
-                    :
-                    <div className="h-5 text-sm ml-8">
-                        {/* confirmar edicion */}
-                        <span onClick={sendNewMessage} className="mr-1 cursor-pointer">Enviar</span>
-                        {/* cancelar edicion */}
-                        <span onClick={() => setUpdateMessage(!updateMessage)} className="cursor-pointer">Cerrar</span>
-                    </div>
+                    validador &&
+                    <> 
+                       {   !updateMessage
+                            ?
+                            <div className="h-5 text-sm ml-8">
+                                {/* editar comentario */}
+                                <span onClick={() => setUpdateMessage(!updateMessage)} className="mr-1 cursor-pointer">Editar</span>
+                                {/* borrar comentario */}
+                                <span onClick={removeComment} className="cursor-pointer">Borrar</span>
+                            </div>
+                            :
+                            <div className="h-5 text-sm ml-8">
+                                {/* confirmar edicion */}
+                                <span onClick={sendNewMessage} className="mr-1 cursor-pointer">Enviar</span>
+                                {/* cancelar edicion */}
+                                <span onClick={() => setUpdateMessage(!updateMessage)} className="cursor-pointer">Cerrar</span>
+                            </div>
+                       } 
+                    </>
                 }
             </div>
         </div>

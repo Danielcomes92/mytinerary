@@ -9,7 +9,7 @@ const itinerariesController = require('../controllers/itinerariesControllers');
 const usersControllers = require('../controllers/usersControllers');
 const activitiesControllers = require('../controllers/activitiesController');
 
-const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary, addComment, removeComment, updateComment} = itinerariesController;
+const {getItineraries, getCityItineraries, getItinerary, addItinerary, modifyItinerary, removeItinerary, addComment, removeComment, updateComment, updateLikes, getLikes} = itinerariesController;
 const {getCities, getCity, addCity, modifyCity, removeCity} = citiesController;
 const {addUser, logUser, loginWithLS} = usersControllers;
 const {addActivity, getItineraryActivities} = activitiesControllers;
@@ -46,6 +46,12 @@ router.route('/removeComment/:id')
     
 router.route('/updateComment/:id')
     .put(passport.authenticate('jwt', {session: false}), updateComment)
+
+router.route('/updateLikes/:id')
+    .get(passport.authenticate('jwt', {session: false}), updateLikes)
+
+router.route('/getLikes/:id')
+    .get(passport.authenticate('jwt', {session: false}), getLikes)
     
 
 //users

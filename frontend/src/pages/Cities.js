@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { Loader } from '../components/Loader';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CardCity from '../components/CardCity';
-import NoCitiesAlert from '../components/NoCitiesAlert';
+import CardCity from '../components/city/CardCity';
+import NoCitiesAlert from '../components/city/NoCitiesAlert';
 
 import citiesActions from '../redux/actions/citiesActions';
 

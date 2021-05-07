@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Itinerary from '../components/Itinerary';
+import Itinerary from '../components/itinerary/Itinerary';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
 import { Loader } from '../components/Loader';

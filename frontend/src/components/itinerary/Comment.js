@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 
-import itinerariesActions from '../redux/actions/itinerariesActions'
+import itinerariesActions from '../../redux/actions/itinerariesActions'
 
 const Comment = (props) => {
     const {userComments} = props

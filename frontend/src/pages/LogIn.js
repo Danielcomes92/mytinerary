@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import Footer from "./Footer"
-import Header from "./Header"
+import Footer from "../components/Footer"
+import Header from "../components/Header"
 import GoogleLogin from 'react-google-login';
 
 import authActions from "../redux/actions/authActions"

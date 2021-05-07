@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Slider from '../components/Slider';
+import Slider from '../components/slider/Slider';
 
 class Home extends React.Component {    
 

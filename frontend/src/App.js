@@ -3,8 +3,8 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import City from './pages/City'
 import Cities from './pages/Cities';
 import Home from './pages/Home'
-import SignUp from './components/SignUp';
-import LogIn from './components/LogIn';
+import SignUp from './pages/SignUp';
+import LogIn from './pages/LogIn';
 import { connect } from 'react-redux';
 import authActions from './redux/actions/authActions';
 

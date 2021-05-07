@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
-import activitiesActions from '../redux/actions/activitiesActions'
+import activitiesActions from '../../redux/actions/activitiesActions'
 import { Activity } from './Activity';
 
 const ActivityCard = (props) => {

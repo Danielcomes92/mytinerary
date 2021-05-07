@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 
-import activitiesActions from '../redux/actions/activitiesActions'
-import itinerariesActions from '../redux/actions/itinerariesActions';
+import activitiesActions from '../../redux/actions/activitiesActions'
+import itinerariesActions from '../../redux/actions/itinerariesActions';
 import ActivityCard from './ActivityCard';
 import Comments from './Comments';
 

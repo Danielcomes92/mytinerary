@@ -20,7 +20,7 @@ const ActivityCard = (props) => {
 
     return (
         <>
-            <div className=" grid grid-cols-1 md:grid-cols-3">
+            <div className="grid grid-cols-1 md:grid-cols-3 mb-10">
                 {
                     activities.map(activity => {
                         return <Activity key={activity._id} activity={activity} />

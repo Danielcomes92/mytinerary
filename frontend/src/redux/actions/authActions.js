@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-
 toast.configure()
 
 const authActions = {

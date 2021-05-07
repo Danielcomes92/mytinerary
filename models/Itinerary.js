@@ -29,6 +29,14 @@ const itinerarySchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    placeDescription: {
+        type: String,
+        required: true
+    },
+    placeImg: {
+        type: String,
+        required: true
+    },
     usersLiked: [String],
     hashtags: [String],
     comments: [{

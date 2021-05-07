@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+toast.configure()
+
 const itinerariesActions = {
 
     getCityItineraries: (cityId) => {
@@ -33,10 +37,9 @@ const itinerariesActions = {
                         'Authorization': 'Bearer '+ comment.token
                     }
                 })
-
                 return response
-            } catch(err) {
-                return err
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -50,8 +53,8 @@ const itinerariesActions = {
                     }
                 })
                 return response
-            } catch (error) {
-                return error
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -65,8 +68,8 @@ const itinerariesActions = {
                     }
                 })
                 return response
-            } catch (error) {
-                return error
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -80,8 +83,8 @@ const itinerariesActions = {
                     }
                 })
                 return response
-            } catch (error) {
-                return error
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     },
@@ -95,8 +98,8 @@ const itinerariesActions = {
                     }
                 })
                 return response
-            } catch (error) {
-                return error
+            } catch {
+                toast.error("Internal database error, try in a moment", {position: toast.POSITION.TOP_RIGHT})
             }
         }
     }

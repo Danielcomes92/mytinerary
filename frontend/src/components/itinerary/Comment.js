@@ -5,6 +5,7 @@ import itinerariesActions from '../../redux/actions/itinerariesActions'
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import ModalPopUp from '../utilities/ModalPopUp';
 toast.configure()
 
 const Comment = (props) => {
@@ -17,6 +18,7 @@ const Comment = (props) => {
     const [updateMessage, setUpdateMessage] = useState(false)
     const [newMessage, setNewMessage] = useState(message)
     const [isOwner, setIsOwner] = useState(false)
+    const [showModal, setShowModal] = useState(false);
 
     useEffect( () => {
         userComments.length > 0 && setIsOwner(userComments)
@@ -50,6 +52,7 @@ const Comment = (props) => {
         if(props.userLogged) {
             const response = await props.removeComment(_id, token)
             if(response.data.success) {
+                toast.success('Message removed', {position: toast.POSITION.TOP_RIGHT})
                 props.setComments(response.data.response)
             } else {
                 toast.error(response.data.error, {position: toast.POSITION.TOP_RIGHT})
@@ -58,9 +61,14 @@ const Comment = (props) => {
             toast.error('You must be logged in to remove a message', {position: toast.POSITION.TOP_RIGHT})
         }
     }
+
+
     
     return (
-        <div className={validateOwnerComment ? "bg-indigo-100 mr-4 block border shadow-md rounded mt-2 mb-2 w-11/12 mx-auto" : "ml-4 bg-white block border shadow-md rounded mt-2 mb-2 w-11/12 mx-auto"}>
+        <div className={validateOwnerComment ? "bg-indigo-100 md:mr-4 block border shadow-md rounded mt-2 mb-2 md:w-11/12 mx-auto" : "md:ml-4 bg-white block border shadow-md rounded mt-2 mb-2 md:w-11/12 mx-auto"}>
+            {
+                showModal && <ModalPopUp removeComment={removeComment} setShowModal={setShowModal}/>
+            }
             <div className="my-2">
 
                 <div className="flex flex-row justify-between">
@@ -68,15 +76,13 @@ const Comment = (props) => {
                         <div className="h-8 w-8 rounded-full bgCenter bgCover" style={{backgroundImage: `url(${userImg})`}}></div>
                         <span className="ml-2 mt-1 text-gray-800 block font-semibold lato text-sm">{user}:</span>
                     </div>
-
+            
                     {
                     !updateMessage
                     ?
-                    <span className="ml-2 text-sm text-gray-900 mt-4 w-8/12 mx-auto">{message}</span>
+                    <div className="ml-2 text-sm text-gray-900 mt-3 w-8/12 mx-auto">{message}</div>
                     :
-                    <div className="w-11/12 overflow-auto mt-4 -ml-10">
-                        <textarea type="text" onChange={handleNewMessage} value={newMessage} className="bg-white resize-none focus:outline-none ml-12 text-sm w-auto bg-gray-200 border-b border-gray-300 h-auto w-5/6" />
-                    </div>
+                    <textarea onChange={handleNewMessage} value={newMessage} className="text-sm mt-3 md:mr-10 w-8/12 resize-none focus:outline-none bg-indigo-100 h-20 md:h-8" />
                     }
 
                     {
@@ -85,7 +91,7 @@ const Comment = (props) => {
                         {   
                             !updateMessage
                             ?
-                            <div className="h-8 text-sm ml-2 mr-2 flex flex-row items-center">
+                            <div className="h-8 text-sm ml-2 mr-2 flex flex-row items-center mt-1">
                                 {/* editar comentario */}
                                 <span onClick={() => setUpdateMessage(!updateMessage)} className="mr-1 cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -93,7 +99,7 @@ const Comment = (props) => {
                                     </svg>
                                 </span>
                                 {/* borrar comentario */}
-                                <span onClick={removeComment} className="cursor-pointer">
+                                <span onClick={() => setShowModal(true)} className="cursor-pointer">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 hover:text-red-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                     </svg>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/utilities/Loader';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CardCity from '../components/city/CardCity';

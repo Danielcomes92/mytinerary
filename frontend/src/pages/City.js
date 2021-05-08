@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import Itinerary from '../components/itinerary/Itinerary';
 
 import itinerariesActions from '../redux/actions/itinerariesActions';
-import { Loader } from '../components/Loader';
+import { Loader } from '../components/utilities/Loader';
 
 class City extends React.Component  {
     state = {

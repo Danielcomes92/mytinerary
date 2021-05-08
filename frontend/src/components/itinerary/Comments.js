@@ -48,8 +48,8 @@ const Comments = (props) => {
     
     return (
         <>
-            <div className="flex items-center mt-4">
-                <h1 class="text-gray-900 md:font-medium text-lg font-bold md:text-2xl mb-1">Tell another travellers your experience here</h1>    
+             <div className="w-full text-2xl md:text-3xl text-gray-900 md:mb-4">
+               Comments
             </div>
             <div className="bg-indigo-500 commentsContainer flex justify-between flex-col bg-white shadow-md rounded-md">
                 <div className="chatContainer mt-5 mb-2 w-full mx-auto" style={{
@@ -62,17 +62,21 @@ const Comments = (props) => {
                         return <Comment key={comment._id} setComments={setComments} userComments={userComments} setMessage={setMessage} comment={comment} />
                     })
                     :
-                    <div className="text-center">This chat is empty</div>
+                    <div className="bg-black w-full h-12 items-center flex justify-center bg-opacity-75 text-white">This chat is empty, be the first!</div>
                 }
                 </div>
                 <div className="text-center mt-6 mb-4 w-full md:w-3/5 mx-auto text-white flex">
-                    <form className="w-full" onSubmit={sendCommentObj}>
-                        <input id="inputItinerary" type="text" placeholder={props.userLogged ? "Share you experience here!" :  "You must be logged in to comment"} className="bg-indigo-500 focus:outline-none border-b border-gray-500 w-full placeholder-white mx-auto text-gray-100 h-8 px-2 mt-2 "
+                    <form className="w-full mx-4" onSubmit={sendCommentObj}>
+                        <input id="inputItinerary" type="text" placeholder={props.userLogged ? "Share you experience here!" :  "You must be logged in to comment"} className="bg-indigo-500 focus:outline-none border-b border-gray-500 w-full placeholder-white ml-2 text-gray-100 h-8 px-2 mt-2 "
                             value={message.message}
                             onChange={handleMessage}
                         ></input>
                     </form>
-                    <button type="submit" onClick={sendCommentObj} className={props.userLogged && message.message.length > 0 ? "ml-1 text-gray-100 font-bold cursor-pointer w-1/6" : "ml-2 text-gray-100 cursor-not-allowed w-1/6"}>Send</button>
+                    <div onClick={sendCommentObj} className={props.userLogged && message.message.length > 0 ? "cursor-pointer w-1/6 focus:outline-none" : "cursor-not-allowed w-1/6 focus:outline-none"}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform rotate-90 mt-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={message.message.length > 0 ? 2 : 1} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </div>
                 </div>
             </div>
             

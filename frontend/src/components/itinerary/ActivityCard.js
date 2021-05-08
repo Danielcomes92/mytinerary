@@ -20,6 +20,9 @@ const ActivityCard = (props) => {
 
     return (
         <>
+            <div className="w-full text-2xl md:text-3xl text-gray-900 md:mb-4">
+               Activities
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-3 mb-10">
                 {
                     activities.map(activity => {

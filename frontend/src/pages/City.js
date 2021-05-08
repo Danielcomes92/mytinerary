@@ -50,7 +50,7 @@ class City extends React.Component  {
                     </div>
 
                     <div className="text-center">
-                        <p className="text-orange-100 md:px-4 bg-black pb-2 font-semibold lobster text-3xl md:text-6xl">What to do in {this.state.city.city}</p>
+                        <p className=" md:px-4 text-gray-200 bg-blue-900 pb-2 font-semibold lobster text-3xl md:text-6xl">Welcome to {this.state.city.city}!</p>
                     </div>
                 </>
                 }

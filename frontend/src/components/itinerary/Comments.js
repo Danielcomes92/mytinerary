@@ -65,15 +65,15 @@ const Comments = (props) => {
                     <div className="bg-black w-full h-12 items-center flex justify-center bg-opacity-75 text-white">This chat is empty, be the first!</div>
                 }
                 </div>
-                <div className="text-center mt-6 mb-4 w-full md:w-4/5 mx-auto text-white text-light flex">
-                    <form className="w-full mx-4" onSubmit={sendCommentObj}>
+                <div className="mt-6 mb-4 w-8/12 mx-auto text-white text-light flex">
+                    <form className="w-full" onSubmit={sendCommentObj}>
                         <input id="inputItinerary" type="text" placeholder={props.userLogged ? "Share you experience here!" :  "You must be logged in to comment"} className="bg-indigo-500 text-light focus:outline-none border-b border-gray-500 w-full placeholder-white ml-2 text-gray-100 h-8 px-2 mt-2 "
                             value={message.message}
                             onChange={handleMessage}
                         ></input>
                     </form>
-                    <div onClick={sendCommentObj} className={props.userLogged && message.message.length > 0 ? "cursor-pointer w-1/6 focus:outline-none" : "text-gray-400 cursor-not-allowed w-1/6 focus:outline-none"}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform rotate-90 mt-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div onClick={sendCommentObj} className={props.userLogged && message.message.length > 0 ? "cursor-pointer focus:outline-none" : "text-gray-400 cursor-not-allowed  focus:outline-none"}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="mx-4 h-6 w-6 transform rotate-90 mt-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={props.userLogged && message.message.length > 0 ? 2 : 1} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                     </div>

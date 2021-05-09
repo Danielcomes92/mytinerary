@@ -18,11 +18,7 @@ const LogIn = (props) => {
         window.scroll(0, 0)
     }, [])
 
-    const updatePosition = () => {
-        window.innerWidth >= 768 && window.scrollTo({top: 70, left: 0, behavior: 'smooth' })
-    }
-
-    const [logUser, setLogUser] = useState({
+      const [logUser, setLogUser] = useState({
         email: '',
         password: ''
     })
@@ -74,8 +70,8 @@ const LogIn = (props) => {
 
             <div className="mh70 items-center flex align-middle h-screen -mt-4 -mb-16 md:h-full md:mt-0 md:mb-0">
                 <div className="container mx-auto">
-                    <div className="flex justify-center px-6 md:mt-10">
-                        <div className="w-full lg:w-11/12 flex">
+                    <div className="flex justify-center px-6 md:mt-20 md:mb-20">
+                        <div className="w-full lg:w-11/12 flex shadow-md">
                             <div
                                 className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-md"
                                 style={{
@@ -84,7 +80,7 @@ const LogIn = (props) => {
                             ></div>
                             <div className="w-full lg:w-1/2 bg-white px-5 rounded lg:rounded-l-none">
                                 <h3 className="pt-4 text-2xl text-center">Welcome Back!</h3>
-                                <div onClick={updatePosition} className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded" autoComplete="off">
+                                <div className="md:px-8 px-2 pt-6 pb-8 mb-4 bg-white rounded" autoComplete="off">
                                     <div className="mb-4">
                                         {/* <label className="block mb-2 text-sm font-bold text-gray-700" htmlFor="email">
                                             Email

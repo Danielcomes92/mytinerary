@@ -8,7 +8,7 @@ export const Activity = (props) => {
                         backgroundImage: `url(/img/activities/${props.activity.activityPic})`
                     }}>
                     </div>
-                    <span className="h-auto w-full text-center lobster text-lg text-black">{props.activity.title}</span>
+                    <span className="h-auto w-full text-center lobster text-2xl text-blue-900">{props.activity.title}</span>
                 </div>
             </>
     )

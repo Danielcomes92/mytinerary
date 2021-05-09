@@ -18,10 +18,6 @@ const SignUp = (props) => {
 		window.scroll(0, 0)
 	}, [])
 
-	const updatePosition = () => {
-        window.innerWidth > 768 && window.scrollTo({top: 70, left: 0, behavior: 'smooth' })
-    }
-
 	const [type, setType] = useState(true)
 
 	const [newUser,  setNewUser] = useState({
@@ -102,15 +98,15 @@ const SignUp = (props) => {
 			<Header />
 			<div className="container mx-auto mt-20">
 				<div className="flex justify-center px-6 my-20">
-					<div className="w-full lg:w-11/12 flex">
+					<div className="w-full lg:w-11/12 flex shadow-md">
 						<div
 							className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 xl:w-6/12 bg-cover rounded-l-md"
 							style={{
 								backgroundImage: "url('/img/signin-bg.jpg')"
 							}}
 						></div>
-						{/* onClick={updatePosition} */}
-						<div onClick={updatePosition} className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
+						
+						<div className="w-full lg:w-7/12 bg-white px-5 rounded lg:rounded-l-none mt-10 md:mt-0">
 							<h3 className="pt-4 mb-4 text-2xl text-center">Create an Account!</h3>
 							<form className="md:px-8 px-2 pt-2 pb-4 mb-4 bg-white rounded">
 								<div className="mb-2 md:flex md:justify-between">
@@ -200,11 +196,8 @@ const SignUp = (props) => {
 										<div className="text-xs text-red-400 h-6">
 											{errors.password && errors.password}
 										</div>
-										<p onClick={() => setType(!type)} className="text-sm text-gray-600 mx-1 mt-1 cursor-pointer">{type ? "Show password" : "Hide password"}</p>
+										<p onClick={() => setType(!type)} className="text-sm text-gray-600 mx-1 mt-1 mb-6 cursor-pointer text-light">{type ? "Show password" : "Hide password"}</p>
 									</div>
-								</div>
-								<div className="mb-10">					
-									<p className="text-xs md:text-sm italic text-gray-500">* Password must contain at least 1 number and 4 letters </p>
 								</div>
 								<div className="mb-2 text-center">
 									<button

@@ -63,24 +63,24 @@ const Itinerary = (props) => {
 
     return (
             <>
-            <section className="bg-white w-11/12 md:w-10/12 mx-auto rounded-md shadow-md text-gray-600 body-font overflow-hidden mt-10 mb-10">
+            <section className="bg-white w-11/12 md:w-9/12 mx-auto rounded-md shadow-md text-gray-600 body-font overflow-hidden mt-10 mb-10">
                 <div className="container px-5 py-6 mx-auto">
-                    <div className="lg:w-4/5 mx-auto flex flex-wrap">
+                    <div className="md:w-11/12 mx-auto flex flex-wrap">
                     
-                            <div className="hidden lg:block lg:w-1/2 w-full lg:h-auto h-48">
+                            <div className="hidden lg:block lg:w-1/2 md:mt-4 w-full lg:h-auto h-48">
                                 <video className="rounded shadow-md" autoPlay={true} loop={true}>
                                     <source src={`/img/media/${placeImg}`} type="video/mp4"/>
                                 </video>
                             </div>
 
-                        <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 md:mt-6 lg:mt-0">
+                        <div className="lg:w-1/2 w-full lg:pl-10 md:mt-6">
                             <div className="flex flex-row justify-between items-center mt-2 mb-2 md:mt-0 md:mb-0">
                                 <div className="flex flex-row items-center">
                                     <div className="bgCenter bgCover shadow-md rounded-full w-10 h-10" style={{
                                         backgroundImage: `url(${authorPic})`
                                     }}>
                                     </div>
-                                    <h2 className="ml-2 title-font text-sm md:text-base text-gray-600 tracking-widest">{authorName}</h2>
+                                    <h2 className="ml-2 title-font text-sm md:text-light text-gray-600 tracking-widest">{authorName}</h2>
                                 </div>
                                 <div className="flex flex-row items-center">
                                     <button onClick={handleLike} className="rounded-full focus:outline-none w-10 h-10 bg-gray-200 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -88,7 +88,7 @@ const Itinerary = (props) => {
                                             <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                                         </svg>
                                     </button>
-                                    <span className="ml-1 text-red-600 lato text-xs md:text-base">{counterLikes}</span>
+                                    <span className="ml-2 text-red-700 lato text-xs md:font-bold">{counterLikes}</span>
                                 </div>
                             </div>
                             <div className="flex flex-row items-center mt-4">
@@ -96,7 +96,7 @@ const Itinerary = (props) => {
                             </div>
                             <div className="flex mb-4">
                             <span className="flex items-center">
-                                <span className="text-gray-600 text-sm md:text-base ml-3">{comments.length} Reviews</span>
+                                <span className="text-gray-600 text-sm md:text-light ml-3">{comments.length} Reviews</span>
                             </span>
                             <span className=" text-gray-500 flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                                 <span className="cursor-pointer">
@@ -118,7 +118,7 @@ const Itinerary = (props) => {
                             </div>
                             <div className="flex flex-col md:flex-row mb-8 mt-8">
                                 <div className="flex flex-row">
-                                    <span className="mr-1">Price:</span>  { getCountIcons(price).map( (element, index) => {
+                                    <span className="mr-1 text-sm md:text-base text-gray-700">Price:</span>  { getCountIcons(price).map( (element, index) => {
                                         return <span className="text-green-500 flex items-center" key={index}>
                                                     <span className="material-icons">monetization_on</span>
                                                 </span>
@@ -127,15 +127,15 @@ const Itinerary = (props) => {
 
                                 <div className="flex flex-col md:flex-row mt-2 md:mt-0 md:ml-4">
                                     <div className="flex flex-row items-center">
-                                        <span className="mr-1">Duration: </span>
+                                        <span className="mr-1 text-sm md:text-base text-gray-700">Duration: </span>
                                         <span className="text-blue-500 text-black material-icons">timer</span>
-                                        <span>{duration}h</span>
+                                        <span className="text-gray-700">{duration}h</span>
                                     </div>
                                 </div>
                             </div>
-                            <p className="leading-relaxed text-sm md:text-base">{placeDescription}</p>
+                            <p className="leading-relaxed text-sm text-light">{placeDescription}</p>
 
-                            <div className="md:text-lg text-blue-400">
+                            <div className="text-light text-blue-700 text-sm md:text-base">
                             {
                                 hashtags.map( (hashtag, index) => {
                                     return <span key={index} className="mr-1">{hashtag}</span>
@@ -148,7 +148,7 @@ const Itinerary = (props) => {
                         <>
                             <div className={collapse ? 'hidden' : 'block'}>
                             {/* contenedor de activities y comments */}
-                                <div className="mx-auto mt-10 mb-4 md:w-8/12">
+                                <div className="mx-auto mt-10 mb-4 md:w-11/12">
 
                                     {/* contenedor activities */}
                                     <ActivityCard id={props.city._id}/>
@@ -165,7 +165,7 @@ const Itinerary = (props) => {
                     }
                     <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-400 mb-5"></div>
                     <div className="flex justify-center md:justify-end w-10/12 mx-auto">
-                        <button onClick={(e) => handleActivities()} className="text-white bg-indigo-500 text-sm md:text-base border-0 py-2 px-4 md:px-6 focus:outline-none hover:bg-indigo-600 rounded">{collapse ? 'View more' : 'View less'}</button>                        
+                        <button onClick={(e) => handleActivities()} className="text-white bg-indigo-500 text-sm md:text-light border-0 py-2 px-4 md:px-6 focus:outline-none hover:bg-indigo-600 rounded">{collapse ? 'View more' : 'View less'}</button>                        
                     </div>
                 </div>
             </section>

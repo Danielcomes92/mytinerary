@@ -5,7 +5,7 @@ const citiesActions = {
 
     getCities: () => {
         return (dispatch, getState) => {
-            axios.get('http://localhost:4000/api/cities')
+            axios.get('https://webapp-mytinerary.herokuapp.com/api/cities')
             .then(res => dispatch({
                 type: 'GET_CITIES',
                 payload: res.data.response
@@ -19,7 +19,7 @@ const citiesActions = {
 
     getCityOnReload: (id) => {
         return(dispatch, getState) => {
-            axios.get(`http://localhost:4000/api/city/${id}`)
+            axios.get(`https://webapp-mytinerary.herokuapp.com/api/city/${id}`)
             .then(res => dispatch({
                 type: 'GET_CITY_ON_RELOAD',
                 payload: res.data.response

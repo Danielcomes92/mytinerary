@@ -8,7 +8,7 @@ const authActions = {
     newUser: (newUser) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('http://localhost:4000/api/signup', newUser)
+                const response = await axios.post('https://webapp-mytinerary.herokuapp.com/api/signup', newUser)
 
                 if(response.data.validatorErrors) {   
                     return response.data.validatorErrors //joi validator
@@ -30,7 +30,7 @@ const authActions = {
     logUser: (logUser) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post('http://localhost:4000/api/login', logUser)
+                const response = await axios.post('https://webapp-mytinerary.herokuapp.com/api/login', logUser)
                
                 if(response.data.success) {
                     dispatch({
@@ -58,7 +58,7 @@ const authActions = {
     loginWithLS: (userLS) => {
         return async(dispatch, getState) => {
             try {
-                const response = await axios.get('http://localhost:4000/api/loginLS', {
+                const response = await axios.get('https://webapp-mytinerary.herokuapp.com/api/loginLS', {
                     headers: {
                         'Authorization': 'Bearer '+ userLS.token
                     }

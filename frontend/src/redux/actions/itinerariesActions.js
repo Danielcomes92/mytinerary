@@ -8,7 +8,7 @@ const itinerariesActions = {
 
     getCityItineraries: (cityId) => {
         return(dispatch, getState) => {
-            axios.get(`http://localhost:4000/api/itineraries/${cityId}`)
+            axios.get(`https://webapp-mytinerary.herokuapp.com/api/itineraries/${cityId}`)
             .then(resp => dispatch({
                 type: 'GET_CITY_ITINERARIES',
                 payload: resp.data.response
@@ -32,7 +32,7 @@ const itinerariesActions = {
         // console.log(comment)
         return async (dispatch, getState) => {
             try {
-                const response = await axios.post(`http://localhost:4000/api/enterComment/${comment.itinerary_id}`, {comment: comment.message}, {
+                const response = await axios.post(`https://webapp-mytinerary.herokuapp.com/api/enterComment/${comment.itinerary_id}`, {comment: comment.message}, {
                     headers: {
                         'Authorization': 'Bearer '+ comment.token
                     }
@@ -47,7 +47,7 @@ const itinerariesActions = {
     removeComment: (_id, token) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.delete(`http://localhost:4000/api/removeComment/${_id}`, {
+                const response = await axios.delete(`https://webapp-mytinerary.herokuapp.com/api/removeComment/${_id}`, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }
@@ -62,7 +62,7 @@ const itinerariesActions = {
     updateComment: (_id, token, message) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.put(`http://localhost:4000/api/updateComment/${_id}`, {message}, {
+                const response = await axios.put(`https://webapp-mytinerary.herokuapp.com/api/updateComment/${_id}`, {message}, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }
@@ -77,7 +77,7 @@ const itinerariesActions = {
     updateLikes: (_id, token) => {
         return async (dispatch, getState) => { 
             try {
-                const response = await axios.get(`http://localhost:4000/api/updateLikes/${_id}`, {
+                const response = await axios.get(`https://webapp-mytinerary.herokuapp.com/api/updateLikes/${_id}`, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }
@@ -92,7 +92,7 @@ const itinerariesActions = {
     getUserLikesComments: (_id, token) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get(`http://localhost:4000/api/getUserLikesComments/${_id}`, {
+                const response = await axios.get(`https://webapp-mytinerary.herokuapp.com/api/getUserLikesComments/${_id}`, {
                     headers: {
                         'Authorization': 'Bearer '+ token
                     }

@@ -36,7 +36,7 @@ const validator = (req, res, next) => {
         .trim()
         .required()
         .min(5).message("The password must be superior of 4")
-        .pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,10}$/).message("Password must contain one letter upper, one lower and one number")
+        // .pattern(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{5,10}$/).message("Password must contain one letter upper, one lower and one number") MALDITO REGEX
     })
 
     const validation = schema.validate(req.body, {abortEarly: false});

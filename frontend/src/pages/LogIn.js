@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+toast.configure()
+toast.error(response, {position: toast.POSITION.TOP_RIGHT})
 
 import Footer from "../components/Footer"
 import Header from "../components/Header"

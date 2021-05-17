@@ -5,6 +5,7 @@ require('dotenv').config();
 require('./config/database');
 const router = require('./routes/index');
 require('./config/passport')
+const path = require('path')
 
 
 const app = express();
@@ -18,12 +19,30 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api', router)
 
+
+if(process.env.NODE_END === 'production') {
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname+ "/client/build/index.html"))
+    })
+}
+
+
 app.listen(port, host, () => {
     console.log(`App listening on port ${port} on ${host}`)
 })
 
 
 /*
+git push origin master
+git push heroku master
+///
+
+
+now ->>>
+git add . 
+git commit -m 'ready to host'
+
 git push origin master
 git push heroku master
 */

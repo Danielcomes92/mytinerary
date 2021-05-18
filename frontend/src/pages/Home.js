@@ -14,7 +14,7 @@ class Home extends React.Component {
         return(
             <> 
                 <div className="v85 flex flex-col heroContainer bg-gray-800" style={{
-                    backgroundImage: "url('./img/bgsuiza.jpg')"
+                    backgroundImage: "url('/img/bgsuiza.jpg')"
                 }}>
                     <Header/>
 

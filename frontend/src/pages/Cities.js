@@ -31,9 +31,9 @@ class Cities extends React.Component {
             </div>
             
                 
-            <div className="h-18 bg-blue-900 flex flex-col items-center shadow-md">
-               <div className="w-full flex items-center mt-2 mb-2 xl:mt-3 xl:mb-3">
-                    <input onClick={ this.updatePosition } onChange={ (e) => this.props.filterCities(e.target.value) } className="placeholder-black focus:outline-none border border-gray-300 shadow-md md:w-1/3 mx-auto rounded-full py-2 px-16 md:px-10" type="text" placeholder="Find your next destination"></input>
+            <div className="h-18 bg-blue-900 flex items-center shadow-md">
+               <div className="w-full flex justify-center items-center mt-2 mb-2 xl:mt-3 xl:mb-3">
+                    <input onClick={ this.updatePosition } onChange={ (e) => this.props.filterCities(e.target.value) } className="mx-auto w-11/12 px-6  placeholder-black focus:outline-none border border-gray-300 shadow-md md:w-1/3 mx-auto rounded-full py-2 px-2 md:px-10" type="text" placeholder="Find your next destination"></input>
                 </div>
             </div>
 

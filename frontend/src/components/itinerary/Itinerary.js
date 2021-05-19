@@ -68,7 +68,7 @@ const Itinerary = (props) => {
                     <div className="md:w-11/12 mx-auto flex flex-wrap">
                     
                             <div className="hidden lg:block lg:w-1/2 md:mt-4 w-full lg:h-auto h-48">
-                                <video className="rounded shadow-md" autoPlay={true} loop={true}>
+                                <video className="rounded shadow-md" autoPlay={window.innerWidth > 768 && true } loop={true}>
                                     <source src={`/img/media/${placeImg}`} type="video/mp4"/>
                                 </video>
                             </div>

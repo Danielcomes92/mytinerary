@@ -49,7 +49,7 @@ const Header = (props) => {
                     <div className="flex items-center">
                         <span className="text-white mx-2">{firstName ? `Welcome ${firstName}!` : ""}</span>
                             <div className="w-12 h-12 bg-opacity-none bgCenter bgCover rounded-full" style={{
-                                backgroundImage: `url(${ urlPic ? urlPic : '/img/userunknown.png'})`
+                                backgroundImage: `url(${ urlPic ? urlPic : '../img/userunknown.png'})`
                             }}></div>
                     </div>
                 </div>

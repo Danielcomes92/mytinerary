@@ -53,7 +53,7 @@ const Comments = (props) => {
             </div>
             <div className="md:w-10/12 mx-auto bg-indigo-500 commentsContainer flex justify-between flex-col bg-white shadow-md rounded-md">
                 <div className="chatContainer mt-5 mb-2 w-full mx-auto" style={{
-                    backgroundImage: "url('/img/pattern.png')"
+                    backgroundImage: "url('../img/pattern.png')"
                 }}>
                 {
                     comments.length > 0

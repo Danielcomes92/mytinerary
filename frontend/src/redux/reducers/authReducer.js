@@ -5,6 +5,7 @@ const initialState = {
 const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'ACCESS_USER':
+            console.log('auth reducer')
             localStorage.setItem('userLogged', JSON.stringify({firstName: action.payload.firstName, urlPic: action.payload.urlPic}))
             localStorage.setItem('token', action.payload.token)
             return {

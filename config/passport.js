@@ -5,7 +5,6 @@ require('dotenv').config();
 
 const User = require('../models/User');
 
-
 module.exports = passport.use(new jwtStrategy({
     jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: process.env.SECRET_OR_KEY

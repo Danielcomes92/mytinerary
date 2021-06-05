@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Slider from '../components/slider/Slider';
 
-class Home extends React.Component {    
+class Home extends React.Component {
 
     componentDidMount() {
         window.scrollTo(0, 0)

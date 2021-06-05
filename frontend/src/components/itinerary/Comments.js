@@ -51,7 +51,10 @@ const Comments = (props) => {
              <div className="md:w-10/12 mx-auto text-2xl md:text-3xl text-gray-900 md:mb-4">
                Comments
             </div>
+
+
             <div className="md:w-10/12 mx-auto bg-indigo-500 commentsContainer flex justify-between flex-col bg-white shadow-md rounded-md">
+
                 <div className="chatContainer mt-5 mb-2 w-full mx-auto" style={{
                     backgroundImage: "url('../img/pattern.png')"
                 }}>
@@ -65,9 +68,15 @@ const Comments = (props) => {
                     <div className="bg-black w-full h-12 items-center flex justify-center bg-opacity-75 text-white">This chat is empty, be the first!</div>
                 }
                 </div>
+
+
                 <div className="mt-6 mb-4 w-8/12 mx-auto text-white text-light flex">
+
+
                     <form className="w-full" onSubmit={sendCommentObj}>
-                        <input id="inputItinerary" type="text" placeholder={props.userLogged ? "Share you experience here!" :  "You must be logged in to comment"} className="bg-indigo-500 text-light focus:outline-none border-b border-gray-500 w-full placeholder-white ml-2 text-gray-100 h-8 px-2 mt-2 "
+                        <input id="inputItinerary"
+                            type="text" placeholder={props.userLogged ? "Share you experience here!" :  "You must be logged in to comment"}
+                            className="bg-indigo-500 text-light focus:outline-none border-b border-gray-500 w-full placeholder-white ml-2 text-gray-100 h-8 px-2 mt-2 "
                             value={message.message}
                             onChange={handleMessage}
                         ></input>
@@ -77,7 +86,11 @@ const Comments = (props) => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={props.userLogged && message.message.length > 0 ? 2 : 1} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                         </svg>
                     </div>
+
+
                 </div>
+
+
             </div>
             
         </>

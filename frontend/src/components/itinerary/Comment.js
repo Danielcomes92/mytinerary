@@ -80,7 +80,7 @@ const Comment = (props) => {
                         <div>                        
                         {
                             validateOwnerComment &&
-                                <> 
+                                <>
                                 {   
                                     !updateMessage
                                     ?

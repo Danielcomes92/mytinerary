@@ -118,11 +118,14 @@ const Itinerary = (props) => {
                             </div>
                             <div className="flex flex-col md:flex-row mb-8 mt-8">
                                 <div className="flex flex-row">
-                                    <span className="mr-1 text-sm md:text-base text-gray-700">Price:</span>  { getCountIcons(price).map( (element, index) => {
+                                    <span className="mr-1 text-sm md:text-base text-gray-700">Price:</span>
+                                    
+                                    { getCountIcons(price).map( (element, index) => {
                                         return <span className="text-green-500 flex items-center" key={index}>
                                                     <span className="material-icons">monetization_on</span>
                                                 </span>
-                                    }) }
+                                    })}
+                                    
                                 </div>
 
                                 <div className="flex flex-col md:flex-row mt-2 md:mt-0 md:ml-4">

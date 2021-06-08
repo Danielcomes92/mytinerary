@@ -44,7 +44,7 @@ class City extends React.Component  {
                 {  
                 <>
                     <div className="h65 flex flex-col bgCover bgCenter" style={{
-                        backgroundImage: `url('/img/${this.state.city.image}.jpg')`
+                        backgroundImage: `url('${this.state.city.image}')`
                     }}>
                         <Header />
                     </div>

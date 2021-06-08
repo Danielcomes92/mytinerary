@@ -65,7 +65,7 @@ class City extends React.Component  {
                     : <>
                         <div className="w-11/12 md:w-8/12 mx-auto flex flex-col rounded-xl mt-20 mb-10 md:mb-20 rounded-md shadow-md hover:shadow-lg">     
                             <div className="text-center mt-6 md:mt-0 bg-orange-100 bgCover bg-center h65" style={{
-                                backgroundImage: "url('./img/noitineraries.png')"
+                                backgroundImage: "url('https://i.imgur.com/DxRlaz2.png')"
                             }}>
                                 <span className="text-2xl lato font-bold">Sorry, we don't have itineraries available in {this.state.city.city} yet</span>    
                             </div>     

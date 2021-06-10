@@ -13,6 +13,7 @@ npm install
 # Construido con 🛠️
 * [React](https://es.reactjs.org/) - Lenguaje de Frontend
 * [Redux](https://es.redux.js.org/) - Libreria para manejo del estado
+* [TailwindCss](https://tailwindcss.com/) - UI Framework
 * [Node](https://nodejs.org/es/) - Lenguaje de Backend
 * [Express](https://expressjs.com/es/) - Framework para Backend
 * [MongoDB](https://www.mongodb.com/) - Base de datos
